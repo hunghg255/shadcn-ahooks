@@ -1,0 +1,146 @@
+.shadow-none {
+  box-shadow: none;
+}
+
+.bg-black {
+  background-color: black;
+}
+
+.text-white {
+  color: white;
+}
+
+.hover\:bg-black:hover {
+  background-color: black;
+}
+
+.hover\:text-white:hover {
+  color: white;
+}
+
+.dark\:bg-white {
+  @media (prefers-color-scheme: dark) {
+    background-color: white;
+  }
+}
+
+.dark\:text-black {
+  @media (prefers-color-scheme: dark) {
+    color: black;
+  }
+}
+
+.max-w-3xl {
+  max-width: 42rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.min-h-svh {
+  min-height: 100svh;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+.gap-1 {
+  gap: 0.25rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.tracking-tight {
+  letter-spacing: -0.015em;
+}
+
+.text-muted-foreground {
+  color: #888;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.border {
+  border: 1px solid #e5e7eb;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.min-h-\[450px\] {
+  min-height: 450px;
+}
+
+.relative {
+  position: relative;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.sm\:pl-3 {
+  @media (min-width: 640px) {
+    padding-left: 0.75rem;
+  }
+}
+
+.w-fit {
+  width: fit-content;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.min-h-\[500px\] {
+  min-height: 500px;
+}

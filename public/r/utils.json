@@ -1,0 +1,105 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "utils",
+  "title": "utils",
+  "description": "utils hook",
+  "dependencies": [
+    "react-fast-compare",
+    "@types/lodash",
+    "lodash"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/hooks/src/utils/createEffectWithTarget.ts",
+      "content": "import type { DependencyList, EffectCallback, useEffect, useLayoutEffect } from 'react';\nimport { useRef } from 'react';\nimport useUnmount from '../useUnmount';\nimport depsAreSame from './depsAreSame';\nimport type { BasicTarget } from './domTarget';\nimport { getTargetElement } from './domTarget';\n\nconst createEffectWithTarget = (useEffectType: typeof useEffect | typeof useLayoutEffect) => {\n  /**\n   *\n   * @param effect\n   * @param deps\n   * @param target target should compare ref.current vs ref.current, dom vs dom, ()=>dom vs ()=>dom\n   */\n  const useEffectWithTarget = (\n    effect: EffectCallback,\n    deps: DependencyList,\n    target: BasicTarget<any> | BasicTarget<any>[],\n  ) => {\n    const hasInitRef = useRef(false);\n\n    const lastElementRef = useRef<(Element | null)[]>([]);\n    const lastDepsRef = useRef<DependencyList>([]);\n\n    const unLoadRef = useRef<any>(undefined);\n\n    useEffectType(() => {\n      const targets = Array.isArray(target) ? target : [target];\n      const els = targets.map((item) => getTargetElement(item));\n\n      // init run\n      if (!hasInitRef.current) {\n        hasInitRef.current = true;\n        lastElementRef.current = els;\n        lastDepsRef.current = deps;\n\n        unLoadRef.current = effect();\n        return;\n      }\n\n      if (\n        els.length !== lastElementRef.current.length ||\n        !depsAreSame(lastElementRef.current, els) ||\n        !depsAreSame(lastDepsRef.current, deps)\n      ) {\n        unLoadRef.current?.();\n\n        lastElementRef.current = els;\n        lastDepsRef.current = deps;\n        unLoadRef.current = effect();\n      }\n    });\n\n    useUnmount(() => {\n      unLoadRef.current?.();\n      // for react-refresh\n      hasInitRef.current = false;\n    });\n  };\n\n  return useEffectWithTarget;\n};\n\nexport default createEffectWithTarget;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/utils/createEffectWithTarget.ts"
+    },
+    {
+      "path": "packages/hooks/src/utils/depsAreSame.ts",
+      "content": "import type { DependencyList } from 'react';\n\nfunction depsAreSame(oldDeps: DependencyList, deps: DependencyList): boolean {\n  if (oldDeps === deps) {\n    return true;\n  }\n  for (let i = 0; i < oldDeps.length; i++) {\n    if (!Object.is(oldDeps[i], deps[i])) {\n      return false;\n    }\n  }\n  return true;\n}\n\nexport default depsAreSame;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/utils/depsAreSame.ts"
+    },
+    {
+      "path": "packages/hooks/src/utils/depsEqual.ts",
+      "content": "import type { DependencyList } from 'react';\nimport isEqual from 'react-fast-compare';\n\nexport const depsEqual = (aDeps: DependencyList = [], bDeps: DependencyList = []) =>\n  isEqual(aDeps, bDeps);\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/utils/depsEqual.ts"
+    },
+    {
+      "path": "packages/hooks/src/utils/domTarget.ts",
+      "content": "import { isFunction } from './index';\nimport isBrowser from './isBrowser';\nimport type { RefObject } from 'react';\n\ntype TargetValue<T> = T | undefined | null;\n\ntype TargetType = HTMLElement | Element | Window | Document;\n\nexport type BasicTarget<T extends TargetType = Element> =\n  | (() => TargetValue<T>)\n  | TargetValue<T>\n  | RefObject<TargetValue<T>>;\n\nexport function getTargetElement<T extends TargetType>(target: BasicTarget<T>, defaultElement?: T) {\n  if (!isBrowser) {\n    return undefined;\n  }\n\n  if (!target) {\n    return defaultElement;\n  }\n\n  let targetElement: TargetValue<T>;\n\n  if (isFunction(target)) {\n    targetElement = target();\n  } else if ('current' in target) {\n    targetElement = target.current;\n  } else {\n    targetElement = target;\n  }\n\n  return targetElement;\n}\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/utils/domTarget.ts"
+    },
+    {
+      "path": "packages/hooks/src/utils/getDocumentOrShadow.ts",
+      "content": "import type { BasicTarget } from '../utils/domTarget';\nimport { getTargetElement } from '../utils/domTarget';\n\ndeclare type TargetValue<T> = T | undefined | null;\n\nconst checkIfAllInShadow = (targets: BasicTarget[]) => {\n  return targets.every((item) => {\n    const targetElement = getTargetElement(item);\n    if (!targetElement) {\n      return false;\n    }\n    if (targetElement.getRootNode() instanceof ShadowRoot) {\n      return true;\n    }\n    return false;\n  });\n};\n\nconst getShadow = (node: TargetValue<Element>) => {\n  if (!node) {\n    return document;\n  }\n  return node.getRootNode();\n};\n\nconst getDocumentOrShadow = (target: BasicTarget | BasicTarget[]): Document | Node => {\n  if (!target || !document.getRootNode) {\n    return document;\n  }\n\n  const targets = Array.isArray(target) ? target : [target];\n\n  if (checkIfAllInShadow(targets)) {\n    return getShadow(getTargetElement(targets[0]));\n  }\n\n  return document;\n};\n\nexport default getDocumentOrShadow;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/utils/getDocumentOrShadow.ts"
+    },
+    {
+      "path": "packages/hooks/src/utils/index.ts",
+      "content": "export const isObject = (value: unknown): value is Record<any, any> =>\n  value !== null && typeof value === 'object';\nexport const isFunction = (value: unknown): value is (...args: any) => any =>\n  typeof value === 'function';\nexport const isString = (value: unknown): value is string => typeof value === 'string';\nexport const isBoolean = (value: unknown): value is boolean => typeof value === 'boolean';\nexport const isNumber = (value: unknown): value is number => typeof value === 'number';\nexport const isUndef = (value: unknown): value is undefined => typeof value === 'undefined';\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/utils/index.ts"
+    },
+    {
+      "path": "packages/hooks/src/utils/isAppleDevice.ts",
+      "content": "const isAppleDevice = /(mac|iphone|ipod|ipad)/i.test(\n  typeof navigator !== 'undefined' ? navigator?.platform : '',\n);\n\nexport default isAppleDevice;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/utils/isAppleDevice.ts"
+    },
+    {
+      "path": "packages/hooks/src/utils/isBrowser.ts",
+      "content": "const isBrowser = !!(\n  typeof window !== 'undefined' &&\n  window.document &&\n  window.document.createElement\n);\n\nexport default isBrowser;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/utils/isBrowser.ts"
+    },
+    {
+      "path": "packages/hooks/src/utils/isDev.ts",
+      "content": "const isDev = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test';\n\nexport default isDev;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/utils/isDev.ts"
+    },
+    {
+      "path": "packages/hooks/src/utils/lodash-polyfill.ts",
+      "content": "import debounce from 'lodash/debounce';\n\nfunction isNodeOrWeb() {\n  const freeGlobal =\n    (typeof global === 'undefined' ? 'undefined' : typeof global) == 'object' &&\n    global &&\n    global.Object === Object &&\n    global;\n  const freeSelf = typeof self == 'object' && self && self.Object === Object && self;\n  return freeGlobal || freeSelf;\n}\n\nif (!isNodeOrWeb()) {\n  global.Date = Date;\n}\n\nexport { debounce };\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/utils/lodash-polyfill.ts"
+    },
+    {
+      "path": "packages/hooks/src/utils/rect.ts",
+      "content": "const getScrollTop = (el: Document | Element) => {\n  if (el === document || el === document.documentElement || el === document.body) {\n    return Math.max(\n      window.pageYOffset,\n      document.documentElement.scrollTop,\n      document.body.scrollTop,\n    );\n  }\n  return (el as Element).scrollTop;\n};\n\nconst getScrollHeight = (el: Document | Element) => {\n  return (\n    (el as Element).scrollHeight ||\n    Math.max(document.documentElement.scrollHeight, document.body.scrollHeight)\n  );\n};\n\nconst getClientHeight = (el: Document | Element) => {\n  return (\n    (el as Element).clientHeight ||\n    Math.max(document.documentElement.clientHeight, document.body.clientHeight)\n  );\n};\n\nexport { getScrollTop, getScrollHeight, getClientHeight };\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/utils/rect.ts"
+    },
+    {
+      "path": "packages/hooks/src/utils/useDeepCompareWithTarget.ts",
+      "content": "import type { DependencyList, EffectCallback } from 'react';\nimport { useRef } from 'react';\nimport type { BasicTarget } from './domTarget';\nimport useEffectWithTarget from './useEffectWithTarget';\nimport { depsEqual } from './depsEqual';\n\nconst useDeepCompareEffectWithTarget = (\n  effect: EffectCallback,\n  deps: DependencyList,\n  target: BasicTarget<any> | BasicTarget<any>[],\n) => {\n  const ref = useRef<DependencyList>(undefined);\n  const signalRef = useRef<number>(0);\n\n  if (!depsEqual(deps, ref.current)) {\n    signalRef.current += 1;\n  }\n  ref.current = deps;\n\n  useEffectWithTarget(effect, [signalRef.current], target);\n};\n\nexport default useDeepCompareEffectWithTarget;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/utils/useDeepCompareWithTarget.ts"
+    },
+    {
+      "path": "packages/hooks/src/utils/useEffectWithTarget.ts",
+      "content": "import { useEffect } from 'react';\nimport createEffectWithTarget from './createEffectWithTarget';\n\nconst useEffectWithTarget = createEffectWithTarget(useEffect);\n\nexport default useEffectWithTarget;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/utils/useEffectWithTarget.ts"
+    },
+    {
+      "path": "packages/hooks/src/utils/useIsomorphicLayoutEffectWithTarget.ts",
+      "content": "import isBrowser from './isBrowser';\nimport useEffectWithTarget from './useEffectWithTarget';\nimport useLayoutEffectWithTarget from './useLayoutEffectWithTarget';\n\nconst useIsomorphicLayoutEffectWithTarget = isBrowser\n  ? useLayoutEffectWithTarget\n  : useEffectWithTarget;\n\nexport default useIsomorphicLayoutEffectWithTarget;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/utils/useIsomorphicLayoutEffectWithTarget.ts"
+    },
+    {
+      "path": "packages/hooks/src/utils/useLayoutEffectWithTarget.ts",
+      "content": "import { useLayoutEffect } from 'react';\nimport createEffectWithTarget from './createEffectWithTarget';\n\nconst useEffectWithTarget = createEffectWithTarget(useLayoutEffect);\n\nexport default useEffectWithTarget;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/utils/useLayoutEffectWithTarget.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

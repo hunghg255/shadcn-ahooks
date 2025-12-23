@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useDeepCompareEffect",
+  "title": "useDeepCompareEffect",
+  "description": "useDeepCompareEffect hook",
+  "registryDependencies": [
+    "createDeepCompareEffect"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useDeepCompareEffect/index.tsx",
+      "content": "import { useEffect } from 'react';\nimport { createDeepCompareEffect } from '../createDeepCompareEffect';\n\nexport default createDeepCompareEffect(useEffect);\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useDeepCompareEffect/index.tsx"
+    }
+  ],
+  "type": "registry:hook"
+}

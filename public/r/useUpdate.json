@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useUpdate",
+  "title": "useUpdate",
+  "description": "useUpdate hook",
+  "files": [
+    {
+      "path": "packages/hooks/src/useUpdate/index.ts",
+      "content": "import { useCallback, useState } from 'react';\n\nconst useUpdate = () => {\n  const [, setState] = useState({});\n\n  return useCallback(() => setState({}), []);\n};\n\nexport default useUpdate;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useUpdate/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

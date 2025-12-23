@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useDocumentVisibility",
+  "title": "useDocumentVisibility",
+  "description": "useDocumentVisibility hook",
+  "registryDependencies": [
+    "useEventListener",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useDocumentVisibility/index.ts",
+      "content": "import { useState } from 'react';\nimport useEventListener from '../useEventListener';\nimport isBrowser from '../utils/isBrowser';\n\ntype VisibilityState = 'hidden' | 'visible' | 'prerender' | undefined;\n\nconst getVisibility = () => {\n  if (!isBrowser) {\n    return 'visible';\n  }\n  return document.visibilityState;\n};\n\nfunction useDocumentVisibility(): VisibilityState {\n  const [documentVisibility, setDocumentVisibility] = useState(getVisibility);\n\n  useEventListener(\n    'visibilitychange',\n    () => {\n      setDocumentVisibility(getVisibility());\n    },\n    {\n      target: () => document,\n    },\n  );\n\n  return documentVisibility;\n}\n\nexport default useDocumentVisibility;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useDocumentVisibility/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

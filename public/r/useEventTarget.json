@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useEventTarget",
+  "title": "useEventTarget",
+  "description": "useEventTarget hook",
+  "registryDependencies": [
+    "utils",
+    "useLatest"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useEventTarget/index.ts",
+      "content": "import { useCallback, useState } from 'react';\nimport useLatest from '../useLatest';\nimport { isFunction } from '../utils';\n\ninterface EventTarget<U> {\n  target: {\n    value: U;\n  };\n}\n\nexport interface Options<T, U> {\n  initialValue?: T;\n  transformer?: (value: U) => T;\n}\n\nfunction useEventTarget<T, U = T>(options?: Options<T, U>) {\n  const { initialValue, transformer } = options || {};\n  const [value, setValue] = useState(initialValue);\n\n  const transformerRef = useLatest(transformer);\n\n  const reset = useCallback(() => setValue(initialValue), []);\n\n  const onChange = useCallback((e: EventTarget<U>) => {\n    const _value = e.target.value;\n    if (isFunction(transformerRef.current)) {\n      return setValue(transformerRef.current(_value));\n    }\n    // no transformer => U and T should be the same\n    return setValue(_value as unknown as T);\n  }, []);\n\n  return [\n    value,\n    {\n      onChange,\n      reset,\n    },\n  ] as const;\n}\n\nexport default useEventTarget;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useEventTarget/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

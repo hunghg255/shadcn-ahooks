@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useHover",
+  "title": "useHover",
+  "description": "useHover hook",
+  "registryDependencies": [
+    "useBoolean",
+    "useEventListener",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useHover/index.ts",
+      "content": "import useBoolean from '../useBoolean';\nimport useEventListener from '../useEventListener';\nimport type { BasicTarget } from '../utils/domTarget';\n\nexport interface Options {\n  onEnter?: () => void;\n  onLeave?: () => void;\n  onChange?: (isHovering: boolean) => void;\n}\n\nexport default (target: BasicTarget, options?: Options): boolean => {\n  const { onEnter, onLeave, onChange } = options || {};\n\n  const [state, { setTrue, setFalse }] = useBoolean(false);\n\n  useEventListener(\n    'mouseenter',\n    () => {\n      onEnter?.();\n      setTrue();\n      onChange?.(true);\n    },\n    {\n      target,\n    },\n  );\n\n  useEventListener(\n    'mouseleave',\n    () => {\n      onLeave?.();\n      setFalse();\n      onChange?.(false);\n    },\n    {\n      target,\n    },\n  );\n\n  return state;\n};\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useHover/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

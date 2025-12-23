@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useInterval",
+  "title": "useInterval",
+  "description": "useInterval hook",
+  "registryDependencies": [
+    "useMemoizedFn",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useInterval/index.ts",
+      "content": "import { useCallback, useEffect, useRef } from 'react';\nimport useMemoizedFn from '../useMemoizedFn';\nimport { isNumber } from '../utils';\n\nconst useInterval = (fn: () => void, delay?: number, options: { immediate?: boolean } = {}) => {\n  const timerCallback = useMemoizedFn(fn);\n  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);\n\n  const clear = useCallback(() => {\n    if (timerRef.current) {\n      clearInterval(timerRef.current);\n    }\n  }, []);\n\n  useEffect(() => {\n    if (!isNumber(delay) || delay < 0) {\n      return;\n    }\n    if (options.immediate) {\n      timerCallback();\n    }\n    timerRef.current = setInterval(timerCallback, delay);\n    return clear;\n  }, [delay, options.immediate]);\n\n  return clear;\n};\n\nexport default useInterval;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useInterval/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

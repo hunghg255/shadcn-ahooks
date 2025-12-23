@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "usePagination",
+  "title": "usePagination",
+  "description": "usePagination hook",
+  "registryDependencies": [
+    "useMemoizedFn",
+    "useRequest"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/usePagination/index.ts",
+      "content": "import { useMemo } from 'react';\nimport useMemoizedFn from '../useMemoizedFn';\nimport useRequest from '../useRequest';\n\nimport type { Data, PaginationOptions, Params, Service, PaginationResult } from './types';\n\nconst usePagination = <TData extends Data, TParams extends Params>(\n  service: Service<TData, TParams>,\n  options: PaginationOptions<TData, TParams> = {},\n) => {\n  const { defaultPageSize = 10, defaultCurrent = 1, ...rest } = options;\n\n  const result = useRequest(service, {\n    defaultParams: [{ current: defaultCurrent, pageSize: defaultPageSize }] as unknown as TParams,\n    refreshDepsAction: () => {\n      // eslint-disable-next-line @typescript-eslint/no-use-before-define\n      changeCurrent(1);\n    },\n    ...rest,\n  });\n\n  const { current = 1, pageSize = defaultPageSize } = result.params[0] || {};\n\n  const total = result.data?.total || 0;\n  const totalPage = useMemo(() => Math.ceil(total / pageSize), [pageSize, total]);\n\n  const onChange = (c: number, p: number) => {\n    let toCurrent = c <= 0 ? 1 : c;\n    const toPageSize = p <= 0 ? 1 : p;\n    const tempTotalPage = Math.ceil(total / toPageSize);\n    if (toCurrent > tempTotalPage) {\n      toCurrent = Math.max(1, tempTotalPage);\n    }\n\n    const [oldPaginationParams = {}, ...restParams] = result.params || [];\n\n    result.run(\n      ...([\n        {\n          ...oldPaginationParams,\n          current: toCurrent,\n          pageSize: toPageSize,\n        },\n        ...restParams,\n      ] as TParams),\n    );\n  };\n\n  const changeCurrent = (c: number) => {\n    onChange(c, pageSize);\n  };\n\n  const changePageSize = (p: number) => {\n    onChange(current, p);\n  };\n\n  return {\n    ...result,\n    pagination: {\n      current,\n      pageSize,\n      total,\n      totalPage,\n      onChange: useMemoizedFn(onChange),\n      changeCurrent: useMemoizedFn(changeCurrent),\n      changePageSize: useMemoizedFn(changePageSize),\n    },\n  } as PaginationResult<TData, TParams>;\n};\n\nexport default usePagination;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/usePagination/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

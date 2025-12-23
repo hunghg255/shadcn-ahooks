@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useScroll",
+  "title": "useScroll",
+  "description": "useScroll hook",
+  "registryDependencies": [
+    "useRafState",
+    "useLatest",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useScroll/index.ts",
+      "content": "import useRafState from '../useRafState';\nimport useLatest from '../useLatest';\nimport type { BasicTarget } from '../utils/domTarget';\nimport { getTargetElement } from '../utils/domTarget';\nimport useEffectWithTarget from '../utils/useEffectWithTarget';\n\ntype Position = { left: number; top: number };\n\nexport type Target = BasicTarget<Element | Document>;\nexport type ScrollListenController = (val: Position) => boolean;\n\nfunction useScroll(\n  target?: Target,\n  shouldUpdate: ScrollListenController = () => true,\n): Position | undefined {\n  const [position, setPosition] = useRafState<Position>();\n\n  const shouldUpdateRef = useLatest(shouldUpdate);\n\n  useEffectWithTarget(\n    () => {\n      const el = getTargetElement(target, document);\n      if (!el) {\n        return;\n      }\n      const updatePosition = () => {\n        let newPosition: Position;\n        if (el === document) {\n          if (document.scrollingElement) {\n            newPosition = {\n              left: document.scrollingElement.scrollLeft,\n              top: document.scrollingElement.scrollTop,\n            };\n          } else {\n            // When in quirks mode, the scrollingElement attribute returns the HTML body element if it exists and is potentially scrollable, otherwise it returns null.\n            // https://developer.mozilla.org/zh-CN/docs/Web/API/Document/scrollingElement\n            // https://stackoverflow.com/questions/28633221/document-body-scrolltop-firefox-returns-0-only-js\n            newPosition = {\n              left: Math.max(\n                window.pageXOffset,\n                document.documentElement.scrollLeft,\n                document.body.scrollLeft,\n              ),\n              top: Math.max(\n                window.pageYOffset,\n                document.documentElement.scrollTop,\n                document.body.scrollTop,\n              ),\n            };\n          }\n        } else {\n          newPosition = {\n            left: (el as Element).scrollLeft,\n            top: (el as Element).scrollTop,\n          };\n        }\n        if (shouldUpdateRef.current(newPosition)) {\n          setPosition(newPosition);\n        }\n      };\n\n      updatePosition();\n\n      el.addEventListener('scroll', updatePosition);\n      return () => {\n        el.removeEventListener('scroll', updatePosition);\n      };\n    },\n    [],\n    target,\n  );\n\n  return position;\n}\n\nexport default useScroll;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useScroll/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

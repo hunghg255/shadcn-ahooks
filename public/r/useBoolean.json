@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useBoolean",
+  "title": "useBoolean",
+  "description": "useBoolean hook",
+  "registryDependencies": [
+    "useToggle"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useBoolean/index.ts",
+      "content": "import { useMemo } from 'react';\nimport useToggle from '../useToggle';\n\nexport interface Actions {\n  setTrue: () => void;\n  setFalse: () => void;\n  set: (value: boolean) => void;\n  toggle: () => void;\n}\n\nexport default function useBoolean(defaultValue = false): [boolean, Actions] {\n  const [state, { toggle, set }] = useToggle(!!defaultValue);\n\n  const actions: Actions = useMemo(() => {\n    const setTrue = () => set(true);\n    const setFalse = () => set(false);\n    return {\n      toggle,\n      set: (v) => set(!!v),\n      setTrue,\n      setFalse,\n    };\n  }, []);\n\n  return [state, actions];\n}\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useBoolean/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

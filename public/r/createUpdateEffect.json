@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "createUpdateEffect",
+  "title": "createUpdateEffect",
+  "description": "createUpdateEffect hook",
+  "files": [
+    {
+      "path": "packages/hooks/src/createUpdateEffect/index.ts",
+      "content": "import { useRef } from 'react';\nimport type { useEffect, useLayoutEffect } from 'react';\n\ntype EffectHookType = typeof useEffect | typeof useLayoutEffect;\n\nexport const createUpdateEffect: (hook: EffectHookType) => EffectHookType =\n  (hook) => (effect, deps) => {\n    const isMounted = useRef(false);\n\n    // for react-refresh\n    hook(() => {\n      return () => {\n        isMounted.current = false;\n      };\n    }, []);\n\n    hook(() => {\n      if (!isMounted.current) {\n        isMounted.current = true;\n      } else {\n        return effect();\n      }\n    }, deps);\n  };\n\nexport default createUpdateEffect;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/createUpdateEffect/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

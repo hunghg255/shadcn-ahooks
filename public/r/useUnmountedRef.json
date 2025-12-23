@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useUnmountedRef",
+  "title": "useUnmountedRef",
+  "description": "useUnmountedRef hook",
+  "files": [
+    {
+      "path": "packages/hooks/src/useUnmountedRef/index.tsx",
+      "content": "import { useEffect, useRef } from 'react';\n\nconst useUnmountedRef = () => {\n  const unmountedRef = useRef(false);\n  useEffect(() => {\n    unmountedRef.current = false;\n    return () => {\n      unmountedRef.current = true;\n    };\n  }, []);\n  return unmountedRef;\n};\n\nexport default useUnmountedRef;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useUnmountedRef/index.tsx"
+    }
+  ],
+  "type": "registry:hook"
+}

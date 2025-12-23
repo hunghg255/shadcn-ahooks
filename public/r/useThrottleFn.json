@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useThrottleFn",
+  "title": "useThrottleFn",
+  "description": "useThrottleFn hook",
+  "dependencies": [
+    "lodash"
+  ],
+  "registryDependencies": [
+    "useLatest",
+    "useThrottle",
+    "useUnmount",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useThrottleFn/index.ts",
+      "content": "import throttle from 'lodash/throttle';\nimport { useMemo } from 'react';\nimport useLatest from '../useLatest';\nimport type { ThrottleOptions } from '../useThrottle/throttleOptions';\nimport useUnmount from '../useUnmount';\nimport { isFunction } from '../utils';\nimport isDev from '../utils/isDev';\n\ntype noop = (...args: any[]) => any;\n\nfunction useThrottleFn<T extends noop>(fn: T, options?: ThrottleOptions) {\n  if (isDev) {\n    if (!isFunction(fn)) {\n      console.error(`useThrottleFn expected parameter is a function, got ${typeof fn}`);\n    }\n  }\n\n  const fnRef = useLatest(fn);\n\n  const wait = options?.wait ?? 1000;\n\n  const throttled = useMemo(\n    () =>\n      throttle(\n        (...args: Parameters<T>): ReturnType<T> => {\n          return fnRef.current(...args);\n        },\n        wait,\n        options,\n      ),\n    [],\n  );\n\n  useUnmount(() => {\n    throttled.cancel();\n  });\n\n  return {\n    run: throttled,\n    cancel: throttled.cancel,\n    flush: throttled.flush,\n  };\n}\n\nexport default useThrottleFn;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useThrottleFn/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

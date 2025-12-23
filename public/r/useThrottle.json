@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useThrottle",
+  "title": "useThrottle",
+  "description": "useThrottle hook",
+  "registryDependencies": [
+    "useThrottleFn"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useThrottle/index.ts",
+      "content": "import { useEffect, useState } from 'react';\nimport useThrottleFn from '../useThrottleFn';\nimport type { ThrottleOptions } from './throttleOptions';\n\nfunction useThrottle<T>(value: T, options?: ThrottleOptions) {\n  const [throttled, setThrottled] = useState(value);\n\n  const { run } = useThrottleFn(() => {\n    setThrottled(value);\n  }, options);\n\n  useEffect(() => {\n    run();\n  }, [value]);\n\n  return throttled;\n}\n\nexport default useThrottle;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useThrottle/index.ts"
+    },
+    {
+      "path": "packages/hooks/src/useThrottle/throttleOptions.ts",
+      "content": "export interface ThrottleOptions {\n  wait?: number;\n  leading?: boolean;\n  trailing?: boolean;\n}\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useThrottle/throttleOptions.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

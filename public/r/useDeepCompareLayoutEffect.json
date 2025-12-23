@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useDeepCompareLayoutEffect",
+  "title": "useDeepCompareLayoutEffect",
+  "description": "useDeepCompareLayoutEffect hook",
+  "registryDependencies": [
+    "createDeepCompareEffect"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useDeepCompareLayoutEffect/index.tsx",
+      "content": "import { useLayoutEffect } from 'react';\nimport { createDeepCompareEffect } from '../createDeepCompareEffect';\n\nexport default createDeepCompareEffect(useLayoutEffect);\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useDeepCompareLayoutEffect/index.tsx"
+    }
+  ],
+  "type": "registry:hook"
+}

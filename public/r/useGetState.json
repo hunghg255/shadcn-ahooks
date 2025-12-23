@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useGetState",
+  "title": "useGetState",
+  "description": "useGetState hook",
+  "registryDependencies": [
+    "useLatest"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useGetState/index.ts",
+      "content": "import type { Dispatch, SetStateAction } from 'react';\nimport { useState, useCallback } from 'react';\nimport useLatest from '../useLatest';\n\ntype GetStateAction<S> = () => S;\n\nfunction useGetState<S>(\n  initialState: S | (() => S),\n): [S, Dispatch<SetStateAction<S>>, GetStateAction<S>];\nfunction useGetState<S = undefined>(): [\n  S | undefined,\n  Dispatch<SetStateAction<S | undefined>>,\n  GetStateAction<S | undefined>,\n];\nfunction useGetState<S>(initialState?: S) {\n  const [state, setState] = useState(initialState);\n  const stateRef = useLatest(state);\n\n  const getState = useCallback(() => stateRef.current, []);\n\n  return [state, setState, getState];\n}\n\nexport default useGetState;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useGetState/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

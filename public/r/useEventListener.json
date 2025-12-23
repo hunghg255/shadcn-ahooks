@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useEventListener",
+  "title": "useEventListener",
+  "description": "useEventListener hook",
+  "registryDependencies": [
+    "utils",
+    "useLatest"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useEventListener/index.ts",
+      "content": "import useLatest from '../useLatest';\nimport type { BasicTarget } from '../utils/domTarget';\nimport { getTargetElement } from '../utils/domTarget';\nimport useEffectWithTarget from '../utils/useEffectWithTarget';\n\ntype noop = (...p: any) => void;\n\nexport type Target = BasicTarget<HTMLElement | Element | Window | Document>;\n\ntype Options<T extends Target = Target> = {\n  target?: T;\n  capture?: boolean;\n  once?: boolean;\n  passive?: boolean;\n  enable?: boolean;\n};\n\nfunction useEventListener<K extends keyof HTMLElementEventMap>(\n  eventName: K,\n  handler: (ev: HTMLElementEventMap[K]) => void,\n  options?: Options<HTMLElement>,\n): void;\nfunction useEventListener<K extends keyof ElementEventMap>(\n  eventName: K,\n  handler: (ev: ElementEventMap[K]) => void,\n  options?: Options<Element>,\n): void;\nfunction useEventListener<K extends keyof DocumentEventMap>(\n  eventName: K,\n  handler: (ev: DocumentEventMap[K]) => void,\n  options?: Options<Document>,\n): void;\nfunction useEventListener<K extends keyof WindowEventMap>(\n  eventName: K,\n  handler: (ev: WindowEventMap[K]) => void,\n  options?: Options<Window>,\n): void;\nfunction useEventListener(\n  eventName: string | string[],\n  handler: (event: Event) => void,\n  options?: Options<Window>,\n): void;\nfunction useEventListener(eventName: string | string[], handler: noop, options: Options): void;\n\nfunction useEventListener(eventName: string | string[], handler: noop, options: Options = {}) {\n  const { enable = true } = options;\n\n  const handlerRef = useLatest(handler);\n\n  useEffectWithTarget(\n    () => {\n      if (!enable) {\n        return;\n      }\n\n      const targetElement = getTargetElement(options.target, window);\n      if (!targetElement?.addEventListener) {\n        return;\n      }\n\n      const eventListener = (event: Event) => {\n        return handlerRef.current(event);\n      };\n\n      const eventNameArray = Array.isArray(eventName) ? eventName : [eventName];\n\n      eventNameArray.forEach((event) => {\n        targetElement.addEventListener(event, eventListener, {\n          capture: options.capture,\n          once: options.once,\n          passive: options.passive,\n        });\n      });\n\n      return () => {\n        eventNameArray.forEach((event) => {\n          targetElement.removeEventListener(event, eventListener, {\n            capture: options.capture,\n          });\n        });\n      };\n    },\n    [eventName, options.capture, options.once, options.passive, enable],\n    options.target,\n  );\n}\n\nexport default useEventListener;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useEventListener/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

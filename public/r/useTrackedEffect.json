@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useTrackedEffect",
+  "title": "useTrackedEffect",
+  "description": "useTrackedEffect hook",
+  "files": [
+    {
+      "path": "packages/hooks/src/useTrackedEffect/index.ts",
+      "content": "import type { DependencyList } from 'react';\nimport { useEffect, useRef } from 'react';\n\ntype Effect<T extends DependencyList> = (\n  changes?: number[],\n  previousDeps?: T,\n  currentDeps?: T,\n) => void | (() => void);\n\nconst diffTwoDeps = (deps1?: DependencyList, deps2?: DependencyList) => {\n  // Let's do a reference equality check on 2 dependency list.\n  // If deps1 is defined, we iterate over deps1 and do comparison on each element with equivalent element from deps2\n  // As this func is used only in this hook, we assume 2 deps always have same length.\n  return deps1\n    ? deps1\n        .map((_, idx) => (!Object.is(deps1[idx], deps2?.[idx]) ? idx : -1))\n        .filter((ele) => ele >= 0)\n    : deps2\n      ? deps2.map((_, idx) => idx)\n      : [];\n};\n\nconst useTrackedEffect = <T extends DependencyList>(effect: Effect<T>, deps?: [...T]) => {\n  const previousDepsRef = useRef<T>(undefined);\n  useEffect(() => {\n    const changes = diffTwoDeps(previousDepsRef.current, deps);\n    const previousDeps = previousDepsRef.current;\n    previousDepsRef.current = deps;\n    return effect(changes, previousDeps, deps);\n  }, deps);\n};\n\nexport default useTrackedEffect;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useTrackedEffect/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

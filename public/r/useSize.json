@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useSize",
+  "title": "useSize",
+  "description": "useSize hook",
+  "dependencies": [
+    "resize-observer-polyfill"
+  ],
+  "registryDependencies": [
+    "useRafState",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useSize/index.ts",
+      "content": "import ResizeObserver from 'resize-observer-polyfill';\nimport useRafState from '../useRafState';\nimport type { BasicTarget } from '../utils/domTarget';\nimport { getTargetElement } from '../utils/domTarget';\nimport useIsomorphicLayoutEffectWithTarget from '../utils/useIsomorphicLayoutEffectWithTarget';\n\ntype Size = { width: number; height: number };\n\nfunction useSize(target: BasicTarget): Size | undefined {\n  const [state, setState] = useRafState<Size | undefined>(() => {\n    const el = getTargetElement(target);\n    return el ? { width: el.clientWidth, height: el.clientHeight } : undefined;\n  });\n\n  useIsomorphicLayoutEffectWithTarget(\n    () => {\n      const el = getTargetElement(target);\n\n      if (!el) {\n        return;\n      }\n\n      const resizeObserver = new ResizeObserver((entries) => {\n        entries.forEach((entry) => {\n          const { clientWidth, clientHeight } = entry.target;\n          setState({ width: clientWidth, height: clientHeight });\n        });\n      });\n      resizeObserver.observe(el);\n      return () => {\n        resizeObserver.disconnect();\n      };\n    },\n    [],\n    target,\n  );\n\n  return state;\n}\n\nexport default useSize;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useSize/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

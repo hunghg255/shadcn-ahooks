@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useNetwork",
+  "title": "useNetwork",
+  "description": "useNetwork hook",
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useNetwork/index.ts",
+      "content": "import { useEffect, useState } from 'react';\nimport { isObject } from '../utils';\n\nexport interface NetworkState {\n  since?: Date;\n  online?: boolean;\n  rtt?: number;\n  type?: string;\n  downlink?: number;\n  saveData?: boolean;\n  downlinkMax?: number;\n  effectiveType?: string;\n}\n\nenum NetworkEventType {\n  ONLINE = 'online',\n  OFFLINE = 'offline',\n  CHANGE = 'change',\n}\n\nfunction getConnection() {\n  const nav = navigator as any;\n  if (!isObject(nav)) {\n    return null;\n  }\n  return nav.connection || nav.mozConnection || nav.webkitConnection;\n}\n\nfunction getConnectionProperty(): NetworkState {\n  const c = getConnection();\n  if (!c) {\n    return {};\n  }\n  return {\n    rtt: c.rtt,\n    type: c.type,\n    saveData: c.saveData,\n    downlink: c.downlink,\n    downlinkMax: c.downlinkMax,\n    effectiveType: c.effectiveType,\n  };\n}\n\nfunction useNetwork(): NetworkState {\n  const [state, setState] = useState(() => {\n    return {\n      since: undefined,\n      online: navigator?.onLine,\n      ...getConnectionProperty(),\n    };\n  });\n\n  useEffect(() => {\n    const onOnline = () => {\n      setState((prevState) => ({\n        ...prevState,\n        online: true,\n        since: new Date(),\n      }));\n    };\n\n    const onOffline = () => {\n      setState((prevState) => ({\n        ...prevState,\n        online: false,\n        since: new Date(),\n      }));\n    };\n\n    const onConnectionChange = () => {\n      setState((prevState) => ({\n        ...prevState,\n        ...getConnectionProperty(),\n      }));\n    };\n\n    window.addEventListener(NetworkEventType.ONLINE, onOnline);\n    window.addEventListener(NetworkEventType.OFFLINE, onOffline);\n\n    const connection = getConnection();\n    connection?.addEventListener(NetworkEventType.CHANGE, onConnectionChange);\n\n    return () => {\n      window.removeEventListener(NetworkEventType.ONLINE, onOnline);\n      window.removeEventListener(NetworkEventType.OFFLINE, onOffline);\n      connection?.removeEventListener(NetworkEventType.CHANGE, onConnectionChange);\n    };\n  }, []);\n\n  return state;\n}\n\nexport default useNetwork;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useNetwork/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

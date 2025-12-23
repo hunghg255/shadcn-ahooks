@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useCreation",
+  "title": "useCreation",
+  "description": "useCreation hook",
+  "registryDependencies": [
+    "utils",
+    "useMemoizedFn"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useCreation/index.ts",
+      "content": "import type { DependencyList } from 'react';\nimport { useRef } from 'react';\nimport depsAreSame from '../utils/depsAreSame';\n\nconst useCreation = <T>(factory: () => T, deps: DependencyList) => {\n  const { current } = useRef({\n    deps,\n    obj: undefined as T,\n    initialized: false,\n  });\n  if (current.initialized === false || !depsAreSame(current.deps, deps)) {\n    current.deps = deps;\n    current.obj = factory();\n    current.initialized = true;\n  }\n  return current.obj;\n};\n\nexport default useCreation;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useCreation/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

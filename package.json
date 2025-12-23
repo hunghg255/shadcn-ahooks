@@ -11,11 +11,8 @@
   },
   "scripts": {
     "init": "pnpm install && pnpm run build",
-    "start": "pnpm run dev",
-    "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider dumi dev",
     "clean-dist": "rimraf 'packages/*/{lib,es,node_modules,dist}'",
     "clean": "pnpm run clean-dist && rimraf node_modules",
-    "build": "pnpm -r --filter=./packages/* run build",
     "test": "pnpm --filter=./packages/* test",
     "test:strict": "cross-env REACT_MODE=strict pnpm --filter=./packages/* test:cov",
     "coveralls": "vitest run --coverage | coveralls",
@@ -31,7 +28,12 @@
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
     "commit": "git add -A && czg",
-    "tsc": "pnpm --filter=./packages/* tsc"
+    "tsc": "pnpm --filter=./packages/* tsc",
+    "registry:build": "shadcn build",
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "generate-registry": "npx esno scripts/generate-registry.ts"
   },
   "devDependencies": {
     "@alifd/next": "^1.27.32",
@@ -85,5 +87,9 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
+  },
+  "dependencies": {
+    "next": "^16.1.1",
+    "shadcn": "^3.6.2"
   }
 }

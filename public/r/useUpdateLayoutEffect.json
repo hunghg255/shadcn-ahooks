@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useUpdateLayoutEffect",
+  "title": "useUpdateLayoutEffect",
+  "description": "useUpdateLayoutEffect hook",
+  "registryDependencies": [
+    "createUpdateEffect"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useUpdateLayoutEffect/index.ts",
+      "content": "import { useLayoutEffect } from 'react';\nimport { createUpdateEffect } from '../createUpdateEffect';\n\nexport default createUpdateEffect(useLayoutEffect);\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useUpdateLayoutEffect/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

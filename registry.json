@@ -1,0 +1,1668 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "shadcn-ahooks",
+  "homepage": "https://shadcn-ahooks.vercel.app",
+  "items": [
+    {
+      "name": "utils",
+      "type": "registry:hook",
+      "title": "utils",
+      "description": "utils hook",
+      "dependencies": [
+        "react-fast-compare",
+        "@types/lodash",
+        "lodash"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/utils/createEffectWithTarget.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/utils/createEffectWithTarget.ts"
+        },
+        {
+          "path": "packages/hooks/src/utils/depsAreSame.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/utils/depsAreSame.ts"
+        },
+        {
+          "path": "packages/hooks/src/utils/depsEqual.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/utils/depsEqual.ts"
+        },
+        {
+          "path": "packages/hooks/src/utils/domTarget.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/utils/domTarget.ts"
+        },
+        {
+          "path": "packages/hooks/src/utils/getDocumentOrShadow.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/utils/getDocumentOrShadow.ts"
+        },
+        {
+          "path": "packages/hooks/src/utils/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/utils/index.ts"
+        },
+        {
+          "path": "packages/hooks/src/utils/isAppleDevice.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/utils/isAppleDevice.ts"
+        },
+        {
+          "path": "packages/hooks/src/utils/isBrowser.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/utils/isBrowser.ts"
+        },
+        {
+          "path": "packages/hooks/src/utils/isDev.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/utils/isDev.ts"
+        },
+        {
+          "path": "packages/hooks/src/utils/lodash-polyfill.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/utils/lodash-polyfill.ts"
+        },
+        {
+          "path": "packages/hooks/src/utils/rect.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/utils/rect.ts"
+        },
+        {
+          "path": "packages/hooks/src/utils/useDeepCompareWithTarget.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/utils/useDeepCompareWithTarget.ts"
+        },
+        {
+          "path": "packages/hooks/src/utils/useEffectWithTarget.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/utils/useEffectWithTarget.ts"
+        },
+        {
+          "path": "packages/hooks/src/utils/useIsomorphicLayoutEffectWithTarget.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/utils/useIsomorphicLayoutEffectWithTarget.ts"
+        },
+        {
+          "path": "packages/hooks/src/utils/useLayoutEffectWithTarget.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/utils/useLayoutEffectWithTarget.ts"
+        }
+      ]
+    },
+    {
+      "name": "createDeepCompareEffect",
+      "type": "registry:hook",
+      "title": "createDeepCompareEffect",
+      "description": "createDeepCompareEffect hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/createDeepCompareEffect/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/createDeepCompareEffect/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "createUpdateEffect",
+      "type": "registry:hook",
+      "title": "createUpdateEffect",
+      "description": "createUpdateEffect hook",
+      "files": [
+        {
+          "path": "packages/hooks/src/createUpdateEffect/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/createUpdateEffect/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "createUseStorageState",
+      "type": "registry:hook",
+      "title": "createUseStorageState",
+      "description": "createUseStorageState hook",
+      "files": [
+        {
+          "path": "packages/hooks/src/createUseStorageState/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/createUseStorageState/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useAntdTable",
+      "type": "registry:hook",
+      "title": "useAntdTable",
+      "description": "useAntdTable hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/usePagination.json",
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useUpdateEffect.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useAntdTable/index.tsx",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useAntdTable/index.tsx"
+        },
+        {
+          "path": "packages/hooks/src/useAntdTable/types.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useAntdTable/types.ts"
+        }
+      ]
+    },
+    {
+      "name": "useAsyncEffect",
+      "type": "registry:hook",
+      "title": "useAsyncEffect",
+      "description": "useAsyncEffect hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useAsyncEffect/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useAsyncEffect/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useBoolean",
+      "type": "registry:hook",
+      "title": "useBoolean",
+      "description": "useBoolean hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useToggle.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useBoolean/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useBoolean/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useClickAway",
+      "type": "registry:hook",
+      "title": "useClickAway",
+      "description": "useClickAway hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useClickAway/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useClickAway/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useControllableValue",
+      "type": "registry:hook",
+      "title": "useControllableValue",
+      "description": "useControllableValue hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useUpdate.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useControllableValue/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useControllableValue/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useCookieState",
+      "type": "registry:hook",
+      "title": "useCookieState",
+      "description": "useCookieState hook",
+      "dependencies": [
+        "js-cookie"
+      ],
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useCookieState/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useCookieState/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useCountDown",
+      "type": "registry:hook",
+      "title": "useCountDown",
+      "description": "useCountDown hook",
+      "dependencies": [
+        "dayjs"
+      ],
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useCountDown/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useCountDown/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useCounter",
+      "type": "registry:hook",
+      "title": "useCounter",
+      "description": "useCounter hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useCounter/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useCounter/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useCounter",
+      "type": "registry:hook",
+      "title": "useCounter",
+      "description": "useCounter hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useCounter/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useCounter/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useCreation",
+      "type": "registry:hook",
+      "title": "useCreation",
+      "description": "useCreation hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useCreation/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useCreation/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useDebounce",
+      "type": "registry:hook",
+      "title": "useDebounce",
+      "description": "useDebounce hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useDebounceFn.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useDebounce/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useDebounce/index.ts"
+        },
+        {
+          "path": "packages/hooks/src/useDebounce/debounceOptions.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useDebounce/debounceOptions.ts"
+        }
+      ]
+    },
+    {
+      "name": "useDebounceEffect",
+      "type": "registry:hook",
+      "title": "useDebounceEffect",
+      "description": "useDebounceEffect hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useDebounce.json",
+        "https://shadcn-ahooks.vercel.app/r/useDebounceFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useUpdateEffect.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useDebounceEffect/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useDebounceEffect/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useDebounceFn",
+      "type": "registry:hook",
+      "title": "useDebounceFn",
+      "description": "useDebounceFn hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useDebounce.json",
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/useUnmount.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useDebounceFn/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useDebounceFn/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useDebounceFn",
+      "type": "registry:hook",
+      "title": "useDebounceFn",
+      "description": "useDebounceFn hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useDebounce.json",
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/useUnmount.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useDebounceFn/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useDebounceFn/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useDeepCompareEffect",
+      "type": "registry:hook",
+      "title": "useDeepCompareEffect",
+      "description": "useDeepCompareEffect hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/createDeepCompareEffect.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useDeepCompareEffect/index.tsx",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useDeepCompareEffect/index.tsx"
+        }
+      ]
+    },
+    {
+      "name": "useDeepCompareLayoutEffect",
+      "type": "registry:hook",
+      "title": "useDeepCompareLayoutEffect",
+      "description": "useDeepCompareLayoutEffect hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/createDeepCompareEffect.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useDeepCompareLayoutEffect/index.tsx",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useDeepCompareLayoutEffect/index.tsx"
+        }
+      ]
+    },
+    {
+      "name": "useDocumentVisibility",
+      "type": "registry:hook",
+      "title": "useDocumentVisibility",
+      "description": "useDocumentVisibility hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useEventListener.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useDocumentVisibility/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useDocumentVisibility/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useDrag",
+      "type": "registry:hook",
+      "title": "useDrag",
+      "description": "useDrag hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/useMount.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useDrag/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useDrag/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useDrop",
+      "type": "registry:hook",
+      "title": "useDrop",
+      "description": "useDrop hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useDrop/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useDrop/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useDynamicList",
+      "type": "registry:hook",
+      "title": "useDynamicList",
+      "description": "useDynamicList hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useDynamicList/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useDynamicList/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useEventEmitter",
+      "type": "registry:hook",
+      "title": "useEventEmitter",
+      "description": "useEventEmitter hook",
+      "files": [
+        {
+          "path": "packages/hooks/src/useEventEmitter/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useEventEmitter/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useEventListener",
+      "type": "registry:hook",
+      "title": "useEventListener",
+      "description": "useEventListener hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useEventListener/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useEventListener/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useEventTarget",
+      "type": "registry:hook",
+      "title": "useEventTarget",
+      "description": "useEventTarget hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useEventTarget/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useEventTarget/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useExternal",
+      "type": "registry:hook",
+      "title": "useExternal",
+      "description": "useExternal hook",
+      "files": [
+        {
+          "path": "packages/hooks/src/useExternal/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useExternal/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useFavicon",
+      "type": "registry:hook",
+      "title": "useFavicon",
+      "description": "useFavicon hook",
+      "files": [
+        {
+          "path": "packages/hooks/src/useFavicon/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useFavicon/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useFocusWithin",
+      "type": "registry:hook",
+      "title": "useFocusWithin",
+      "description": "useFocusWithin hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useEventListener.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useFocusWithin/index.tsx",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useFocusWithin/index.tsx"
+        }
+      ]
+    },
+    {
+      "name": "useFullscreen",
+      "type": "registry:hook",
+      "title": "useFullscreen",
+      "description": "useFullscreen hook",
+      "dependencies": [
+        "screenfull"
+      ],
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useFullscreen/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useFullscreen/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useFusionTable",
+      "type": "registry:hook",
+      "title": "useFusionTable",
+      "description": "useFusionTable hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useAntdTable.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useFusionTable/index.tsx",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useFusionTable/index.tsx"
+        },
+        {
+          "path": "packages/hooks/src/useFusionTable/types.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useFusionTable/types.ts"
+        },
+        {
+          "path": "packages/hooks/src/useFusionTable/fusionAdapter.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useFusionTable/fusionAdapter.ts"
+        }
+      ]
+    },
+    {
+      "name": "useGetState",
+      "type": "registry:hook",
+      "title": "useGetState",
+      "description": "useGetState hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useGetState/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useGetState/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useHistoryTravel",
+      "type": "registry:hook",
+      "title": "useHistoryTravel",
+      "description": "useHistoryTravel hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useHistoryTravel/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useHistoryTravel/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useHistoryTravel",
+      "type": "registry:hook",
+      "title": "useHistoryTravel",
+      "description": "useHistoryTravel hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useHistoryTravel/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useHistoryTravel/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useHover",
+      "type": "registry:hook",
+      "title": "useHover",
+      "description": "useHover hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useBoolean.json",
+        "https://shadcn-ahooks.vercel.app/r/useEventListener.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useHover/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useHover/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useInfiniteScroll",
+      "type": "registry:hook",
+      "title": "useInfiniteScroll",
+      "description": "useInfiniteScroll hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useEventListener.json",
+        "https://shadcn-ahooks.vercel.app/r/useRequest.json",
+        "https://shadcn-ahooks.vercel.app/r/useUpdateEffect.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useInfiniteScroll/index.tsx",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useInfiniteScroll/index.tsx"
+        },
+        {
+          "path": "packages/hooks/src/useInfiniteScroll/types.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useInfiniteScroll/types.ts"
+        }
+      ]
+    },
+    {
+      "name": "useInterval",
+      "type": "registry:hook",
+      "title": "useInterval",
+      "description": "useInterval hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useInterval/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useInterval/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useInViewport",
+      "type": "registry:hook",
+      "title": "useInViewport",
+      "description": "useInViewport hook",
+      "dependencies": [
+        "intersection-observer"
+      ],
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useInViewport/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useInViewport/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useIsomorphicLayoutEffect",
+      "type": "registry:hook",
+      "title": "useIsomorphicLayoutEffect",
+      "description": "useIsomorphicLayoutEffect hook",
+      "dependencies": [
+        "intersection-observer"
+      ],
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useIsomorphicLayoutEffect/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useIsomorphicLayoutEffect/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useKeyPress",
+      "type": "registry:hook",
+      "title": "useKeyPress",
+      "description": "useKeyPress hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useKeyPress/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useKeyPress/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useLatest",
+      "type": "registry:hook",
+      "title": "useLatest",
+      "description": "useLatest hook",
+      "files": [
+        {
+          "path": "packages/hooks/src/useLatest/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useLatest/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useLocalStorageState",
+      "type": "registry:hook",
+      "title": "useLocalStorageState",
+      "description": "useLocalStorageState hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/createUseStorageState.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useLocalStorageState/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useLocalStorageState/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useLockFn",
+      "type": "registry:hook",
+      "title": "useLockFn",
+      "description": "useLockFn hook",
+      "files": [
+        {
+          "path": "packages/hooks/src/useLockFn/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useLockFn/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useLockFn",
+      "type": "registry:hook",
+      "title": "useLockFn",
+      "description": "useLockFn hook",
+      "files": [
+        {
+          "path": "packages/hooks/src/useLockFn/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useLockFn/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useLongPress",
+      "type": "registry:hook",
+      "title": "useLongPress",
+      "description": "useLongPress hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useLongPress/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useLongPress/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useMap",
+      "type": "registry:hook",
+      "title": "useMap",
+      "description": "useMap hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useMap/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useMap/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useMemoizedFn",
+      "type": "registry:hook",
+      "title": "useMemoizedFn",
+      "description": "useMemoizedFn hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useMemoizedFn/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useMemoizedFn/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useMount",
+      "type": "registry:hook",
+      "title": "useMount",
+      "description": "useMount hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useMount/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useMount/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useMouse",
+      "type": "registry:hook",
+      "title": "useMouse",
+      "description": "useMouse hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useRafState.json",
+        "https://shadcn-ahooks.vercel.app/r/useEventListener.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useMouse/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useMouse/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useMutationObserver",
+      "type": "registry:hook",
+      "title": "useMutationObserver",
+      "description": "useMutationObserver hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useMutationObserver/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useMutationObserver/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useNetwork",
+      "type": "registry:hook",
+      "title": "useNetwork",
+      "description": "useNetwork hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useNetwork/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useNetwork/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "usePagination",
+      "type": "registry:hook",
+      "title": "usePagination",
+      "description": "usePagination hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useRequest.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/usePagination/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/usePagination/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "usePrevious",
+      "type": "registry:hook",
+      "title": "usePrevious",
+      "description": "usePrevious hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useRequest.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/usePrevious/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/usePrevious/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useRafInterval",
+      "type": "registry:hook",
+      "title": "useRafInterval",
+      "description": "useRafInterval hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useRafInterval/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRafInterval/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useRafState",
+      "type": "registry:hook",
+      "title": "useRafState",
+      "description": "useRafState hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useUnmount.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useRafState/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRafState/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useRafTimeout",
+      "type": "registry:hook",
+      "title": "useRafTimeout",
+      "description": "useRafTimeout hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useRafTimeout/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRafTimeout/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useReactive",
+      "type": "registry:hook",
+      "title": "useReactive",
+      "description": "useReactive hook",
+      "dependencies": [
+        "lodash"
+      ],
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useCreation.json",
+        "https://shadcn-ahooks.vercel.app/r/useUpdate.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useReactive/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useReactive/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useRequest",
+      "type": "registry:hook",
+      "title": "useRequest",
+      "description": "useRequest hook",
+      "dependencies": [
+        "lodash"
+      ],
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useUpdateEffect.json",
+        "https://shadcn-ahooks.vercel.app/r/useUpdate.json",
+        "https://shadcn-ahooks.vercel.app/r/useCreation.json",
+        "https://shadcn-ahooks.vercel.app/r/useUnmount.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useMount.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useRequest/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRequest/index.ts"
+        },
+        {
+          "path": "packages/hooks/src/useRequest/src/Fetch.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRequest/src/Fetch.ts"
+        },
+        {
+          "path": "packages/hooks/src/useRequest/src/types.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRequest/src/types.ts"
+        },
+        {
+          "path": "packages/hooks/src/useRequest/src/useRequest.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRequest/src/useRequest.ts"
+        },
+        {
+          "path": "packages/hooks/src/useRequest/src/useRequestImplement.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRequest/src/useRequestImplement.ts"
+        },
+        {
+          "path": "packages/hooks/src/useRequest/src/plugins/useAutoRunPlugin.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRequest/src/plugins/useAutoRunPlugin.ts"
+        },
+        {
+          "path": "packages/hooks/src/useRequest/src/plugins/useCachePlugin.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRequest/src/plugins/useCachePlugin.ts"
+        },
+        {
+          "path": "packages/hooks/src/useRequest/src/plugins/useDebouncePlugin.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRequest/src/plugins/useDebouncePlugin.ts"
+        },
+        {
+          "path": "packages/hooks/src/useRequest/src/plugins/useLoadingDelayPlugin.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRequest/src/plugins/useLoadingDelayPlugin.ts"
+        },
+        {
+          "path": "packages/hooks/src/useRequest/src/plugins/usePollingPlugin.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRequest/src/plugins/usePollingPlugin.ts"
+        },
+        {
+          "path": "packages/hooks/src/useRequest/src/plugins/useRefreshOnWindowFocusPlugin.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRequest/src/plugins/useRefreshOnWindowFocusPlugin.ts"
+        },
+        {
+          "path": "packages/hooks/src/useRequest/src/plugins/useRetryPlugin.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRequest/src/plugins/useRetryPlugin.ts"
+        },
+        {
+          "path": "packages/hooks/src/useRequest/src/plugins/useThrottlePlugin.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRequest/src/plugins/useThrottlePlugin.ts"
+        },
+        {
+          "path": "packages/hooks/src/useRequest/src/utils/cache.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRequest/src/utils/cache.ts"
+        },
+        {
+          "path": "packages/hooks/src/useRequest/src/utils/cachePromise.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRequest/src/utils/cachePromise.ts"
+        },
+        {
+          "path": "packages/hooks/src/useRequest/src/utils/cacheSubscribe.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRequest/src/utils/cacheSubscribe.ts"
+        },
+        {
+          "path": "packages/hooks/src/useRequest/src/utils/isDocumentVisible.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRequest/src/utils/isDocumentVisible.ts"
+        },
+        {
+          "path": "packages/hooks/src/useRequest/src/utils/isOnline.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRequest/src/utils/isOnline.ts"
+        },
+        {
+          "path": "packages/hooks/src/useRequest/src/utils/limit.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRequest/src/utils/limit.ts"
+        },
+        {
+          "path": "packages/hooks/src/useRequest/src/utils/subscribeFocus.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRequest/src/utils/subscribeFocus.ts"
+        },
+        {
+          "path": "packages/hooks/src/useRequest/src/utils/subscribeReVisible.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useRequest/src/utils/subscribeReVisible.ts"
+        }
+      ]
+    },
+    {
+      "name": "useResetState",
+      "type": "registry:hook",
+      "title": "useResetState",
+      "description": "useResetState hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useCreation.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useResetState/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useResetState/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useResponsive",
+      "type": "registry:hook",
+      "title": "useResponsive",
+      "description": "useResponsive hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useResponsive/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useResponsive/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useSafeState",
+      "type": "registry:hook",
+      "title": "useSafeState",
+      "description": "useSafeState hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useUnmountedRef.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useSafeState/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useSafeState/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useScroll",
+      "type": "registry:hook",
+      "title": "useScroll",
+      "description": "useScroll hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useRafState.json",
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useScroll/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useScroll/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useSelections",
+      "type": "registry:hook",
+      "title": "useSelections",
+      "description": "useSelections hook",
+      "dependencies": [
+        "lodash"
+      ],
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useSelections/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useSelections/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useSessionStorageState",
+      "type": "registry:hook",
+      "title": "useSessionStorageState",
+      "description": "useSessionStorageState hook",
+      "dependencies": [
+        "lodash"
+      ],
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/createUseStorageState.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useSessionStorageState/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useSessionStorageState/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useSet",
+      "type": "registry:hook",
+      "title": "useSet",
+      "description": "useSet hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useSet/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useSet/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useSetState",
+      "type": "registry:hook",
+      "title": "useSetState",
+      "description": "useSetState hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useSetState/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useSetState/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useSize",
+      "type": "registry:hook",
+      "title": "useSize",
+      "description": "useSize hook",
+      "dependencies": [
+        "resize-observer-polyfill"
+      ],
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useRafState.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useSize/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useSize/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useTextSelection",
+      "type": "registry:hook",
+      "title": "useTextSelection",
+      "description": "useTextSelection hook",
+      "dependencies": [
+        "resize-observer-polyfill"
+      ],
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useTextSelection/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useTextSelection/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useTheme",
+      "type": "registry:hook",
+      "title": "useTheme",
+      "description": "useTheme hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useTheme/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useTheme/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useThrottle",
+      "type": "registry:hook",
+      "title": "useThrottle",
+      "description": "useThrottle hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useThrottleFn.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useThrottle/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useThrottle/index.ts"
+        },
+        {
+          "path": "packages/hooks/src/useThrottle/throttleOptions.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useThrottle/throttleOptions.ts"
+        }
+      ]
+    },
+    {
+      "name": "useThrottleEffect",
+      "type": "registry:hook",
+      "title": "useThrottleEffect",
+      "description": "useThrottleEffect hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useThrottle.json",
+        "https://shadcn-ahooks.vercel.app/r/useThrottleFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useUpdateEffect.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useThrottleEffect/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useThrottleEffect/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useThrottleFn",
+      "type": "registry:hook",
+      "title": "useThrottleFn",
+      "description": "useThrottleFn hook",
+      "dependencies": [
+        "lodash"
+      ],
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/useThrottle.json",
+        "https://shadcn-ahooks.vercel.app/r/useUnmount.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useThrottleFn/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useThrottleFn/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useTimeout",
+      "type": "registry:hook",
+      "title": "useTimeout",
+      "description": "useTimeout hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useTimeout/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useTimeout/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useTitle",
+      "type": "registry:hook",
+      "title": "useTitle",
+      "description": "useTitle hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useUnmount.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useTitle/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useTitle/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useToggle",
+      "type": "registry:hook",
+      "title": "useToggle",
+      "description": "useToggle hook",
+      "files": [
+        {
+          "path": "packages/hooks/src/useToggle/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useToggle/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useTrackedEffect",
+      "type": "registry:hook",
+      "title": "useTrackedEffect",
+      "description": "useTrackedEffect hook",
+      "files": [
+        {
+          "path": "packages/hooks/src/useTrackedEffect/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useTrackedEffect/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useUnmount",
+      "type": "registry:hook",
+      "title": "useUnmount",
+      "description": "useUnmount hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useUnmount/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useUnmount/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useUnmountedRef",
+      "type": "registry:hook",
+      "title": "useUnmountedRef",
+      "description": "useUnmountedRef hook",
+      "files": [
+        {
+          "path": "packages/hooks/src/useUnmountedRef/index.tsx",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useUnmountedRef/index.tsx"
+        }
+      ]
+    },
+    {
+      "name": "useUpdate",
+      "type": "registry:hook",
+      "title": "useUpdate",
+      "description": "useUpdate hook",
+      "files": [
+        {
+          "path": "packages/hooks/src/useUpdate/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useUpdate/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useUpdateEffect",
+      "type": "registry:hook",
+      "title": "useUpdateEffect",
+      "description": "useUpdateEffect hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/createUpdateEffect.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useUpdateEffect/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useUpdateEffect/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useUpdateLayoutEffect",
+      "type": "registry:hook",
+      "title": "useUpdateLayoutEffect",
+      "description": "useUpdateLayoutEffect hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/createUpdateEffect.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useUpdateLayoutEffect/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useUpdateLayoutEffect/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useVirtualList",
+      "type": "registry:hook",
+      "title": "useVirtualList",
+      "description": "useVirtualList hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useEventListener.json",
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useSize.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useUpdateEffect.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useVirtualList/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useVirtualList/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useWebSocket",
+      "type": "registry:hook",
+      "title": "useWebSocket",
+      "description": "useWebSocket hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useUnmount.json",
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useWebSocket/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useWebSocket/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useWhyDidYouUpdate",
+      "type": "registry:hook",
+      "title": "useWhyDidYouUpdate",
+      "description": "useWhyDidYouUpdate hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useUnmount.json",
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json"
+      ],
+      "files": [
+        {
+          "path": "packages/hooks/src/useWhyDidYouUpdate/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useWhyDidYouUpdate/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useUrlState",
+      "type": "registry:hook",
+      "title": "useUrlState",
+      "description": "useUrlState hook",
+      "dependencies": [
+        "query-string",
+        "react-router"
+      ],
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useUpdate.json"
+      ],
+      "files": [
+        {
+          "path": "packages/use-url-state/src/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/ahooks/useUrlState/index.ts"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useDrag",
+  "title": "useDrag",
+  "description": "useDrag hook",
+  "registryDependencies": [
+    "useLatest",
+    "useMount",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useDrag/index.ts",
+      "content": "import { useRef } from 'react';\nimport useLatest from '../useLatest';\nimport useMount from '../useMount';\nimport { isString } from '../utils';\nimport type { BasicTarget } from '../utils/domTarget';\nimport { getTargetElement } from '../utils/domTarget';\nimport useEffectWithTarget from '../utils/useEffectWithTarget';\n\nexport interface Options {\n  onDragStart?: (event: React.DragEvent) => void;\n  onDragEnd?: (event: React.DragEvent) => void;\n  dragImage?: {\n    image: string | Element;\n    offsetX?: number;\n    offsetY?: number;\n  };\n}\n\nconst useDrag = <T>(data: T, target: BasicTarget, options: Options = {}) => {\n  const optionsRef = useLatest(options);\n  const dataRef = useLatest(data);\n  const imageElementRef = useRef<Element>(undefined);\n\n  const { dragImage } = optionsRef.current;\n\n  useMount(() => {\n    if (dragImage?.image) {\n      const { image } = dragImage;\n\n      if (isString(image)) {\n        const imageElement = new Image();\n\n        imageElement.src = image;\n        imageElementRef.current = imageElement;\n      } else {\n        imageElementRef.current = image;\n      }\n    }\n  });\n\n  useEffectWithTarget(\n    () => {\n      const targetElement = getTargetElement(target);\n      if (!targetElement?.addEventListener) {\n        return;\n      }\n\n      const onDragStart = (event: React.DragEvent) => {\n        optionsRef.current.onDragStart?.(event);\n        event.dataTransfer.setData('custom', JSON.stringify(dataRef.current));\n\n        if (dragImage?.image && imageElementRef.current) {\n          const { offsetX = 0, offsetY = 0 } = dragImage;\n\n          event.dataTransfer.setDragImage(imageElementRef.current, offsetX, offsetY);\n        }\n      };\n\n      const onDragEnd = (event: React.DragEvent) => {\n        optionsRef.current.onDragEnd?.(event);\n      };\n\n      targetElement.setAttribute('draggable', 'true');\n\n      targetElement.addEventListener('dragstart', onDragStart as any);\n      targetElement.addEventListener('dragend', onDragEnd as any);\n\n      return () => {\n        targetElement.removeEventListener('dragstart', onDragStart as any);\n        targetElement.removeEventListener('dragend', onDragEnd as any);\n      };\n    },\n    [],\n    target,\n  );\n};\n\nexport default useDrag;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useDrag/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

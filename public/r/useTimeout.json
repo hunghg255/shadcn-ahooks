@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useTimeout",
+  "title": "useTimeout",
+  "description": "useTimeout hook",
+  "registryDependencies": [
+    "useMemoizedFn",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useTimeout/index.ts",
+      "content": "import { useCallback, useEffect, useRef } from 'react';\nimport useMemoizedFn from '../useMemoizedFn';\nimport { isNumber } from '../utils';\n\nconst useTimeout = (fn: () => void, delay?: number) => {\n  const timerCallback = useMemoizedFn(fn);\n  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);\n\n  const clear = useCallback(() => {\n    if (timerRef.current) {\n      clearTimeout(timerRef.current);\n    }\n  }, []);\n\n  useEffect(() => {\n    if (!isNumber(delay) || delay < 0) {\n      return;\n    }\n    timerRef.current = setTimeout(timerCallback, delay);\n    return clear;\n  }, [delay]);\n\n  return clear;\n};\n\nexport default useTimeout;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useTimeout/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

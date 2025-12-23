@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useFullscreen",
+  "title": "useFullscreen",
+  "description": "useFullscreen hook",
+  "dependencies": [
+    "screenfull"
+  ],
+  "registryDependencies": [
+    "useLatest",
+    "useMemoizedFn",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useFullscreen/index.ts",
+      "content": "import { useEffect, useState, useRef } from 'react';\nimport screenfull from 'screenfull';\nimport useLatest from '../useLatest';\nimport useMemoizedFn from '../useMemoizedFn';\nimport type { BasicTarget } from '../utils/domTarget';\nimport { getTargetElement } from '../utils/domTarget';\nimport { isBoolean } from '../utils';\n\nexport interface PageFullscreenOptions {\n  className?: string;\n  zIndex?: number;\n}\n\nexport interface Options {\n  onExit?: () => void;\n  onEnter?: () => void;\n  pageFullscreen?: boolean | PageFullscreenOptions;\n}\n\nconst useFullscreen = (target: BasicTarget, options?: Options) => {\n  const { onExit, onEnter, pageFullscreen = false } = options || {};\n  const { className = 'ahooks-page-fullscreen', zIndex = 999999 } =\n    isBoolean(pageFullscreen) || !pageFullscreen ? {} : pageFullscreen;\n\n  const onExitRef = useLatest(onExit);\n  const onEnterRef = useLatest(onEnter);\n\n  // The state of full screen may be changed by other scripts/components,\n  // so the initial value needs to be computed dynamically.\n  const [state, setState] = useState(getIsFullscreen);\n  const stateRef = useRef(getIsFullscreen());\n\n  function getIsFullscreen() {\n    return (\n      screenfull.isEnabled &&\n      !!screenfull.element &&\n      screenfull.element === getTargetElement(target)\n    );\n  }\n\n  const invokeCallback = (fullscreen: boolean) => {\n    if (fullscreen) {\n      onEnterRef.current?.();\n    } else {\n      onExitRef.current?.();\n    }\n  };\n\n  const updateFullscreenState = (fullscreen: boolean) => {\n    // Prevent repeated calls when the state is not changed.\n    if (stateRef.current !== fullscreen) {\n      invokeCallback(fullscreen);\n      setState(fullscreen);\n      stateRef.current = fullscreen;\n    }\n  };\n\n  const onScreenfullChange = () => {\n    const fullscreen = getIsFullscreen();\n\n    updateFullscreenState(fullscreen);\n  };\n\n  const togglePageFullscreen = (fullscreen: boolean) => {\n    const el = getTargetElement(target);\n    if (!el) {\n      return;\n    }\n\n    let styleElem = document.getElementById(className);\n\n    if (fullscreen) {\n      el.classList.add(className);\n\n      if (!styleElem) {\n        styleElem = document.createElement('style');\n        styleElem.setAttribute('id', className);\n        styleElem.textContent = `\n          .${className} {\n            position: fixed; left: 0; top: 0; right: 0; bottom: 0;\n            width: 100% !important; height: 100% !important;\n            z-index: ${zIndex};\n          }`;\n        el.appendChild(styleElem);\n      }\n    } else {\n      el.classList.remove(className);\n\n      if (styleElem) {\n        styleElem.remove();\n      }\n    }\n\n    updateFullscreenState(fullscreen);\n  };\n\n  const enterFullscreen = () => {\n    const el = getTargetElement(target);\n    if (!el) {\n      return;\n    }\n\n    if (pageFullscreen) {\n      togglePageFullscreen(true);\n      return;\n    }\n    if (screenfull.isEnabled) {\n      try {\n        screenfull.request(el);\n      } catch (error) {\n        console.error(error);\n      }\n    }\n  };\n\n  const exitFullscreen = () => {\n    const el = getTargetElement(target);\n    if (!el) {\n      return;\n    }\n\n    if (pageFullscreen) {\n      togglePageFullscreen(false);\n      return;\n    }\n    if (screenfull.isEnabled && screenfull.element === el) {\n      screenfull.exit();\n    }\n  };\n\n  const toggleFullscreen = () => {\n    if (state) {\n      exitFullscreen();\n    } else {\n      enterFullscreen();\n    }\n  };\n\n  useEffect(() => {\n    if (!screenfull.isEnabled || pageFullscreen) {\n      return;\n    }\n\n    screenfull.on('change', onScreenfullChange);\n\n    return () => {\n      screenfull.off('change', onScreenfullChange);\n    };\n  }, []);\n\n  return [\n    state,\n    {\n      enterFullscreen: useMemoizedFn(enterFullscreen),\n      exitFullscreen: useMemoizedFn(exitFullscreen),\n      toggleFullscreen: useMemoizedFn(toggleFullscreen),\n      isEnabled: screenfull.isEnabled,\n    },\n  ] as const;\n};\n\nexport default useFullscreen;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useFullscreen/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

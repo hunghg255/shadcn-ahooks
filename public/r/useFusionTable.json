@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useFusionTable",
+  "title": "useFusionTable",
+  "description": "useFusionTable hook",
+  "registryDependencies": [
+    "useAntdTable"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useFusionTable/index.tsx",
+      "content": "import useAntdTable from '../useAntdTable';\nimport type { Data, Params, Service } from '../useAntdTable/types';\nimport { fieldAdapter, resultAdapter } from './fusionAdapter';\nimport type { FusionTableOptions, FusionTableResult } from './types';\n\nconst useFusionTable = <TData extends Data, TParams extends Params>(\n  service: Service<TData, TParams>,\n  options: FusionTableOptions<TData, TParams> = {},\n): FusionTableResult<TData, TParams> => {\n  const ret = useAntdTable<TData, TParams>(service, {\n    ...options,\n    form: options.field ? fieldAdapter(options.field) : undefined,\n  });\n\n  return resultAdapter(ret);\n};\n\nexport default useFusionTable;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useFusionTable/index.tsx"
+    },
+    {
+      "path": "packages/hooks/src/useFusionTable/types.ts",
+      "content": "import type { AntdTableOptions, AntdTableResult, Data, Params } from '../useAntdTable/types';\n\nexport interface Field {\n  getFieldInstance?: (name: string) => Record<string, any>;\n  setValues: (value: Record<string, any>) => void;\n  getValues: (...args: any) => Record<string, any>;\n  reset: (...args: any) => void;\n  validate: (fields: any, callback: (errors: any, values: any) => void) => void;\n  [key: string]: any;\n}\n\nexport interface FusionTableResult<TData extends Data, TParams extends Params>\n  extends Omit<AntdTableResult<TData, TParams>, 'tableProps'> {\n  paginationProps: {\n    onChange: (current: number) => void;\n    onPageSizeChange: (size: number) => void;\n    current: number;\n    pageSize: number;\n    total: number;\n  };\n  tableProps: {\n    dataSource: TData['list'];\n    loading: boolean;\n    onSort: (dataIndex: string, order: string) => void;\n    onFilter: (filterParams: any) => void;\n  };\n  search: {\n    type: 'simple' | 'advance';\n    changeType: () => void;\n    submit: () => void;\n    reset: () => void;\n  };\n}\n\nexport interface FusionTableOptions<TData extends Data, TParams extends Params>\n  extends Omit<AntdTableOptions<TData, TParams>, 'form'> {\n  field?: Field;\n}\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useFusionTable/types.ts"
+    },
+    {
+      "path": "packages/hooks/src/useFusionTable/fusionAdapter.ts",
+      "content": "import type { AntdFormUtils } from '../useAntdTable/types';\nimport type { Field } from './types';\n\nexport const fieldAdapter = (field: Field) =>\n  ({\n    getFieldInstance: (name: string) => field.getNames().includes(name),\n    setFieldsValue: field.setValues,\n    getFieldsValue: field.getValues,\n    resetFields: field.resetToDefault,\n    validateFields: (fields, callback) => {\n      field.validate(fields, callback);\n    },\n  }) as AntdFormUtils;\n\nexport const resultAdapter = (result: any) => {\n  const tableProps = {\n    dataSource: result.tableProps.dataSource,\n    loading: result.tableProps.loading,\n    onSort: (dataIndex: string, order: string) => {\n      result.tableProps.onChange(\n        { current: result.pagination.current, pageSize: result.pagination.pageSize },\n        result.params[0]?.filters,\n        {\n          field: dataIndex,\n          order,\n        },\n      );\n    },\n    onFilter: (filterParams: Record<string, any>) => {\n      result.tableProps.onChange(\n        { current: result.pagination.current, pageSize: result.pagination.pageSize },\n        filterParams,\n        result.params[0]?.sorter,\n      );\n    },\n  };\n\n  const paginationProps = {\n    onChange: result.pagination.changeCurrent,\n    onPageSizeChange: result.pagination.changePageSize,\n    current: result.pagination.current,\n    pageSize: result.pagination.pageSize,\n    total: result.pagination.total,\n  };\n\n  return {\n    ...result,\n    tableProps,\n    paginationProps,\n  };\n};\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useFusionTable/fusionAdapter.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useClickAway",
+  "title": "useClickAway",
+  "description": "useClickAway hook",
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useClickAway/index.ts",
+      "content": "import useLatest from '../useLatest';\nimport type { BasicTarget } from '../utils/domTarget';\nimport { getTargetElement } from '../utils/domTarget';\nimport getDocumentOrShadow from '../utils/getDocumentOrShadow';\nimport useEffectWithTarget from '../utils/useEffectWithTarget';\n\ntype DocumentEventKey = keyof DocumentEventMap;\n\nexport default function useClickAway<T extends Event = Event>(\n  onClickAway: (event: T) => void,\n  target: BasicTarget | BasicTarget[],\n  eventName: DocumentEventKey | DocumentEventKey[] = 'click',\n) {\n  const onClickAwayRef = useLatest(onClickAway);\n\n  useEffectWithTarget(\n    () => {\n      const handler = (event: any) => {\n        const targets = Array.isArray(target) ? target : [target];\n        if (\n          targets.some((item) => {\n            const targetElement = getTargetElement(item);\n            return !targetElement || targetElement.contains(event.target);\n          })\n        ) {\n          return;\n        }\n        onClickAwayRef.current(event);\n      };\n\n      const documentOrShadow = getDocumentOrShadow(target);\n\n      const eventNames = Array.isArray(eventName) ? eventName : [eventName];\n\n      eventNames.forEach((event) => documentOrShadow.addEventListener(event, handler));\n\n      return () => {\n        eventNames.forEach((event) => documentOrShadow.removeEventListener(event, handler));\n      };\n    },\n    Array.isArray(eventName) ? eventName : [eventName],\n    target,\n  );\n}\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useClickAway/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

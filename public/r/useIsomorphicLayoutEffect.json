@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useIsomorphicLayoutEffect",
+  "title": "useIsomorphicLayoutEffect",
+  "description": "useIsomorphicLayoutEffect hook",
+  "dependencies": [
+    "intersection-observer"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useIsomorphicLayoutEffect/index.ts",
+      "content": "import { useEffect, useLayoutEffect } from 'react';\nimport isBrowser from '../utils/isBrowser';\n\nconst useIsomorphicLayoutEffect = isBrowser ? useLayoutEffect : useEffect;\n\nexport default useIsomorphicLayoutEffect;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useIsomorphicLayoutEffect/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

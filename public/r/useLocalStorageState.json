@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useLocalStorageState",
+  "title": "useLocalStorageState",
+  "description": "useLocalStorageState hook",
+  "registryDependencies": [
+    "createUseStorageState",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useLocalStorageState/index.ts",
+      "content": "import { createUseStorageState } from '../createUseStorageState';\nimport isBrowser from '../utils/isBrowser';\n\nconst useLocalStorageState = createUseStorageState(() => (isBrowser ? localStorage : undefined));\n\nexport default useLocalStorageState;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useLocalStorageState/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

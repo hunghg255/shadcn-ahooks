@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useUnmount",
+  "title": "useUnmount",
+  "description": "useUnmount hook",
+  "registryDependencies": [
+    "useLatest",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useUnmount/index.ts",
+      "content": "import { useEffect } from 'react';\nimport useLatest from '../useLatest';\nimport { isFunction } from '../utils';\nimport isDev from '../utils/isDev';\n\nconst useUnmount = (fn: () => void) => {\n  if (isDev) {\n    if (!isFunction(fn)) {\n      console.error(`useUnmount expected parameter is a function, got ${typeof fn}`);\n    }\n  }\n\n  const fnRef = useLatest(fn);\n\n  useEffect(\n    () => () => {\n      fnRef.current();\n    },\n    [],\n  );\n};\n\nexport default useUnmount;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useUnmount/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

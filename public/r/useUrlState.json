@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useUrlState",
+  "title": "useUrlState",
+  "description": "useUrlState hook",
+  "dependencies": [
+    "query-string",
+    "react-router"
+  ],
+  "registryDependencies": [
+    "useMemoizedFn",
+    "useUpdate"
+  ],
+  "files": [
+    {
+      "path": "packages/use-url-state/src/index.ts",
+      "content": "import { useMemoizedFn, useUpdate } from 'ahooks';\nimport qs from 'query-string';\nimport type { ParseOptions, StringifyOptions } from 'query-string';\nimport { useMemo, useRef } from 'react';\nimport type * as React from 'react';\nimport * as tmp from 'react-router';\n\n// ignore waring `\"export 'useNavigate' (imported as 'rc') was not found in 'react-router'`\nconst rc = tmp as any;\n\nexport interface Options {\n  navigateMode?: 'push' | 'replace';\n  parseOptions?: ParseOptions;\n  stringifyOptions?: StringifyOptions;\n}\n\nconst baseParseConfig: ParseOptions = {\n  parseNumbers: false,\n  parseBooleans: false,\n};\n\nconst baseStringifyConfig: StringifyOptions = {\n  skipNull: false,\n  skipEmptyString: false,\n};\n\ntype UrlState = Record<string, any>;\n\nconst useUrlState = <S extends UrlState = UrlState>(\n  baseState?: S | (() => S),\n  options?: Options,\n) => {\n  type State = Partial<{\n    [key in keyof S]: Required<S>[key] extends any[] ? string[] : string;\n  }>;\n\n  const { navigateMode = 'push', parseOptions, stringifyOptions } = options || {};\n\n  const mergedParseOptions = { ...baseParseConfig, ...parseOptions };\n  const mergedStringifyOptions = {\n    ...baseStringifyConfig,\n    ...stringifyOptions,\n  };\n\n  const location = rc.useLocation();\n\n  // react-router v5\n  const history = rc.useHistory?.();\n\n  // react-router v6 & v7\n  const navigate = rc.useNavigate?.();\n\n  const update = useUpdate();\n\n  const baseStateRef = useRef(typeof baseState === 'function' ? baseState() : baseState || {});\n\n  const queryFromUrl = useMemo(() => {\n    return qs.parse(location.search, mergedParseOptions);\n  }, [location.search]);\n\n  const targetQuery = useMemo<State>(\n    () => ({\n      ...baseStateRef.current,\n      ...queryFromUrl,\n    }),\n    [queryFromUrl],\n  );\n\n  const setState = (s: React.SetStateAction<State>) => {\n    const newQuery = typeof s === 'function' ? s(targetQuery) : s;\n\n    // 1. 如果 setState 后，search 没变化，就需要 update 来触发一次更新。比如 demo1 直接点击 clear，就需要 update 来触发更新。\n    // 2. update 和 history 的更新会合并，不会造成多次更新\n    update();\n    if (history) {\n      history[navigateMode](\n        {\n          hash: location.hash,\n          search: qs.stringify({ ...queryFromUrl, ...newQuery }, mergedStringifyOptions) || '?',\n        },\n        location.state,\n      );\n    }\n    if (navigate) {\n      navigate(\n        {\n          hash: location.hash,\n          search: qs.stringify({ ...queryFromUrl, ...newQuery }, mergedStringifyOptions) || '?',\n        },\n        {\n          replace: navigateMode === 'replace',\n          state: location.state,\n        },\n      );\n    }\n  };\n\n  return [targetQuery, useMemoizedFn(setState)] as const;\n};\n\nexport default useUrlState;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useUrlState/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

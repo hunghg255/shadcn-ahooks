@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useTitle",
+  "title": "useTitle",
+  "description": "useTitle hook",
+  "registryDependencies": [
+    "useUnmount",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useTitle/index.ts",
+      "content": "import { useEffect, useRef } from 'react';\nimport useUnmount from '../useUnmount';\nimport isBrowser from '../utils/isBrowser';\n\nexport interface Options {\n  restoreOnUnmount?: boolean;\n}\n\nconst DEFAULT_OPTIONS: Options = {\n  restoreOnUnmount: false,\n};\n\nfunction useTitle(title: string, options: Options = DEFAULT_OPTIONS) {\n  const titleRef = useRef(isBrowser ? document.title : '');\n  useEffect(() => {\n    document.title = title;\n  }, [title]);\n\n  useUnmount(() => {\n    if (options.restoreOnUnmount) {\n      document.title = titleRef.current;\n    }\n  });\n}\n\nexport default useTitle;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useTitle/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

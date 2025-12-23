@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useTextSelection",
+  "title": "useTextSelection",
+  "description": "useTextSelection hook",
+  "dependencies": [
+    "resize-observer-polyfill"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useTextSelection/index.ts",
+      "content": "import { useRef, useState } from 'react';\nimport type { BasicTarget } from '../utils/domTarget';\nimport { getTargetElement } from '../utils/domTarget';\nimport useEffectWithTarget from '../utils/useEffectWithTarget';\n\ninterface Rect {\n  top: number;\n  left: number;\n  bottom: number;\n  right: number;\n  height: number;\n  width: number;\n}\nexport interface State extends Rect {\n  text: string;\n}\n\nconst initRect: Rect = {\n  top: NaN,\n  left: NaN,\n  bottom: NaN,\n  right: NaN,\n  height: NaN,\n  width: NaN,\n};\n\nconst initState: State = {\n  text: '',\n  ...initRect,\n};\n\nfunction getRectFromSelection(selection: Selection | null): Rect {\n  if (!selection) {\n    return initRect;\n  }\n\n  if (selection.rangeCount < 1) {\n    return initRect;\n  }\n  const range = selection.getRangeAt(0);\n  const { height, width, top, left, right, bottom } = range.getBoundingClientRect();\n  return {\n    height,\n    width,\n    top,\n    left,\n    right,\n    bottom,\n  };\n}\n\nfunction useTextSelection(target?: BasicTarget<Document | Element>): State {\n  const [state, setState] = useState(initState);\n\n  const stateRef = useRef(state);\n  const isInRangeRef = useRef(false);\n  stateRef.current = state;\n\n  useEffectWithTarget(\n    () => {\n      const el = getTargetElement(target, document);\n      if (!el) {\n        return;\n      }\n\n      const mouseupHandler = () => {\n        let selObj: Selection | null = null;\n        let text = '';\n        let rect = initRect;\n        if (!window.getSelection) {\n          return;\n        }\n        selObj = window.getSelection();\n        text = selObj ? selObj.toString() : '';\n        if (text && isInRangeRef.current) {\n          rect = getRectFromSelection(selObj);\n          setState({ ...state, text, ...rect });\n        }\n      };\n\n      // 任意点击都需要清空之前的 range\n      const mousedownHandler = (e: MouseEvent) => {\n        // 如果是鼠标右键需要跳过 这样选中的数据就不会被清空\n        if (e.button === 2) {\n          return;\n        }\n        if (!window.getSelection) {\n          return;\n        }\n        if (stateRef.current.text) {\n          setState({ ...initState });\n        }\n        isInRangeRef.current = false;\n        const selObj = window.getSelection();\n        if (!selObj) {\n          return;\n        }\n        selObj.removeAllRanges();\n        isInRangeRef.current = el.contains(e.target as Node);\n      };\n\n      el.addEventListener('mouseup', mouseupHandler);\n\n      document.addEventListener('mousedown', mousedownHandler);\n\n      return () => {\n        el.removeEventListener('mouseup', mouseupHandler);\n        document.removeEventListener('mousedown', mousedownHandler);\n      };\n    },\n    [],\n    target,\n  );\n\n  return state;\n}\n\nexport default useTextSelection;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useTextSelection/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

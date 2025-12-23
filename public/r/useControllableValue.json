@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useControllableValue",
+  "title": "useControllableValue",
+  "description": "useControllableValue hook",
+  "registryDependencies": [
+    "utils",
+    "useMemoizedFn",
+    "useUpdate"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useControllableValue/index.ts",
+      "content": "import { useMemo, useRef } from 'react';\nimport type { SetStateAction } from 'react';\nimport { isFunction } from '../utils';\nimport useMemoizedFn from '../useMemoizedFn';\nimport useUpdate from '../useUpdate';\n\nexport interface Options<T> {\n  defaultValue?: T;\n  defaultValuePropName?: string;\n  valuePropName?: string;\n  trigger?: string;\n}\n\nexport type Props = Record<string, any>;\n\nexport interface StandardProps<T> {\n  value: T;\n  defaultValue?: T;\n  onChange: (val: T) => void;\n}\n\nfunction useControllableValue<T = any>(\n  props: StandardProps<T>,\n): [T, (v: SetStateAction<T>) => void];\nfunction useControllableValue<T = any>(\n  props?: Props,\n  options?: Options<T>,\n): [T, (v: SetStateAction<T>, ...args: any[]) => void];\nfunction useControllableValue<T = any>(defaultProps?: Props, options: Options<T> = {}) {\n  const props = defaultProps ?? {};\n\n  const {\n    defaultValue,\n    defaultValuePropName = 'defaultValue',\n    valuePropName = 'value',\n    trigger = 'onChange',\n  } = options;\n\n  const value = props[valuePropName] as T;\n  const isControlled = Object.prototype.hasOwnProperty.call(props, valuePropName);\n\n  const initialValue = useMemo(() => {\n    if (isControlled) {\n      return value;\n    }\n    if (Object.prototype.hasOwnProperty.call(props, defaultValuePropName)) {\n      return props[defaultValuePropName];\n    }\n    return defaultValue;\n  }, []);\n\n  const stateRef = useRef(initialValue);\n  if (isControlled) {\n    stateRef.current = value;\n  }\n\n  const update = useUpdate();\n\n  function setState(v: SetStateAction<T>, ...args: any[]) {\n    const r = isFunction(v) ? v(stateRef.current) : v;\n\n    if (!isControlled) {\n      stateRef.current = r;\n      update();\n    }\n    if (props[trigger]) {\n      props[trigger](r, ...args);\n    }\n  }\n\n  return [stateRef.current, useMemoizedFn(setState)] as const;\n}\n\nexport default useControllableValue;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useControllableValue/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useWhyDidYouUpdate",
+  "title": "useWhyDidYouUpdate",
+  "description": "useWhyDidYouUpdate hook",
+  "registryDependencies": [
+    "useMemoizedFn",
+    "useUnmount",
+    "useLatest"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useWhyDidYouUpdate/index.ts",
+      "content": "import { useEffect, useRef } from 'react';\n\nexport type IProps = Record<string, any>;\n\nfunction useWhyDidYouUpdate(componentName: string, props: IProps) {\n  const prevProps = useRef<IProps>({});\n\n  useEffect(() => {\n    if (prevProps.current) {\n      const allKeys = Object.keys({ ...prevProps.current, ...props });\n      const changedProps: IProps = {};\n\n      allKeys.forEach((key) => {\n        if (!Object.is(prevProps.current[key], props[key])) {\n          changedProps[key] = {\n            from: prevProps.current[key],\n            to: props[key],\n          };\n        }\n      });\n\n      if (Object.keys(changedProps).length) {\n        console.log('[why-did-you-update]', componentName, changedProps);\n      }\n    }\n\n    prevProps.current = props;\n  });\n}\n\nexport default useWhyDidYouUpdate;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useWhyDidYouUpdate/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

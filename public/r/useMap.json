@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useMap",
+  "title": "useMap",
+  "description": "useMap hook",
+  "registryDependencies": [
+    "useMemoizedFn"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useMap/index.ts",
+      "content": "import { useState } from 'react';\nimport useMemoizedFn from '../useMemoizedFn';\n\nfunction useMap<K, T>(initialValue?: Iterable<readonly [K, T]>) {\n  const getInitValue = () => new Map(initialValue);\n  const [map, setMap] = useState<Map<K, T>>(getInitValue);\n\n  const set = (key: K, entry: T) => {\n    setMap((prev) => {\n      const temp = new Map(prev);\n      temp.set(key, entry);\n      return temp;\n    });\n  };\n\n  const setAll = (newMap: Iterable<readonly [K, T]>) => {\n    setMap(new Map(newMap));\n  };\n\n  const remove = (key: K) => {\n    setMap((prev) => {\n      const temp = new Map(prev);\n      temp.delete(key);\n      return temp;\n    });\n  };\n\n  const reset = () => setMap(getInitValue());\n\n  const get = (key: K) => map.get(key);\n\n  return [\n    map,\n    {\n      set: useMemoizedFn(set),\n      setAll: useMemoizedFn(setAll),\n      remove: useMemoizedFn(remove),\n      reset: useMemoizedFn(reset),\n      get: useMemoizedFn(get),\n    },\n  ] as const;\n}\n\nexport default useMap;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useMap/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

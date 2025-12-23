@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useEventEmitter",
+  "title": "useEventEmitter",
+  "description": "useEventEmitter hook",
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/hooks/src/useEventEmitter/index.ts",
+      "content": "import { useRef, useEffect } from 'react';\n\ntype Subscription<T> = (val: T) => void;\n\nexport class EventEmitter<T> {\n  private subscriptions = new Set<Subscription<T>>();\n\n  emit = (val: T) => {\n    for (const subscription of this.subscriptions) {\n      subscription(val);\n    }\n  };\n\n  useSubscription = (callback: Subscription<T>) => {\n    // eslint-disable-next-line react-hooks/rules-of-hooks\n    const callbackRef = useRef<Subscription<T>>(undefined);\n    callbackRef.current = callback;\n    // eslint-disable-next-line react-hooks/rules-of-hooks\n    useEffect(() => {\n      function subscription(val: T) {\n        if (callbackRef.current) {\n          callbackRef.current(val);\n        }\n      }\n      this.subscriptions.add(subscription);\n      return () => {\n        this.subscriptions.delete(subscription);\n      };\n    }, []);\n  };\n}\n\nfunction useEventEmitter<T = void>() {\n  const ref = useRef<EventEmitter<T>>(undefined);\n  if (!ref.current) {\n    ref.current = new EventEmitter();\n  }\n  return ref.current;\n}\n\nexport default useEventEmitter;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useEventEmitter/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

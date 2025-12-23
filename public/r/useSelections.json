@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useSelections",
+  "title": "useSelections",
+  "description": "useSelections hook",
+  "dependencies": [
+    "lodash"
+  ],
+  "registryDependencies": [
+    "useMemoizedFn",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useSelections/index.ts",
+      "content": "import isPlainObject from 'lodash/isPlainObject';\nimport useMemoizedFn from '../useMemoizedFn';\nimport { isFunction, isString } from '../utils';\nimport { useMemo, useState } from 'react';\n\nexport interface Options<T> {\n  defaultSelected?: T[];\n  itemKey?: string | ((item: T) => React.Key);\n}\n\nfunction useSelections<T>(items: T[], options?: T[] | Options<T>) {\n  let defaultSelected: T[] = [];\n  let itemKey: Options<T>['itemKey'];\n\n  if (Array.isArray(options)) {\n    defaultSelected = options;\n  } else if (isPlainObject(options)) {\n    defaultSelected = options?.defaultSelected ?? defaultSelected;\n    itemKey = options?.itemKey ?? itemKey;\n  }\n\n  const getKey = (item: T) => {\n    if (isFunction(itemKey)) {\n      return itemKey(item);\n    }\n    if (isString(itemKey) && isPlainObject(item)) {\n      return (item as any)[itemKey];\n    }\n\n    return item as React.Key;\n  };\n\n  const [selected, setSelected] = useState<T[]>(defaultSelected);\n\n  const selectedMap = useMemo(() => {\n    const keyToItemMap = new Map<React.Key, T>();\n\n    if (!Array.isArray(selected)) {\n      return keyToItemMap;\n    }\n\n    selected.forEach((item) => {\n      keyToItemMap.set(getKey(item), item);\n    });\n\n    return keyToItemMap;\n  }, [selected]);\n\n  const isSelected = (item: T) => selectedMap.has(getKey(item));\n\n  const select = (item: T) => {\n    selectedMap.set(getKey(item), item);\n    setSelected(Array.from(selectedMap.values()));\n  };\n\n  const unSelect = (item: T) => {\n    selectedMap.delete(getKey(item));\n    setSelected(Array.from(selectedMap.values()));\n  };\n\n  const toggle = (item: T) => {\n    if (isSelected(item)) {\n      unSelect(item);\n    } else {\n      select(item);\n    }\n  };\n\n  const selectAll = () => {\n    items.forEach((item) => {\n      selectedMap.set(getKey(item), item);\n    });\n    setSelected(Array.from(selectedMap.values()));\n  };\n\n  const unSelectAll = () => {\n    items.forEach((item) => {\n      selectedMap.delete(getKey(item));\n    });\n    setSelected(Array.from<T>(selectedMap.values()));\n  };\n\n  const noneSelected = useMemo<boolean>(\n    () => items.every((item) => !selectedMap.has(getKey(item))),\n    [items, selectedMap],\n  );\n\n  const allSelected = useMemo<boolean>(\n    () => items.every((item) => selectedMap.has(getKey(item))) && !noneSelected,\n    [items, selectedMap, noneSelected],\n  );\n\n  const partiallySelected = useMemo<boolean>(\n    () => !noneSelected && !allSelected,\n    [noneSelected, allSelected],\n  );\n\n  const toggleAll = () => (allSelected ? unSelectAll() : selectAll());\n\n  const clearAll = () => {\n    selectedMap.clear();\n    setSelected([]);\n  };\n\n  return {\n    selected,\n    noneSelected,\n    allSelected,\n    partiallySelected,\n    setSelected,\n    isSelected,\n    select: useMemoizedFn(select),\n    unSelect: useMemoizedFn(unSelect),\n    toggle: useMemoizedFn(toggle),\n    selectAll: useMemoizedFn(selectAll),\n    unSelectAll: useMemoizedFn(unSelectAll),\n    clearAll: useMemoizedFn(clearAll),\n    toggleAll: useMemoizedFn(toggleAll),\n  } as const;\n}\n\nexport default useSelections;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useSelections/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

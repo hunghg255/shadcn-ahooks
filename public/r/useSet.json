@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useSet",
+  "title": "useSet",
+  "description": "useSet hook",
+  "registryDependencies": [
+    "useMemoizedFn"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useSet/index.ts",
+      "content": "import { useState } from 'react';\nimport useMemoizedFn from '../useMemoizedFn';\n\nfunction useSet<K>(initialValue?: Iterable<K>) {\n  const getInitValue = () => new Set(initialValue);\n  const [set, setSet] = useState<Set<K>>(getInitValue);\n\n  const updateSet = (updater: (set: Set<K>) => Set<K>) => {\n    setSet((prevSet) => updater(new Set(prevSet)));\n  };\n\n  const add = (key: K) => {\n    if (set.has(key)) {\n      return;\n    }\n    updateSet((newSet) => {\n      newSet.add(key);\n      return newSet;\n    });\n  };\n\n  const remove = (key: K) => {\n    if (!set.has(key)) {\n      return;\n    }\n    updateSet((newSet) => {\n      newSet.delete(key);\n      return newSet;\n    });\n  };\n\n  const reset = () => setSet(getInitValue());\n\n  return [\n    set,\n    {\n      add: useMemoizedFn(add),\n      remove: useMemoizedFn(remove),\n      reset: useMemoizedFn(reset),\n    },\n  ] as const;\n}\n\nexport default useSet;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useSet/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useMouse",
+  "title": "useMouse",
+  "description": "useMouse hook",
+  "registryDependencies": [
+    "utils",
+    "useRafState",
+    "useEventListener"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useMouse/index.ts",
+      "content": "import useRafState from '../useRafState';\nimport useEventListener from '../useEventListener';\nimport type { BasicTarget } from '../utils/domTarget';\nimport { getTargetElement } from '../utils/domTarget';\n\nexport interface CursorState {\n  screenX: number;\n  screenY: number;\n  clientX: number;\n  clientY: number;\n  pageX: number;\n  pageY: number;\n  elementX: number;\n  elementY: number;\n  elementH: number;\n  elementW: number;\n  elementPosX: number;\n  elementPosY: number;\n}\n\nconst initState: CursorState = {\n  screenX: NaN,\n  screenY: NaN,\n  clientX: NaN,\n  clientY: NaN,\n  pageX: NaN,\n  pageY: NaN,\n  elementX: NaN,\n  elementY: NaN,\n  elementH: NaN,\n  elementW: NaN,\n  elementPosX: NaN,\n  elementPosY: NaN,\n};\n\nexport default (target?: BasicTarget) => {\n  const [state, setState] = useRafState(initState);\n\n  useEventListener(\n    'mousemove',\n    (event: MouseEvent) => {\n      const { screenX, screenY, clientX, clientY, pageX, pageY } = event;\n      const newState = {\n        screenX,\n        screenY,\n        clientX,\n        clientY,\n        pageX,\n        pageY,\n        elementX: NaN,\n        elementY: NaN,\n        elementH: NaN,\n        elementW: NaN,\n        elementPosX: NaN,\n        elementPosY: NaN,\n      };\n      const targetElement = getTargetElement(target);\n      if (targetElement) {\n        const { left, top, width, height } = targetElement.getBoundingClientRect();\n        newState.elementPosX = left + window.pageXOffset;\n        newState.elementPosY = top + window.pageYOffset;\n        newState.elementX = pageX - newState.elementPosX;\n        newState.elementY = pageY - newState.elementPosY;\n        newState.elementW = width;\n        newState.elementH = height;\n      }\n      setState(newState);\n    },\n    {\n      target: () => document,\n    },\n  );\n\n  return state;\n};\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useMouse/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

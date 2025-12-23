@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useFocusWithin",
+  "title": "useFocusWithin",
+  "description": "useFocusWithin hook",
+  "registryDependencies": [
+    "useEventListener",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useFocusWithin/index.tsx",
+      "content": "import { useState } from 'react';\nimport useEventListener from '../useEventListener';\nimport type { BasicTarget } from '../utils/domTarget';\n\nexport interface Options {\n  onFocus?: (e: FocusEvent) => void;\n  onBlur?: (e: FocusEvent) => void;\n  onChange?: (isFocusWithin: boolean) => void;\n}\n\nexport default function useFocusWithin(target: BasicTarget, options?: Options) {\n  const [isFocusWithin, setIsFocusWithin] = useState(false);\n  const { onFocus, onBlur, onChange } = options || {};\n\n  useEventListener(\n    'focusin',\n    (e: FocusEvent) => {\n      if (!isFocusWithin) {\n        onFocus?.(e);\n        onChange?.(true);\n        setIsFocusWithin(true);\n      }\n    },\n    {\n      target,\n    },\n  );\n\n  useEventListener(\n    'focusout',\n    (e: FocusEvent) => {\n      if (isFocusWithin && !(e.currentTarget as Element)?.contains?.(e.relatedTarget as Element)) {\n        onBlur?.(e);\n        onChange?.(false);\n        setIsFocusWithin(false);\n      }\n    },\n    {\n      target,\n    },\n  );\n\n  return isFocusWithin;\n}\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useFocusWithin/index.tsx"
+    }
+  ],
+  "type": "registry:hook"
+}

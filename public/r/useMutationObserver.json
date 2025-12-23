@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useMutationObserver",
+  "title": "useMutationObserver",
+  "description": "useMutationObserver hook",
+  "registryDependencies": [
+    "utils",
+    "useLatest"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useMutationObserver/index.ts",
+      "content": "import { getTargetElement } from '../utils/domTarget';\nimport type { BasicTarget } from '../utils/domTarget';\nimport useDeepCompareEffectWithTarget from '../utils/useDeepCompareWithTarget';\nimport useLatest from '../useLatest';\n\nconst useMutationObserver = (\n  callback: MutationCallback,\n  target: BasicTarget,\n  options: MutationObserverInit = {},\n): void => {\n  const callbackRef = useLatest(callback);\n\n  useDeepCompareEffectWithTarget(\n    () => {\n      const element = getTargetElement(target);\n      if (!element) {\n        return;\n      }\n      const observer = new MutationObserver(callbackRef.current);\n      observer.observe(element, options);\n      return () => {\n        observer?.disconnect();\n      };\n    },\n    [options],\n    target,\n  );\n};\n\nexport default useMutationObserver;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useMutationObserver/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "usePrevious",
+  "title": "usePrevious",
+  "description": "usePrevious hook",
+  "registryDependencies": [
+    "useMemoizedFn",
+    "useRequest"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/usePrevious/index.ts",
+      "content": "import { useRef } from 'react';\n\nexport type ShouldUpdateFunc<T> = (prev?: T, next?: T) => boolean;\n\nconst defaultShouldUpdate = <T>(a?: T, b?: T) => !Object.is(a, b);\n\nfunction usePrevious<T>(\n  state: T,\n  shouldUpdate: ShouldUpdateFunc<T> = defaultShouldUpdate,\n): T | undefined {\n  const prevRef = useRef<T>(undefined);\n  const curRef = useRef<T>(undefined);\n\n  if (shouldUpdate(curRef.current, state)) {\n    prevRef.current = curRef.current;\n    curRef.current = state;\n  }\n\n  return prevRef.current;\n}\n\nexport default usePrevious;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/usePrevious/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

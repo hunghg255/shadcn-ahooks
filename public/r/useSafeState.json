@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useSafeState",
+  "title": "useSafeState",
+  "description": "useSafeState hook",
+  "registryDependencies": [
+    "useUnmountedRef"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useSafeState/index.ts",
+      "content": "import { useCallback, useState } from 'react';\nimport type { Dispatch, SetStateAction } from 'react';\nimport useUnmountedRef from '../useUnmountedRef';\n\nfunction useSafeState<S>(initialState: S | (() => S)): [S, Dispatch<SetStateAction<S>>];\n\nfunction useSafeState<S = undefined>(): [S | undefined, Dispatch<SetStateAction<S | undefined>>];\n\nfunction useSafeState<S>(initialState?: S | (() => S)) {\n  const unmountedRef = useUnmountedRef();\n  const [state, setState] = useState(initialState);\n  const setCurrentState = useCallback((currentState: S) => {\n    /** if component is unmounted, stop update */\n    if (unmountedRef.current) {\n      return;\n    }\n    setState(currentState);\n  }, []);\n\n  return [state, setCurrentState] as const;\n}\n\nexport default useSafeState;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useSafeState/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

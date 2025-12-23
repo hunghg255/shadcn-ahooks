@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useSessionStorageState",
+  "title": "useSessionStorageState",
+  "description": "useSessionStorageState hook",
+  "dependencies": [
+    "lodash"
+  ],
+  "registryDependencies": [
+    "createUseStorageState",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useSessionStorageState/index.ts",
+      "content": "import { createUseStorageState } from '../createUseStorageState';\nimport isBrowser from '../utils/isBrowser';\n\nconst useSessionStorageState = createUseStorageState(() =>\n  isBrowser ? sessionStorage : undefined,\n);\n\nexport default useSessionStorageState;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useSessionStorageState/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

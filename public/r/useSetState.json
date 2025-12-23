@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useSetState",
+  "title": "useSetState",
+  "description": "useSetState hook",
+  "registryDependencies": [
+    "useMemoizedFn",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useSetState/index.ts",
+      "content": "import { useState } from 'react';\nimport useMemoizedFn from '../useMemoizedFn';\nimport { isFunction } from '../utils';\n\nexport type SetState<S extends Record<string, any>> = <K extends keyof S>(\n  state: Pick<S, K> | null | ((prevState: Readonly<S>) => Pick<S, K> | S | null),\n) => void;\n\nconst useSetState = <S extends Record<string, any>>(\n  initialState: S | (() => S),\n): [S, SetState<S>] => {\n  const [state, setState] = useState<S>(initialState);\n\n  const setMergeState = useMemoizedFn((patch) => {\n    setState((prevState) => {\n      const newState = isFunction(patch) ? patch(prevState) : patch;\n      return newState ? { ...prevState, ...newState } : prevState;\n    });\n  });\n\n  return [state, setMergeState];\n};\n\nexport default useSetState;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useSetState/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

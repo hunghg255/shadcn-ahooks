@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useDebounce",
+  "title": "useDebounce",
+  "description": "useDebounce hook",
+  "registryDependencies": [
+    "useDebounceFn"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useDebounce/index.ts",
+      "content": "import { useEffect, useState } from 'react';\nimport useDebounceFn from '../useDebounceFn';\nimport type { DebounceOptions } from './debounceOptions';\n\nfunction useDebounce<T>(value: T, options?: DebounceOptions) {\n  const [debounced, setDebounced] = useState(value);\n\n  const { run } = useDebounceFn(() => {\n    setDebounced(value);\n  }, options);\n\n  useEffect(() => {\n    run();\n  }, [value]);\n\n  return debounced;\n}\n\nexport default useDebounce;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useDebounce/index.ts"
+    },
+    {
+      "path": "packages/hooks/src/useDebounce/debounceOptions.ts",
+      "content": "export interface DebounceOptions {\n  wait?: number;\n  leading?: boolean;\n  trailing?: boolean;\n  maxWait?: number;\n}\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useDebounce/debounceOptions.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useHistoryTravel",
+  "title": "useHistoryTravel",
+  "description": "useHistoryTravel hook",
+  "registryDependencies": [
+    "useMemoizedFn",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useHistoryTravel/index.ts",
+      "content": "import { useRef, useState } from 'react';\nimport useMemoizedFn from '../useMemoizedFn';\nimport { isNumber } from '../utils';\n\ninterface IData<T> {\n  present?: T;\n  past: T[];\n  future: T[];\n}\n\nconst dumpIndex = <T>(step: number, arr: T[]) => {\n  let index =\n    step > 0\n      ? step - 1 // move forward\n      : arr.length + step; // move backward\n  if (index >= arr.length - 1) {\n    index = arr.length - 1;\n  }\n  if (index < 0) {\n    index = 0;\n  }\n  return index;\n};\n\nconst split = <T>(step: number, targetArr: T[]) => {\n  const index = dumpIndex(step, targetArr);\n  return {\n    _current: targetArr[index],\n    _before: targetArr.slice(0, index),\n    _after: targetArr.slice(index + 1),\n  };\n};\n\nexport default function useHistoryTravel<T>(initialValue?: T, maxLength: number = 0) {\n  const [history, setHistory] = useState<IData<T | undefined>>({\n    present: initialValue,\n    past: [],\n    future: [],\n  });\n\n  const { present, past, future } = history;\n\n  const initialValueRef = useRef(initialValue);\n\n  const reset = (...params: any[]) => {\n    const _initial = params.length > 0 ? params[0] : initialValueRef.current;\n    initialValueRef.current = _initial;\n\n    setHistory({\n      present: _initial,\n      future: [],\n      past: [],\n    });\n  };\n\n  const updateValue = (val: T) => {\n    const _past = [...past, present];\n    const maxLengthNum = isNumber(maxLength) ? maxLength : Number(maxLength);\n    // maximum number of records exceeded\n    if (maxLengthNum > 0 && _past.length > maxLengthNum) {\n      //delete first\n      _past.splice(0, 1);\n    }\n\n    setHistory({\n      present: val,\n      future: [],\n      past: _past,\n    });\n  };\n\n  const _forward = (step: number = 1) => {\n    if (future.length === 0) {\n      return;\n    }\n    const { _before, _current, _after } = split(step, future);\n    setHistory({\n      past: [...past, present, ..._before],\n      present: _current,\n      future: _after,\n    });\n  };\n\n  const _backward = (step: number = -1) => {\n    if (past.length === 0) {\n      return;\n    }\n\n    const { _before, _current, _after } = split(step, past);\n    setHistory({\n      past: _before,\n      present: _current,\n      future: [..._after, present, ...future],\n    });\n  };\n\n  const go = (step: number) => {\n    const stepNum = isNumber(step) ? step : Number(step);\n    if (stepNum === 0) {\n      return;\n    }\n    if (stepNum > 0) {\n      return _forward(stepNum);\n    }\n    _backward(stepNum);\n  };\n\n  return {\n    value: present,\n    backLength: past.length,\n    forwardLength: future.length,\n    setValue: useMemoizedFn(updateValue),\n    go: useMemoizedFn(go),\n    back: useMemoizedFn(() => {\n      go(-1);\n    }),\n    forward: useMemoizedFn(() => {\n      go(1);\n    }),\n    reset: useMemoizedFn(reset),\n  };\n}\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useHistoryTravel/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

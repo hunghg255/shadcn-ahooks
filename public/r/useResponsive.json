@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useResponsive",
+  "title": "useResponsive",
+  "description": "useResponsive hook",
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useResponsive/index.ts",
+      "content": "import { useEffect, useState } from 'react';\nimport isBrowser from '../utils/isBrowser';\n\ntype Subscriber = () => void;\n\nconst subscribers = new Set<Subscriber>();\n\ntype ResponsiveConfig = Record<string, number>;\ntype ResponsiveInfo = Record<string, boolean>;\n\nlet info: ResponsiveInfo;\n\nlet responsiveConfig: ResponsiveConfig = {\n  xs: 0,\n  sm: 576,\n  md: 768,\n  lg: 992,\n  xl: 1200,\n};\n\nfunction handleResize() {\n  const oldInfo = info;\n  calculate();\n  if (oldInfo === info) {\n    return;\n  }\n  for (const subscriber of subscribers) {\n    subscriber();\n  }\n}\n\nlet listening = false;\n\nfunction calculate() {\n  const width = window.innerWidth;\n  const newInfo = {} as ResponsiveInfo;\n  let shouldUpdate = false;\n  for (const key of Object.keys(responsiveConfig)) {\n    newInfo[key] = width >= responsiveConfig[key];\n    if (newInfo[key] !== info[key]) {\n      shouldUpdate = true;\n    }\n  }\n  if (shouldUpdate) {\n    info = newInfo;\n  }\n}\n\nexport function configResponsive(config: ResponsiveConfig) {\n  responsiveConfig = config;\n  if (info) calculate();\n}\n\nfunction useResponsive() {\n  if (isBrowser && !listening) {\n    info = {};\n    calculate();\n    window.addEventListener('resize', handleResize);\n    listening = true;\n  }\n  const [state, setState] = useState<ResponsiveInfo>(info);\n\n  useEffect(() => {\n    if (!isBrowser) {\n      return;\n    }\n\n    // In React 18's StrictMode, useEffect perform twice, resize listener is remove, so handleResize is never perform.\n    // https://github.com/alibaba/hooks/issues/1910\n    if (!listening) {\n      window.addEventListener('resize', handleResize);\n    }\n\n    const subscriber = () => {\n      setState(info);\n    };\n\n    subscribers.add(subscriber);\n    return () => {\n      subscribers.delete(subscriber);\n      if (subscribers.size === 0) {\n        window.removeEventListener('resize', handleResize);\n        listening = false;\n      }\n    };\n  }, []);\n\n  return state;\n}\n\nexport default useResponsive;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useResponsive/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

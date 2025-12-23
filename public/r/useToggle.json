@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useToggle",
+  "title": "useToggle",
+  "description": "useToggle hook",
+  "files": [
+    {
+      "path": "packages/hooks/src/useToggle/index.ts",
+      "content": "import { useMemo, useState } from 'react';\n\nexport interface Actions<T> {\n  setLeft: () => void;\n  setRight: () => void;\n  set: (value: T) => void;\n  toggle: () => void;\n}\n\nfunction useToggle<T = boolean>(): [boolean, Actions<T>];\n\nfunction useToggle<T>(defaultValue: T): [T, Actions<T>];\n\nfunction useToggle<T, U>(defaultValue: T, reverseValue: U): [T | U, Actions<T | U>];\n\nfunction useToggle<D, R>(defaultValue: D = false as unknown as D, reverseValue?: R) {\n  const [state, setState] = useState<D | R>(defaultValue);\n\n  const actions = useMemo(() => {\n    const reverseValueOrigin = (reverseValue === undefined ? !defaultValue : reverseValue) as D | R;\n\n    const toggle = () => setState((s) => (s === defaultValue ? reverseValueOrigin : defaultValue));\n    const set = (value: D | R) => setState(value);\n    const setLeft = () => setState(defaultValue);\n    const setRight = () => setState(reverseValueOrigin);\n\n    return {\n      toggle,\n      set,\n      setLeft,\n      setRight,\n    };\n    // useToggle ignore value change\n    // }, [defaultValue, reverseValue]);\n  }, []);\n\n  return [state, actions];\n}\n\nexport default useToggle;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useToggle/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useResetState",
+  "title": "useResetState",
+  "description": "useResetState hook",
+  "registryDependencies": [
+    "useCreation",
+    "utils",
+    "useMemoizedFn"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useResetState/index.ts",
+      "content": "import { useRef, useState } from 'react';\nimport type { Dispatch, SetStateAction } from 'react';\nimport { isFunction } from '../utils';\nimport useMemoizedFn from '../useMemoizedFn';\nimport useCreation from '../useCreation';\n\ntype ResetState = () => void;\n\nconst useResetState = <S>(\n  initialState: S | (() => S),\n): [S, Dispatch<SetStateAction<S>>, ResetState] => {\n  const initialStateRef = useRef(initialState);\n  const initialStateMemo = useCreation(\n    () =>\n      isFunction(initialStateRef.current) ? initialStateRef.current() : initialStateRef.current,\n    [],\n  );\n\n  const [state, setState] = useState(initialStateMemo);\n\n  const resetState = useMemoizedFn(() => {\n    setState(initialStateMemo);\n  });\n\n  return [state, setState, resetState];\n};\n\nexport default useResetState;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useResetState/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

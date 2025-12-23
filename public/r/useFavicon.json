@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useFavicon",
+  "title": "useFavicon",
+  "description": "useFavicon hook",
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "packages/hooks/src/useFavicon/index.ts",
+      "content": "import { useEffect } from 'react';\n\nconst ImgTypeMap = {\n  SVG: 'image/svg+xml',\n  ICO: 'image/x-icon',\n  GIF: 'image/gif',\n  PNG: 'image/png',\n};\n\ntype ImgTypes = keyof typeof ImgTypeMap;\n\nconst useFavicon = (href: string) => {\n  useEffect(() => {\n    if (!href) {\n      return;\n    }\n\n    const cutUrl = href.split('.');\n\n    const imgSuffix = cutUrl[cutUrl.length - 1].toLocaleUpperCase() as ImgTypes;\n\n    const link =\n      document.querySelector<HTMLLinkElement>(\"link[rel*='icon']\") ||\n      document.createElement('link');\n\n    link.type = ImgTypeMap[imgSuffix];\n    link.href = href;\n    link.rel = 'shortcut icon';\n\n    document.getElementsByTagName('head')[0].appendChild(link);\n  }, [href]);\n};\n\nexport default useFavicon;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useFavicon/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

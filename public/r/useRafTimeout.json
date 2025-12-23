@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useRafTimeout",
+  "title": "useRafTimeout",
+  "description": "useRafTimeout hook",
+  "registryDependencies": [
+    "useLatest",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useRafTimeout/index.ts",
+      "content": "import { useCallback, useEffect, useRef } from 'react';\nimport useLatest from '../useLatest';\nimport { isNumber } from '../utils';\n\ninterface Handle {\n  id: ReturnType<typeof setTimeout> | ReturnType<typeof requestAnimationFrame>;\n}\n\nconst setRafTimeout = (callback: () => void, delay: number = 0): Handle => {\n  if (typeof requestAnimationFrame === 'undefined') {\n    return {\n      id: setTimeout(callback, delay),\n    };\n  }\n\n  const handle: Handle = {\n    id: 0,\n  };\n\n  const startTime = Date.now();\n\n  const loop = () => {\n    const current = Date.now();\n    if (current - startTime >= delay) {\n      callback();\n    } else {\n      handle.id = requestAnimationFrame(loop);\n    }\n  };\n  handle.id = requestAnimationFrame(loop);\n  return handle;\n};\n\nconst cancelAnimationFrameIsNotDefined = (t: any): t is ReturnType<typeof setTimeout> => {\n  return typeof cancelAnimationFrame === 'undefined';\n};\n\nconst clearRafTimeout = (handle: Handle) => {\n  if (cancelAnimationFrameIsNotDefined(handle.id)) {\n    return clearTimeout(handle.id);\n  }\n  cancelAnimationFrame(handle.id);\n};\n\nfunction useRafTimeout(fn: () => void, delay: number | undefined) {\n  const fnRef = useLatest(fn);\n  const timerRef = useRef<Handle>(undefined);\n\n  const clear = useCallback(() => {\n    if (timerRef.current) {\n      clearRafTimeout(timerRef.current);\n    }\n  }, []);\n\n  useEffect(() => {\n    if (!isNumber(delay) || delay < 0) {\n      return;\n    }\n    timerRef.current = setRafTimeout(() => {\n      fnRef.current();\n    }, delay);\n    return clear;\n  }, [delay]);\n\n  return clear;\n}\n\nexport default useRafTimeout;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useRafTimeout/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useDebounceEffect",
+  "title": "useDebounceEffect",
+  "description": "useDebounceEffect hook",
+  "registryDependencies": [
+    "useDebounce",
+    "useDebounceFn",
+    "useUpdateEffect"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useDebounceEffect/index.ts",
+      "content": "import { useEffect, useState } from 'react';\nimport type { DependencyList, EffectCallback } from 'react';\nimport type { DebounceOptions } from '../useDebounce/debounceOptions';\nimport useDebounceFn from '../useDebounceFn';\nimport useUpdateEffect from '../useUpdateEffect';\n\nfunction useDebounceEffect(\n  effect: EffectCallback,\n  deps?: DependencyList,\n  options?: DebounceOptions,\n) {\n  const [flag, setFlag] = useState({});\n\n  const { run } = useDebounceFn(() => {\n    setFlag({});\n  }, options);\n\n  useEffect(() => {\n    return run();\n  }, deps);\n\n  useUpdateEffect(effect, [flag]);\n}\n\nexport default useDebounceEffect;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useDebounceEffect/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

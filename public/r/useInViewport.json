@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useInViewport",
+  "title": "useInViewport",
+  "description": "useInViewport hook",
+  "dependencies": [
+    "intersection-observer"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useInViewport/index.ts",
+      "content": "import 'intersection-observer';\nimport { useState } from 'react';\nimport type { BasicTarget } from '../utils/domTarget';\nimport { getTargetElement } from '../utils/domTarget';\nimport useEffectWithTarget from '../utils/useEffectWithTarget';\n\ntype CallbackType = (entry: IntersectionObserverEntry) => void;\n\nexport interface Options {\n  rootMargin?: string;\n  threshold?: number | number[];\n  root?: BasicTarget<Element>;\n  callback?: CallbackType;\n}\n\nfunction useInViewport(target: BasicTarget | BasicTarget[], options?: Options) {\n  const { callback, ...option } = options || {};\n\n  const [state, setState] = useState<boolean>();\n  const [ratio, setRatio] = useState<number>();\n\n  useEffectWithTarget(\n    () => {\n      const targets = Array.isArray(target) ? target : [target];\n      const els = targets.map((element) => getTargetElement(element)).filter(Boolean);\n\n      if (!els.length) {\n        return;\n      }\n\n      const observer = new IntersectionObserver(\n        (entries) => {\n          for (const entry of entries) {\n            setRatio(entry.intersectionRatio);\n            setState(entry.isIntersecting);\n            callback?.(entry);\n          }\n        },\n        {\n          ...option,\n          root: getTargetElement(options?.root),\n        },\n      );\n\n      els.forEach((el) => observer.observe(el!));\n\n      return () => {\n        observer.disconnect();\n      };\n    },\n    [options?.rootMargin, options?.threshold, callback],\n    target,\n  );\n\n  return [state, ratio] as const;\n}\n\nexport default useInViewport;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useInViewport/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

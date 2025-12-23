@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useCookieState",
+  "title": "useCookieState",
+  "description": "useCookieState hook",
+  "dependencies": [
+    "js-cookie"
+  ],
+  "registryDependencies": [
+    "utils",
+    "useMemoizedFn"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useCookieState/index.ts",
+      "content": "import Cookies from 'js-cookie';\nimport { useState } from 'react';\nimport useMemoizedFn from '../useMemoizedFn';\nimport { isFunction, isString } from '../utils';\n\nexport type State = string | undefined;\n\nexport interface Options extends Cookies.CookieAttributes {\n  defaultValue?: State | (() => State);\n}\n\nfunction useCookieState(cookieKey: string, options: Options = {}) {\n  const [state, setState] = useState<State>(() => {\n    const cookieValue = Cookies.get(cookieKey);\n\n    if (isString(cookieValue)) {\n      return cookieValue;\n    }\n\n    if (isFunction(options.defaultValue)) {\n      return options.defaultValue();\n    }\n\n    return options.defaultValue;\n  });\n\n  const updateState = useMemoizedFn(\n    (\n      newValue: State | ((prevState: State) => State),\n      newOptions: Cookies.CookieAttributes = {},\n    ) => {\n      // eslint-disable-next-line @typescript-eslint/no-unused-vars\n      const { defaultValue, ...restOptions } = { ...options, ...newOptions };\n      const value = isFunction(newValue) ? newValue(state) : newValue;\n\n      setState(value);\n\n      if (value === undefined) {\n        Cookies.remove(cookieKey);\n      } else {\n        Cookies.set(cookieKey, value, restOptions);\n      }\n    },\n  );\n\n  return [state, updateState] as const;\n}\n\nexport default useCookieState;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useCookieState/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useRafState",
+  "title": "useRafState",
+  "description": "useRafState hook",
+  "registryDependencies": [
+    "useUnmount"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useRafState/index.ts",
+      "content": "import { useCallback, useRef, useState } from 'react';\nimport type { Dispatch, SetStateAction } from 'react';\nimport useUnmount from '../useUnmount';\n\nfunction useRafState<S>(initialState: S | (() => S)): [S, Dispatch<SetStateAction<S>>];\nfunction useRafState<S = undefined>(): [S | undefined, Dispatch<SetStateAction<S | undefined>>];\n\nfunction useRafState<S>(initialState?: S | (() => S)) {\n  const ref = useRef(0);\n  const [state, setState] = useState(initialState);\n\n  const setRafState = useCallback((value: S | ((prevState: S) => S)) => {\n    cancelAnimationFrame(ref.current);\n\n    ref.current = requestAnimationFrame(() => {\n      setState(value as any);\n    });\n  }, []);\n\n  useUnmount(() => {\n    cancelAnimationFrame(ref.current);\n  });\n\n  return [state, setRafState] as const;\n}\n\nexport default useRafState;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useRafState/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

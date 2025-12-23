@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useUpdateEffect",
+  "title": "useUpdateEffect",
+  "description": "useUpdateEffect hook",
+  "registryDependencies": [
+    "createUpdateEffect"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useUpdateEffect/index.ts",
+      "content": "import { useEffect } from 'react';\nimport { createUpdateEffect } from '../createUpdateEffect';\n\nexport default createUpdateEffect(useEffect);\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useUpdateEffect/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

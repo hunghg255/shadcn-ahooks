@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useLockFn",
+  "title": "useLockFn",
+  "description": "useLockFn hook",
+  "files": [
+    {
+      "path": "packages/hooks/src/useLockFn/index.ts",
+      "content": "import { useRef, useCallback } from 'react';\n\nfunction useLockFn<P extends any[] = any[], V = any>(fn: (...args: P) => Promise<V>) {\n  const lockRef = useRef(false);\n\n  return useCallback(\n    async (...args: P) => {\n      if (lockRef.current) {\n        return;\n      }\n      lockRef.current = true;\n      try {\n        const ret = await fn(...args);\n        return ret;\n      } catch (e) {\n        throw e;\n      } finally {\n        lockRef.current = false;\n      }\n    },\n    [fn],\n  );\n}\n\nexport default useLockFn;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useLockFn/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

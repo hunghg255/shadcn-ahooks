@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useMount",
+  "title": "useMount",
+  "description": "useMount hook",
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useMount/index.ts",
+      "content": "import { useEffect } from 'react';\nimport { type EffectCallback } from 'react';\nimport { isFunction } from '../utils';\nimport isDev from '../utils/isDev';\n\ntype MountCallback = EffectCallback | (() => Promise<void | (() => void)>);\n\nconst useMount = (fn: MountCallback) => {\n  if (isDev) {\n    if (!isFunction(fn)) {\n      console.error(\n        `useMount: parameter \\`fn\\` expected to be a function, but got \"${typeof fn}\".`,\n      );\n    }\n  }\n\n  useEffect(() => {\n    const result = fn?.();\n    // If fn returns a Promise, don't return it as cleanup function\n    if (result && typeof result === 'object' && typeof (result as any).then === 'function') {\n      return;\n    }\n    return result as ReturnType<EffectCallback>;\n  }, []);\n};\n\nexport default useMount;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useMount/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useCounter",
+  "title": "useCounter",
+  "description": "useCounter hook",
+  "registryDependencies": [
+    "utils",
+    "useMemoizedFn"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useCounter/index.ts",
+      "content": "import { useState } from 'react';\nimport useMemoizedFn from '../useMemoizedFn';\nimport { isNumber } from '../utils';\n\nexport interface Options {\n  min?: number;\n  max?: number;\n}\n\nexport interface Actions {\n  inc: (delta?: number) => void;\n  dec: (delta?: number) => void;\n  set: (value: number | ((c: number) => number)) => void;\n  reset: () => void;\n}\n\nexport type ValueParam = number | ((c: number) => number);\n\nfunction getTargetValue(val: number, options: Options = {}) {\n  const { min, max } = options;\n  let target = val;\n  if (isNumber(max)) {\n    target = Math.min(max, target);\n  }\n  if (isNumber(min)) {\n    target = Math.max(min, target);\n  }\n  return target;\n}\n\nfunction useCounter(initialValue: number = 0, options: Options = {}) {\n  const { min, max } = options;\n\n  const [current, setCurrent] = useState(() => {\n    return getTargetValue(initialValue, {\n      min,\n      max,\n    });\n  });\n\n  const setValue = (value: ValueParam) => {\n    setCurrent((c) => {\n      const target = isNumber(value) ? value : value(c);\n      return getTargetValue(target, {\n        max,\n        min,\n      });\n    });\n  };\n\n  const inc = (delta: number = 1) => {\n    setValue((c) => c + delta);\n  };\n\n  const dec = (delta: number = 1) => {\n    setValue((c) => c - delta);\n  };\n\n  const set = (value: ValueParam) => {\n    setValue(value);\n  };\n\n  const reset = () => {\n    setValue(initialValue);\n  };\n\n  return [\n    current,\n    {\n      inc: useMemoizedFn(inc),\n      dec: useMemoizedFn(dec),\n      set: useMemoizedFn(set),\n      reset: useMemoizedFn(reset),\n    },\n  ] as const;\n}\n\nexport default useCounter;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useCounter/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

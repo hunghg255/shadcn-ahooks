@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "createDeepCompareEffect",
+  "title": "createDeepCompareEffect",
+  "description": "createDeepCompareEffect hook",
+  "registryDependencies": [
+    "http://localhost:3001/r/utils.json"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/createDeepCompareEffect/index.ts",
+      "content": "import { useRef } from 'react';\nimport type { DependencyList, useEffect, useLayoutEffect } from 'react';\nimport { depsEqual } from '../utils/depsEqual';\n\ntype EffectHookType = typeof useEffect | typeof useLayoutEffect;\n\ntype CreateUpdateEffect = (hook: EffectHookType) => EffectHookType;\n\nexport const createDeepCompareEffect: CreateUpdateEffect = (hook) => (effect, deps) => {\n  const ref = useRef<DependencyList>(undefined);\n  const signalRef = useRef<number>(0);\n  if (deps === undefined || !depsEqual(deps, ref.current)) {\n    signalRef.current += 1;\n  }\n  ref.current = deps;\n  hook(effect, [signalRef.current]);\n};\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/createDeepCompareEffect/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

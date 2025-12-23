@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useTheme",
+  "title": "useTheme",
+  "description": "useTheme hook",
+  "registryDependencies": [
+    "useMemoizedFn",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useTheme/index.ts",
+      "content": "import { useEffect, useState } from 'react';\nimport useMemoizedFn from '../useMemoizedFn';\nimport isBrowser from '../utils/isBrowser';\n\nexport enum ThemeMode {\n  LIGHT = 'light',\n  DARK = 'dark',\n  SYSTEM = 'system',\n}\n\nexport type ThemeModeType = `${ThemeMode}`;\n\nexport type ThemeType = 'light' | 'dark';\n\nconst useCurrentTheme = () => {\n  const matchMedia = isBrowser ? window.matchMedia('(prefers-color-scheme: dark)') : undefined;\n  const [theme, setTheme] = useState<ThemeType>(() => {\n    if (isBrowser) {\n      return matchMedia?.matches ? ThemeMode.DARK : ThemeMode.LIGHT;\n    } else {\n      return ThemeMode.LIGHT;\n    }\n  });\n\n  useEffect(() => {\n    const onThemeChange: MediaQueryList['onchange'] = (event) => {\n      if (event.matches) {\n        setTheme(ThemeMode.DARK);\n      } else {\n        setTheme(ThemeMode.LIGHT);\n      }\n    };\n\n    matchMedia?.addEventListener('change', onThemeChange);\n\n    return () => {\n      matchMedia?.removeEventListener('change', onThemeChange);\n    };\n  }, []);\n\n  return theme;\n};\n\ntype Options = {\n  localStorageKey?: string;\n};\n\nexport default function useTheme(options: Options = {}) {\n  const { localStorageKey } = options;\n\n  const [themeMode, setThemeMode] = useState<ThemeModeType>(() => {\n    const preferredThemeMode =\n      localStorageKey?.length && (localStorage.getItem(localStorageKey) as ThemeModeType | null);\n\n    return preferredThemeMode || ThemeMode.SYSTEM;\n  });\n\n  const setThemeModeWithLocalStorage = (mode: ThemeModeType) => {\n    setThemeMode(mode);\n\n    if (localStorageKey?.length) {\n      localStorage.setItem(localStorageKey, mode);\n    }\n  };\n\n  const currentTheme = useCurrentTheme();\n  const theme = themeMode === ThemeMode.SYSTEM ? currentTheme : themeMode;\n\n  return {\n    theme,\n    themeMode,\n    setThemeMode: useMemoizedFn(setThemeModeWithLocalStorage),\n  };\n}\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useTheme/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

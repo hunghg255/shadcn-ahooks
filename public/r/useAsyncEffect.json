@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useAsyncEffect",
+  "title": "useAsyncEffect",
+  "description": "useAsyncEffect hook",
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "packages/hooks/src/useAsyncEffect/index.ts",
+      "content": "import type { DependencyList } from 'react';\nimport { useEffect } from 'react';\nimport { isFunction } from '../utils';\n\nfunction isAsyncGenerator(\n  val: AsyncGenerator<void, void, void> | Promise<void>,\n): val is AsyncGenerator<void, void, void> {\n  return isFunction((val as any)[Symbol.asyncIterator]);\n}\n\nfunction useAsyncEffect(\n  effect: () => AsyncGenerator<void, void, void> | Promise<void>,\n  deps?: DependencyList,\n) {\n  useEffect(() => {\n    const e = effect();\n    let cancelled = false;\n    async function execute() {\n      if (isAsyncGenerator(e)) {\n        while (true) {\n          const result = await e.next();\n          if (result.done || cancelled) {\n            break;\n          }\n        }\n      } else {\n        await e;\n      }\n    }\n    execute();\n    return () => {\n      cancelled = true;\n    };\n  }, deps);\n}\n\nexport default useAsyncEffect;\n",
+      "type": "registry:file",
+      "target": "src/hooks/ahooks/useAsyncEffect/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

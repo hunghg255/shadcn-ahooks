@@ -7,7 +7,7 @@
     "intersection-observer"
   ],
   "registryDependencies": [
-    "utils"
+    "https://shadcn-ahooks.vercel.app/r/utils.json"
   ],
   "files": [
     {

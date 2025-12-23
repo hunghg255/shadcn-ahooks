@@ -4,9 +4,9 @@
   "title": "useDebounceEffect",
   "description": "useDebounceEffect hook",
   "registryDependencies": [
-    "useDebounce",
-    "useDebounceFn",
-    "useUpdateEffect"
+    "https://shadcn-ahooks.vercel.app/r/useDebounce.json",
+    "https://shadcn-ahooks.vercel.app/r/useDebounceFn.json",
+    "https://shadcn-ahooks.vercel.app/r/useUpdateEffect.json"
   ],
   "files": [
     {

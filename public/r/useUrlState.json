@@ -8,8 +8,8 @@
     "react-router"
   ],
   "registryDependencies": [
-    "useMemoizedFn",
-    "useUpdate"
+    "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+    "https://shadcn-ahooks.vercel.app/r/useUpdate.json"
   ],
   "files": [
     {

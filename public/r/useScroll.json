@@ -4,9 +4,9 @@
   "title": "useScroll",
   "description": "useScroll hook",
   "registryDependencies": [
-    "useRafState",
-    "useLatest",
-    "utils"
+    "https://shadcn-ahooks.vercel.app/r/useRafState.json",
+    "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+    "https://shadcn-ahooks.vercel.app/r/utils.json"
   ],
   "files": [
     {

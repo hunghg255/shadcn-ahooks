@@ -4,8 +4,8 @@
   "title": "usePrevious",
   "description": "usePrevious hook",
   "registryDependencies": [
-    "useMemoizedFn",
-    "useRequest"
+    "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+    "https://shadcn-ahooks.vercel.app/r/useRequest.json"
   ],
   "files": [
     {

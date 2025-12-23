@@ -4,11 +4,11 @@
   "title": "useInfiniteScroll",
   "description": "useInfiniteScroll hook",
   "registryDependencies": [
-    "useMemoizedFn",
-    "useEventListener",
-    "useRequest",
-    "useUpdateEffect",
-    "utils"
+    "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+    "https://shadcn-ahooks.vercel.app/r/useEventListener.json",
+    "https://shadcn-ahooks.vercel.app/r/useRequest.json",
+    "https://shadcn-ahooks.vercel.app/r/useUpdateEffect.json",
+    "https://shadcn-ahooks.vercel.app/r/utils.json"
   ],
   "files": [
     {

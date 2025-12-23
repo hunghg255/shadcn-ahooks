@@ -4,7 +4,7 @@
   "title": "useUpdateLayoutEffect",
   "description": "useUpdateLayoutEffect hook",
   "registryDependencies": [
-    "createUpdateEffect"
+    "https://shadcn-ahooks.vercel.app/r/createUpdateEffect.json"
   ],
   "files": [
     {

@@ -4,9 +4,9 @@
   "title": "useControllableValue",
   "description": "useControllableValue hook",
   "registryDependencies": [
-    "utils",
-    "useMemoizedFn",
-    "useUpdate"
+    "https://shadcn-ahooks.vercel.app/r/utils.json",
+    "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+    "https://shadcn-ahooks.vercel.app/r/useUpdate.json"
   ],
   "files": [
     {

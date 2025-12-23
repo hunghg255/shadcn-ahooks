@@ -4,7 +4,7 @@
   "title": "useBoolean",
   "description": "useBoolean hook",
   "registryDependencies": [
-    "useToggle"
+    "https://shadcn-ahooks.vercel.app/r/useToggle.json"
   ],
   "files": [
     {

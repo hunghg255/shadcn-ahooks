@@ -4,9 +4,9 @@
   "title": "useThrottleEffect",
   "description": "useThrottleEffect hook",
   "registryDependencies": [
-    "useThrottle",
-    "useThrottleFn",
-    "useUpdateEffect"
+    "https://shadcn-ahooks.vercel.app/r/useThrottle.json",
+    "https://shadcn-ahooks.vercel.app/r/useThrottleFn.json",
+    "https://shadcn-ahooks.vercel.app/r/useUpdateEffect.json"
   ],
   "files": [
     {

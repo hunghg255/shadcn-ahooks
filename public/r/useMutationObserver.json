@@ -4,8 +4,8 @@
   "title": "useMutationObserver",
   "description": "useMutationObserver hook",
   "registryDependencies": [
-    "utils",
-    "useLatest"
+    "https://shadcn-ahooks.vercel.app/r/utils.json",
+    "https://shadcn-ahooks.vercel.app/r/useLatest.json"
   ],
   "files": [
     {

@@ -7,10 +7,10 @@
     "lodash"
   ],
   "registryDependencies": [
-    "useLatest",
-    "useThrottle",
-    "useUnmount",
-    "utils"
+    "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+    "https://shadcn-ahooks.vercel.app/r/useThrottle.json",
+    "https://shadcn-ahooks.vercel.app/r/useUnmount.json",
+    "https://shadcn-ahooks.vercel.app/r/utils.json"
   ],
   "files": [
     {

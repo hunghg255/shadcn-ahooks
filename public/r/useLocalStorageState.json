@@ -4,8 +4,8 @@
   "title": "useLocalStorageState",
   "description": "useLocalStorageState hook",
   "registryDependencies": [
-    "createUseStorageState",
-    "utils"
+    "https://shadcn-ahooks.vercel.app/r/createUseStorageState.json",
+    "https://shadcn-ahooks.vercel.app/r/utils.json"
   ],
   "files": [
     {

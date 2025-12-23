@@ -4,9 +4,9 @@
   "title": "useAntdTable",
   "description": "useAntdTable hook",
   "registryDependencies": [
-    "usePagination",
-    "useMemoizedFn",
-    "useUpdateEffect"
+    "https://shadcn-ahooks.vercel.app/r/usePagination.json",
+    "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+    "https://shadcn-ahooks.vercel.app/r/useUpdateEffect.json"
   ],
   "files": [
     {

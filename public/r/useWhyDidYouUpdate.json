@@ -4,9 +4,9 @@
   "title": "useWhyDidYouUpdate",
   "description": "useWhyDidYouUpdate hook",
   "registryDependencies": [
-    "useMemoizedFn",
-    "useUnmount",
-    "useLatest"
+    "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+    "https://shadcn-ahooks.vercel.app/r/useUnmount.json",
+    "https://shadcn-ahooks.vercel.app/r/useLatest.json"
   ],
   "files": [
     {

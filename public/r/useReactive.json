@@ -7,8 +7,8 @@
     "lodash"
   ],
   "registryDependencies": [
-    "useCreation",
-    "useUpdate"
+    "https://shadcn-ahooks.vercel.app/r/useCreation.json",
+    "https://shadcn-ahooks.vercel.app/r/useUpdate.json"
   ],
   "files": [
     {

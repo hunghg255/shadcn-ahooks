@@ -4,7 +4,7 @@
   "title": "useGetState",
   "description": "useGetState hook",
   "registryDependencies": [
-    "useLatest"
+    "https://shadcn-ahooks.vercel.app/r/useLatest.json"
   ],
   "files": [
     {

@@ -4,9 +4,9 @@
   "title": "useDrag",
   "description": "useDrag hook",
   "registryDependencies": [
-    "useLatest",
-    "useMount",
-    "utils"
+    "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+    "https://shadcn-ahooks.vercel.app/r/useMount.json",
+    "https://shadcn-ahooks.vercel.app/r/utils.json"
   ],
   "files": [
     {

@@ -4,9 +4,9 @@
   "title": "useResetState",
   "description": "useResetState hook",
   "registryDependencies": [
-    "useCreation",
-    "utils",
-    "useMemoizedFn"
+    "https://shadcn-ahooks.vercel.app/r/useCreation.json",
+    "https://shadcn-ahooks.vercel.app/r/utils.json",
+    "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json"
   ],
   "files": [
     {

@@ -4,7 +4,7 @@
   "title": "useDebounce",
   "description": "useDebounce hook",
   "registryDependencies": [
-    "useDebounceFn"
+    "https://shadcn-ahooks.vercel.app/r/useDebounceFn.json"
   ],
   "files": [
     {

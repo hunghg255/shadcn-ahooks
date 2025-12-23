@@ -4,7 +4,7 @@
   "title": "useThrottle",
   "description": "useThrottle hook",
   "registryDependencies": [
-    "useThrottleFn"
+    "https://shadcn-ahooks.vercel.app/r/useThrottleFn.json"
   ],
   "files": [
     {

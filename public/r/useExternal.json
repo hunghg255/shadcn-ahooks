@@ -3,7 +3,6 @@
   "name": "useExternal",
   "title": "useExternal",
   "description": "useExternal hook",
-  "registryDependencies": [],
   "files": [
     {
       "path": "packages/hooks/src/useExternal/index.ts",

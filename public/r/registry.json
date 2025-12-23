@@ -13,7 +13,6 @@
         "@types/lodash",
         "lodash"
       ],
-      "registryDependencies": [],
       "files": [
         {
           "path": "packages/hooks/src/utils/createEffectWithTarget.ts",
@@ -98,7 +97,7 @@
       "title": "createDeepCompareEffect",
       "description": "createDeepCompareEffect hook",
       "registryDependencies": [
-        "http://localhost:3001/r/utils.json"
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -140,9 +139,9 @@
       "title": "useAntdTable",
       "description": "useAntdTable hook",
       "registryDependencies": [
-        "usePagination",
-        "useMemoizedFn",
-        "useUpdateEffect"
+        "https://shadcn-ahooks.vercel.app/r/usePagination.json",
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useUpdateEffect.json"
       ],
       "files": [
         {
@@ -163,7 +162,7 @@
       "title": "useAsyncEffect",
       "description": "useAsyncEffect hook",
       "registryDependencies": [
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -179,7 +178,7 @@
       "title": "useBoolean",
       "description": "useBoolean hook",
       "registryDependencies": [
-        "useToggle"
+        "https://shadcn-ahooks.vercel.app/r/useToggle.json"
       ],
       "files": [
         {
@@ -195,7 +194,7 @@
       "title": "useClickAway",
       "description": "useClickAway hook",
       "registryDependencies": [
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -211,9 +210,9 @@
       "title": "useControllableValue",
       "description": "useControllableValue hook",
       "registryDependencies": [
-        "utils",
-        "useMemoizedFn",
-        "useUpdate"
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useUpdate.json"
       ],
       "files": [
         {
@@ -232,8 +231,8 @@
         "js-cookie"
       ],
       "registryDependencies": [
-        "utils",
-        "useMemoizedFn"
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json"
       ],
       "files": [
         {
@@ -252,8 +251,8 @@
         "dayjs"
       ],
       "registryDependencies": [
-        "utils",
-        "useLatest"
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json"
       ],
       "files": [
         {
@@ -269,8 +268,8 @@
       "title": "useCounter",
       "description": "useCounter hook",
       "registryDependencies": [
-        "utils",
-        "useMemoizedFn"
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json"
       ],
       "files": [
         {
@@ -286,8 +285,8 @@
       "title": "useCounter",
       "description": "useCounter hook",
       "registryDependencies": [
-        "utils",
-        "useMemoizedFn"
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json"
       ],
       "files": [
         {
@@ -303,8 +302,8 @@
       "title": "useCreation",
       "description": "useCreation hook",
       "registryDependencies": [
-        "utils",
-        "useMemoizedFn"
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json"
       ],
       "files": [
         {
@@ -320,7 +319,7 @@
       "title": "useDebounce",
       "description": "useDebounce hook",
       "registryDependencies": [
-        "useDebounceFn"
+        "https://shadcn-ahooks.vercel.app/r/useDebounceFn.json"
       ],
       "files": [
         {
@@ -341,9 +340,9 @@
       "title": "useDebounceEffect",
       "description": "useDebounceEffect hook",
       "registryDependencies": [
-        "useDebounce",
-        "useDebounceFn",
-        "useUpdateEffect"
+        "https://shadcn-ahooks.vercel.app/r/useDebounce.json",
+        "https://shadcn-ahooks.vercel.app/r/useDebounceFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useUpdateEffect.json"
       ],
       "files": [
         {
@@ -359,10 +358,10 @@
       "title": "useDebounceFn",
       "description": "useDebounceFn hook",
       "registryDependencies": [
-        "useDebounce",
-        "useLatest",
-        "useUnmount",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useDebounce.json",
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/useUnmount.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -378,10 +377,10 @@
       "title": "useDebounceFn",
       "description": "useDebounceFn hook",
       "registryDependencies": [
-        "useDebounce",
-        "useLatest",
-        "useUnmount",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useDebounce.json",
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/useUnmount.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -397,7 +396,7 @@
       "title": "useDeepCompareEffect",
       "description": "useDeepCompareEffect hook",
       "registryDependencies": [
-        "createDeepCompareEffect"
+        "https://shadcn-ahooks.vercel.app/r/createDeepCompareEffect.json"
       ],
       "files": [
         {
@@ -413,7 +412,7 @@
       "title": "useDeepCompareLayoutEffect",
       "description": "useDeepCompareLayoutEffect hook",
       "registryDependencies": [
-        "createDeepCompareEffect"
+        "https://shadcn-ahooks.vercel.app/r/createDeepCompareEffect.json"
       ],
       "files": [
         {
@@ -429,8 +428,8 @@
       "title": "useDocumentVisibility",
       "description": "useDocumentVisibility hook",
       "registryDependencies": [
-        "useEventListener",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useEventListener.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -446,9 +445,9 @@
       "title": "useDrag",
       "description": "useDrag hook",
       "registryDependencies": [
-        "useLatest",
-        "useMount",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/useMount.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -464,8 +463,8 @@
       "title": "useDrop",
       "description": "useDrop hook",
       "registryDependencies": [
-        "useLatest",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -481,7 +480,7 @@
       "title": "useDynamicList",
       "description": "useDynamicList hook",
       "registryDependencies": [
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -496,7 +495,6 @@
       "type": "registry:hook",
       "title": "useEventEmitter",
       "description": "useEventEmitter hook",
-      "registryDependencies": [],
       "files": [
         {
           "path": "packages/hooks/src/useEventEmitter/index.ts",
@@ -511,8 +509,8 @@
       "title": "useEventListener",
       "description": "useEventListener hook",
       "registryDependencies": [
-        "utils",
-        "useLatest"
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json"
       ],
       "files": [
         {
@@ -528,8 +526,8 @@
       "title": "useEventTarget",
       "description": "useEventTarget hook",
       "registryDependencies": [
-        "utils",
-        "useLatest"
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json"
       ],
       "files": [
         {
@@ -544,7 +542,6 @@
       "type": "registry:hook",
       "title": "useExternal",
       "description": "useExternal hook",
-      "registryDependencies": [],
       "files": [
         {
           "path": "packages/hooks/src/useExternal/index.ts",
@@ -558,7 +555,6 @@
       "type": "registry:hook",
       "title": "useFavicon",
       "description": "useFavicon hook",
-      "registryDependencies": [],
       "files": [
         {
           "path": "packages/hooks/src/useFavicon/index.ts",
@@ -573,8 +569,8 @@
       "title": "useFocusWithin",
       "description": "useFocusWithin hook",
       "registryDependencies": [
-        "useEventListener",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useEventListener.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -593,9 +589,9 @@
         "screenfull"
       ],
       "registryDependencies": [
-        "useLatest",
-        "useMemoizedFn",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -611,7 +607,7 @@
       "title": "useFusionTable",
       "description": "useFusionTable hook",
       "registryDependencies": [
-        "useAntdTable"
+        "https://shadcn-ahooks.vercel.app/r/useAntdTable.json"
       ],
       "files": [
         {
@@ -637,7 +633,7 @@
       "title": "useGetState",
       "description": "useGetState hook",
       "registryDependencies": [
-        "useLatest"
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json"
       ],
       "files": [
         {
@@ -653,8 +649,8 @@
       "title": "useHistoryTravel",
       "description": "useHistoryTravel hook",
       "registryDependencies": [
-        "useMemoizedFn",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -670,8 +666,8 @@
       "title": "useHistoryTravel",
       "description": "useHistoryTravel hook",
       "registryDependencies": [
-        "useMemoizedFn",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -687,9 +683,9 @@
       "title": "useHover",
       "description": "useHover hook",
       "registryDependencies": [
-        "useBoolean",
-        "useEventListener",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useBoolean.json",
+        "https://shadcn-ahooks.vercel.app/r/useEventListener.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -705,11 +701,11 @@
       "title": "useInfiniteScroll",
       "description": "useInfiniteScroll hook",
       "registryDependencies": [
-        "useMemoizedFn",
-        "useEventListener",
-        "useRequest",
-        "useUpdateEffect",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useEventListener.json",
+        "https://shadcn-ahooks.vercel.app/r/useRequest.json",
+        "https://shadcn-ahooks.vercel.app/r/useUpdateEffect.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -730,8 +726,8 @@
       "title": "useInterval",
       "description": "useInterval hook",
       "registryDependencies": [
-        "useMemoizedFn",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -750,7 +746,7 @@
         "intersection-observer"
       ],
       "registryDependencies": [
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -769,7 +765,7 @@
         "intersection-observer"
       ],
       "registryDependencies": [
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -785,8 +781,8 @@
       "title": "useKeyPress",
       "description": "useKeyPress hook",
       "registryDependencies": [
-        "useLatest",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -815,8 +811,8 @@
       "title": "useLocalStorageState",
       "description": "useLocalStorageState hook",
       "registryDependencies": [
-        "createUseStorageState",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/createUseStorageState.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -858,8 +854,8 @@
       "title": "useLongPress",
       "description": "useLongPress hook",
       "registryDependencies": [
-        "useLatest",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -875,7 +871,7 @@
       "title": "useMap",
       "description": "useMap hook",
       "registryDependencies": [
-        "useMemoizedFn"
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json"
       ],
       "files": [
         {
@@ -891,7 +887,7 @@
       "title": "useMemoizedFn",
       "description": "useMemoizedFn hook",
       "registryDependencies": [
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -907,7 +903,7 @@
       "title": "useMount",
       "description": "useMount hook",
       "registryDependencies": [
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -923,9 +919,9 @@
       "title": "useMouse",
       "description": "useMouse hook",
       "registryDependencies": [
-        "utils",
-        "useRafState",
-        "useEventListener"
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useRafState.json",
+        "https://shadcn-ahooks.vercel.app/r/useEventListener.json"
       ],
       "files": [
         {
@@ -941,8 +937,8 @@
       "title": "useMutationObserver",
       "description": "useMutationObserver hook",
       "registryDependencies": [
-        "utils",
-        "useLatest"
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json"
       ],
       "files": [
         {
@@ -958,7 +954,7 @@
       "title": "useNetwork",
       "description": "useNetwork hook",
       "registryDependencies": [
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -974,8 +970,8 @@
       "title": "usePagination",
       "description": "usePagination hook",
       "registryDependencies": [
-        "useMemoizedFn",
-        "useRequest"
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useRequest.json"
       ],
       "files": [
         {
@@ -991,8 +987,8 @@
       "title": "usePrevious",
       "description": "usePrevious hook",
       "registryDependencies": [
-        "useMemoizedFn",
-        "useRequest"
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useRequest.json"
       ],
       "files": [
         {
@@ -1008,8 +1004,8 @@
       "title": "useRafInterval",
       "description": "useRafInterval hook",
       "registryDependencies": [
-        "useLatest",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -1025,7 +1021,7 @@
       "title": "useRafState",
       "description": "useRafState hook",
       "registryDependencies": [
-        "useUnmount"
+        "https://shadcn-ahooks.vercel.app/r/useUnmount.json"
       ],
       "files": [
         {
@@ -1041,8 +1037,8 @@
       "title": "useRafTimeout",
       "description": "useRafTimeout hook",
       "registryDependencies": [
-        "useLatest",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -1061,8 +1057,8 @@
         "lodash"
       ],
       "registryDependencies": [
-        "useCreation",
-        "useUpdate"
+        "https://shadcn-ahooks.vercel.app/r/useCreation.json",
+        "https://shadcn-ahooks.vercel.app/r/useUpdate.json"
       ],
       "files": [
         {
@@ -1081,14 +1077,14 @@
         "lodash"
       ],
       "registryDependencies": [
-        "useUpdateEffect",
-        "useUpdate",
-        "useCreation",
-        "useUnmount",
-        "utils",
-        "useLatest",
-        "useMemoizedFn",
-        "useMount"
+        "https://shadcn-ahooks.vercel.app/r/useUpdateEffect.json",
+        "https://shadcn-ahooks.vercel.app/r/useUpdate.json",
+        "https://shadcn-ahooks.vercel.app/r/useCreation.json",
+        "https://shadcn-ahooks.vercel.app/r/useUnmount.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useMount.json"
       ],
       "files": [
         {
@@ -1204,9 +1200,9 @@
       "title": "useResetState",
       "description": "useResetState hook",
       "registryDependencies": [
-        "useCreation",
-        "utils",
-        "useMemoizedFn"
+        "https://shadcn-ahooks.vercel.app/r/useCreation.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json"
       ],
       "files": [
         {
@@ -1222,7 +1218,7 @@
       "title": "useResponsive",
       "description": "useResponsive hook",
       "registryDependencies": [
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -1238,7 +1234,7 @@
       "title": "useSafeState",
       "description": "useSafeState hook",
       "registryDependencies": [
-        "useUnmountedRef"
+        "https://shadcn-ahooks.vercel.app/r/useUnmountedRef.json"
       ],
       "files": [
         {
@@ -1254,9 +1250,9 @@
       "title": "useScroll",
       "description": "useScroll hook",
       "registryDependencies": [
-        "useRafState",
-        "useLatest",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useRafState.json",
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -1275,8 +1271,8 @@
         "lodash"
       ],
       "registryDependencies": [
-        "useMemoizedFn",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -1295,8 +1291,8 @@
         "lodash"
       ],
       "registryDependencies": [
-        "createUseStorageState",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/createUseStorageState.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -1312,7 +1308,7 @@
       "title": "useSet",
       "description": "useSet hook",
       "registryDependencies": [
-        "useMemoizedFn"
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json"
       ],
       "files": [
         {
@@ -1328,8 +1324,8 @@
       "title": "useSetState",
       "description": "useSetState hook",
       "registryDependencies": [
-        "useMemoizedFn",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -1348,8 +1344,8 @@
         "resize-observer-polyfill"
       ],
       "registryDependencies": [
-        "useRafState",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useRafState.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -1368,7 +1364,7 @@
         "resize-observer-polyfill"
       ],
       "registryDependencies": [
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -1384,8 +1380,8 @@
       "title": "useTheme",
       "description": "useTheme hook",
       "registryDependencies": [
-        "useMemoizedFn",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -1401,7 +1397,7 @@
       "title": "useThrottle",
       "description": "useThrottle hook",
       "registryDependencies": [
-        "useThrottleFn"
+        "https://shadcn-ahooks.vercel.app/r/useThrottleFn.json"
       ],
       "files": [
         {
@@ -1422,9 +1418,9 @@
       "title": "useThrottleEffect",
       "description": "useThrottleEffect hook",
       "registryDependencies": [
-        "useThrottle",
-        "useThrottleFn",
-        "useUpdateEffect"
+        "https://shadcn-ahooks.vercel.app/r/useThrottle.json",
+        "https://shadcn-ahooks.vercel.app/r/useThrottleFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useUpdateEffect.json"
       ],
       "files": [
         {
@@ -1443,10 +1439,10 @@
         "lodash"
       ],
       "registryDependencies": [
-        "useLatest",
-        "useThrottle",
-        "useUnmount",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/useThrottle.json",
+        "https://shadcn-ahooks.vercel.app/r/useUnmount.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -1462,8 +1458,8 @@
       "title": "useTimeout",
       "description": "useTimeout hook",
       "registryDependencies": [
-        "useMemoizedFn",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -1479,8 +1475,8 @@
       "title": "useTitle",
       "description": "useTitle hook",
       "registryDependencies": [
-        "useUnmount",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useUnmount.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -1522,8 +1518,8 @@
       "title": "useUnmount",
       "description": "useUnmount hook",
       "registryDependencies": [
-        "useLatest",
-        "utils"
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json"
       ],
       "files": [
         {
@@ -1565,7 +1561,7 @@
       "title": "useUpdateEffect",
       "description": "useUpdateEffect hook",
       "registryDependencies": [
-        "createUpdateEffect"
+        "https://shadcn-ahooks.vercel.app/r/createUpdateEffect.json"
       ],
       "files": [
         {
@@ -1581,7 +1577,7 @@
       "title": "useUpdateLayoutEffect",
       "description": "useUpdateLayoutEffect hook",
       "registryDependencies": [
-        "createUpdateEffect"
+        "https://shadcn-ahooks.vercel.app/r/createUpdateEffect.json"
       ],
       "files": [
         {
@@ -1597,11 +1593,11 @@
       "title": "useVirtualList",
       "description": "useVirtualList hook",
       "registryDependencies": [
-        "useEventListener",
-        "useMemoizedFn",
-        "useSize",
-        "utils",
-        "useUpdateEffect"
+        "https://shadcn-ahooks.vercel.app/r/useEventListener.json",
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useSize.json",
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useUpdateEffect.json"
       ],
       "files": [
         {
@@ -1617,9 +1613,9 @@
       "title": "useWebSocket",
       "description": "useWebSocket hook",
       "registryDependencies": [
-        "useMemoizedFn",
-        "useUnmount",
-        "useLatest"
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useUnmount.json",
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json"
       ],
       "files": [
         {
@@ -1635,9 +1631,9 @@
       "title": "useWhyDidYouUpdate",
       "description": "useWhyDidYouUpdate hook",
       "registryDependencies": [
-        "useMemoizedFn",
-        "useUnmount",
-        "useLatest"
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useUnmount.json",
+        "https://shadcn-ahooks.vercel.app/r/useLatest.json"
       ],
       "files": [
         {
@@ -1657,8 +1653,8 @@
         "react-router"
       ],
       "registryDependencies": [
-        "useMemoizedFn",
-        "useUpdate"
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useUpdate.json"
       ],
       "files": [
         {

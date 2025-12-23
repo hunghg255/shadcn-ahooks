@@ -3,7 +3,6 @@
   "name": "useFavicon",
   "title": "useFavicon",
   "description": "useFavicon hook",
-  "registryDependencies": [],
   "files": [
     {
       "path": "packages/hooks/src/useFavicon/index.ts",

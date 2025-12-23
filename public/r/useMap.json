@@ -4,7 +4,7 @@
   "title": "useMap",
   "description": "useMap hook",
   "registryDependencies": [
-    "useMemoizedFn"
+    "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json"
   ],
   "files": [
     {

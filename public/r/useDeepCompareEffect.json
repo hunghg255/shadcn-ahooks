@@ -4,7 +4,7 @@
   "title": "useDeepCompareEffect",
   "description": "useDeepCompareEffect hook",
   "registryDependencies": [
-    "createDeepCompareEffect"
+    "https://shadcn-ahooks.vercel.app/r/createDeepCompareEffect.json"
   ],
   "files": [
     {

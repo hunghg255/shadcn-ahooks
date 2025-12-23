@@ -4,10 +4,10 @@
   "title": "useDebounceFn",
   "description": "useDebounceFn hook",
   "registryDependencies": [
-    "useDebounce",
-    "useLatest",
-    "useUnmount",
-    "utils"
+    "https://shadcn-ahooks.vercel.app/r/useDebounce.json",
+    "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+    "https://shadcn-ahooks.vercel.app/r/useUnmount.json",
+    "https://shadcn-ahooks.vercel.app/r/utils.json"
   ],
   "files": [
     {

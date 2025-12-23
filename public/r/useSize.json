@@ -7,8 +7,8 @@
     "resize-observer-polyfill"
   ],
   "registryDependencies": [
-    "useRafState",
-    "utils"
+    "https://shadcn-ahooks.vercel.app/r/useRafState.json",
+    "https://shadcn-ahooks.vercel.app/r/utils.json"
   ],
   "files": [
     {

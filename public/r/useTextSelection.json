@@ -7,7 +7,7 @@
     "resize-observer-polyfill"
   ],
   "registryDependencies": [
-    "utils"
+    "https://shadcn-ahooks.vercel.app/r/utils.json"
   ],
   "files": [
     {

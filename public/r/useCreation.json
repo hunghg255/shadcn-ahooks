@@ -4,8 +4,8 @@
   "title": "useCreation",
   "description": "useCreation hook",
   "registryDependencies": [
-    "utils",
-    "useMemoizedFn"
+    "https://shadcn-ahooks.vercel.app/r/utils.json",
+    "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json"
   ],
   "files": [
     {

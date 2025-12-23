@@ -7,14 +7,14 @@
     "lodash"
   ],
   "registryDependencies": [
-    "useUpdateEffect",
-    "useUpdate",
-    "useCreation",
-    "useUnmount",
-    "utils",
-    "useLatest",
-    "useMemoizedFn",
-    "useMount"
+    "https://shadcn-ahooks.vercel.app/r/useUpdateEffect.json",
+    "https://shadcn-ahooks.vercel.app/r/useUpdate.json",
+    "https://shadcn-ahooks.vercel.app/r/useCreation.json",
+    "https://shadcn-ahooks.vercel.app/r/useUnmount.json",
+    "https://shadcn-ahooks.vercel.app/r/utils.json",
+    "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+    "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+    "https://shadcn-ahooks.vercel.app/r/useMount.json"
   ],
   "files": [
     {

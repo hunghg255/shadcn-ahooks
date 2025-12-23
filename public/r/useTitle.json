@@ -4,8 +4,8 @@
   "title": "useTitle",
   "description": "useTitle hook",
   "registryDependencies": [
-    "useUnmount",
-    "utils"
+    "https://shadcn-ahooks.vercel.app/r/useUnmount.json",
+    "https://shadcn-ahooks.vercel.app/r/utils.json"
   ],
   "files": [
     {

@@ -4,8 +4,8 @@
   "title": "useFocusWithin",
   "description": "useFocusWithin hook",
   "registryDependencies": [
-    "useEventListener",
-    "utils"
+    "https://shadcn-ahooks.vercel.app/r/useEventListener.json",
+    "https://shadcn-ahooks.vercel.app/r/utils.json"
   ],
   "files": [
     {

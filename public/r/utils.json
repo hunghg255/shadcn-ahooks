@@ -8,7 +8,6 @@
     "@types/lodash",
     "lodash"
   ],
-  "registryDependencies": [],
   "files": [
     {
       "path": "packages/hooks/src/utils/createEffectWithTarget.ts",

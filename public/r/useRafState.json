@@ -4,7 +4,7 @@
   "title": "useRafState",
   "description": "useRafState hook",
   "registryDependencies": [
-    "useUnmount"
+    "https://shadcn-ahooks.vercel.app/r/useUnmount.json"
   ],
   "files": [
     {

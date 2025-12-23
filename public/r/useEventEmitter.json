@@ -3,7 +3,6 @@
   "name": "useEventEmitter",
   "title": "useEventEmitter",
   "description": "useEventEmitter hook",
-  "registryDependencies": [],
   "files": [
     {
       "path": "packages/hooks/src/useEventEmitter/index.ts",

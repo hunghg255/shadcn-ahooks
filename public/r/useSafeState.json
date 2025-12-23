@@ -4,7 +4,7 @@
   "title": "useSafeState",
   "description": "useSafeState hook",
   "registryDependencies": [
-    "useUnmountedRef"
+    "https://shadcn-ahooks.vercel.app/r/useUnmountedRef.json"
   ],
   "files": [
     {

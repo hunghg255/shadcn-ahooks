@@ -4,7 +4,7 @@
   "title": "useUpdateEffect",
   "description": "useUpdateEffect hook",
   "registryDependencies": [
-    "createUpdateEffect"
+    "https://shadcn-ahooks.vercel.app/r/createUpdateEffect.json"
   ],
   "files": [
     {

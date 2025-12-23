@@ -7,9 +7,9 @@
     "screenfull"
   ],
   "registryDependencies": [
-    "useLatest",
-    "useMemoizedFn",
-    "utils"
+    "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+    "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+    "https://shadcn-ahooks.vercel.app/r/utils.json"
   ],
   "files": [
     {

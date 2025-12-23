@@ -4,7 +4,7 @@
   "title": "useResponsive",
   "description": "useResponsive hook",
   "registryDependencies": [
-    "utils"
+    "https://shadcn-ahooks.vercel.app/r/utils.json"
   ],
   "files": [
     {

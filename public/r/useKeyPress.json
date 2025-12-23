@@ -4,8 +4,8 @@
   "title": "useKeyPress",
   "description": "useKeyPress hook",
   "registryDependencies": [
-    "useLatest",
-    "utils"
+    "https://shadcn-ahooks.vercel.app/r/useLatest.json",
+    "https://shadcn-ahooks.vercel.app/r/utils.json"
   ],
   "files": [
     {

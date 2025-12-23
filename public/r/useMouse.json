@@ -4,9 +4,9 @@
   "title": "useMouse",
   "description": "useMouse hook",
   "registryDependencies": [
-    "utils",
-    "useRafState",
-    "useEventListener"
+    "https://shadcn-ahooks.vercel.app/r/utils.json",
+    "https://shadcn-ahooks.vercel.app/r/useRafState.json",
+    "https://shadcn-ahooks.vercel.app/r/useEventListener.json"
   ],
   "files": [
     {

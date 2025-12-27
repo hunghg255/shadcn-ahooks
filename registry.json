@@ -125,6 +125,12 @@
       "type": "registry:hook",
       "title": "createUseStorageState",
       "description": "createUseStorageState hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/utils.json",
+        "https://shadcn-ahooks.vercel.app/r/useEventListener.json",
+        "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
+        "https://shadcn-ahooks.vercel.app/r/useUpdateEffect.json"
+      ],
       "files": [
         {
           "path": "packages/hooks/src/createUseStorageState/index.ts",

@@ -13,6 +13,9 @@
         "@types/lodash",
         "lodash"
       ],
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/useUnmount.json"
+      ],
       "files": [
         {
           "path": "packages/hooks/src/utils/createEffectWithTarget.ts",

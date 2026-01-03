@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "useCallBackEvent",
   "title": "useCallBackEvent",
-  "description": "useCallBackEvent external hook",
+  "description": "useCallBackEvent external hook 1",
   "files": [
     {
       "path": "packages/external-hooks/src/useCallBackEvent/index.ts",

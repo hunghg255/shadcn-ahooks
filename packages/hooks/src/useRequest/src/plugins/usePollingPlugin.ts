@@ -6,7 +6,7 @@ import subscribeReVisible from '../utils/subscribeReVisible';
 
 const usePollingPlugin: Plugin<any, any[]> = (
   fetchInstance,
-  { pollingInterval, pollingWhenHidden = true, pollingErrorRetryCount = -1 },
+  { pollingInterval, pollingWhenHidden = true, pollingErrorRetryCount = -1, pollingIntervalWhen },
 ) => {
   const timerRef = useRef<Timeout>(undefined);
   const unsubscribeRef = useRef<() => void>(undefined);
@@ -25,7 +25,7 @@ const usePollingPlugin: Plugin<any, any[]> = (
     }
   }, [pollingInterval]);
 
-  if (!pollingInterval) {
+  if (!pollingInterval && !pollingIntervalWhen) {
     return {};
   }
 
@@ -40,6 +40,20 @@ const usePollingPlugin: Plugin<any, any[]> = (
       countRef.current = 0;
     },
     onFinally: () => {
+      let interval: number | false | undefined = pollingInterval;
+      if (pollingIntervalWhen) {
+
+        interval = pollingIntervalWhen(
+          fetchInstance.state.data,
+          fetchInstance.state.error,
+        );
+      }
+
+      if (!interval) {
+        stopPolling();
+        return;
+      }
+
       if (
         pollingErrorRetryCount === -1 ||
         // When an error occurs, the request is not repeated after pollingErrorRetryCount retries
@@ -50,11 +64,12 @@ const usePollingPlugin: Plugin<any, any[]> = (
           if (!pollingWhenHidden && !isDocumentVisible()) {
             unsubscribeRef.current = subscribeReVisible(() => {
               fetchInstance.refresh();
+
             });
           } else {
             fetchInstance.refresh();
           }
-        }, pollingInterval);
+        }, interval);
       } else {
         countRef.current = 0;
       }

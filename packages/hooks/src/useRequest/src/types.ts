@@ -60,6 +60,7 @@ export interface Options<TData, TParams extends any[]> {
   pollingInterval?: number;
   pollingWhenHidden?: boolean;
   pollingErrorRetryCount?: number;
+  pollingIntervalWhen?: (data: TData, error: Error | undefined) => number | false | undefined;
 
   // refresh on window focus
   refreshOnWindowFocus?: boolean;

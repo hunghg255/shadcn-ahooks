@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useScrollLocker",
+  "title": "useScrollLocker",
+  "description": "useScrollLocker external hook",
+  "registryDependencies": [
+    "https://shadcn-ahooks.vercel.app/r/external-hooks-utils.json"
+  ],
+  "files": [
+    {
+      "path": "packages/external-hooks/src/useScrollLocker/index.ts",
+      "content": "import * as React from 'react';\nimport { getTargetScrollBarSize } from '../utils/getScrollBarSize';\nimport { removeCSS, updateCSS } from '../utils/dynamicCSS';\n\nconst UNIQUE_ID = `rc-util-locker-${Date.now()}`;\n\nlet uuid = 0;\n\nfunction isBodyOverflowing() {\n  return (\n    document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight) &&\n    window.innerWidth > document.body.offsetWidth\n  );\n}\n\nexport function useScrollLocker(lock?: boolean) {\n  const mergedLock = !!lock;\n  const [id] = React.useState(() => {\n    uuid += 1;\n    return `${UNIQUE_ID}_${uuid}`;\n  });\n\n  React.useLayoutEffect(() => {\n    if (mergedLock) {\n      const scrollbarSize = getTargetScrollBarSize(document.body).width;\n      const isOverflow = isBodyOverflowing();\n\n      updateCSS(\n        `\nhtml body {\n  overflow-y: hidden;\n  ${isOverflow ? `width: calc(100% - ${scrollbarSize}px);` : ''}\n}`,\n        id,\n      );\n    } else {\n      removeCSS(id);\n    }\n\n    return () => {\n      removeCSS(id);\n    };\n  }, [mergedLock, id]);\n}\n",
+      "type": "registry:file",
+      "target": "src/hooks/external-hooks/useScrollLocker/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

@@ -1672,6 +1672,53 @@
           "target": "src/hooks/ahooks/useUrlState/index.ts"
         }
       ]
+    },
+    {
+      "name": "external-hooks-utils",
+      "type": "registry:hook",
+      "title": "external hooks utils",
+      "description": "utils external hook",
+      "files": [
+        {
+          "path": "packages/external-hooks/src/utils/dynamicCSS.ts",
+          "type": "registry:file",
+          "target": "src/hooks/external-hooks/utils/dynamicCSS.ts"
+        },
+        {
+          "path": "packages/external-hooks/src/utils/getScrollBarSize.ts",
+          "type": "registry:file",
+          "target": "src/hooks/external-hooks/utils/getScrollBarSize.ts"
+        }
+      ]
+    },
+    {
+      "name": "useCallBackEvent",
+      "type": "registry:hook",
+      "title": "useCallBackEvent",
+      "description": "useCallBackEvent external hook",
+      "files": [
+        {
+          "path": "packages/external-hooks/src/useCallBackEvent/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/external-hooks/useCallBackEvent/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "useScrollLocker",
+      "type": "registry:hook",
+      "title": "useScrollLocker",
+      "description": "useScrollLocker external hook",
+      "registryDependencies": [
+        "https://shadcn-ahooks.vercel.app/r/external-hooks-utils.json"
+      ],
+      "files": [
+        {
+          "path": "packages/external-hooks/src/useScrollLocker/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/external-hooks/useScrollLocker/index.ts"
+        }
+      ]
     }
   ]
 }

@@ -1,14 +1,14 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "useCallBackEvent",
-  "title": "useCallBackEvent",
-  "description": "useCallBackEvent external hook 1",
+  "name": "useCallbackEvent",
+  "title": "useCallbackEvent",
+  "description": "useCallbackEvent external hook",
   "files": [
     {
-      "path": "packages/external-hooks/src/useCallBackEvent/index.ts",
+      "path": "packages/external-hooks/src/useCallbackEvent/index.ts",
       "content": "import {\n  useCallback,\n  useRef,\n  useImperativeHandle,\n  // useEffectEvent,\n} from 'react';\n\nfunction useCallbackEvent<T extends (...args: unknown[]) => unknown>(\n  callback: T\n) {\n  const property = useRef<{ callback: T }>(null);\n\n  useImperativeHandle(property, () => ({ callback }));\n\n  return useCallback((...args: Parameters<T>) => {\n    if (!property.current) throw 'callback is null';\n    return property.current.callback(...args);\n  }, []);\n}\n\nexport default useCallbackEvent;\n",
       "type": "registry:file",
-      "target": "src/hooks/external-hooks/useCallBackEvent/index.ts"
+      "target": "src/hooks/external-hooks/useCallbackEvent/index.ts"
     }
   ],
   "type": "registry:hook"

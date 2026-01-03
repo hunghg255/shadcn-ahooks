@@ -1692,15 +1692,15 @@
       ]
     },
     {
-      "name": "useCallBackEvent",
+      "name": "useCallbackEvent",
       "type": "registry:hook",
-      "title": "useCallBackEvent",
-      "description": "useCallBackEvent external hook 1",
+      "title": "useCallbackEvent",
+      "description": "useCallbackEvent external hook",
       "files": [
         {
-          "path": "packages/external-hooks/src/useCallBackEvent/index.ts",
+          "path": "packages/external-hooks/src/useCallbackEvent/index.ts",
           "type": "registry:file",
-          "target": "src/hooks/external-hooks/useCallBackEvent/index.ts"
+          "target": "src/hooks/external-hooks/useCallbackEvent/index.ts"
         }
       ]
     },

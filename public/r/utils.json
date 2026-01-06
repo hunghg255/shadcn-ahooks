@@ -5,8 +5,7 @@
   "description": "utils hook",
   "dependencies": [
     "react-fast-compare",
-    "@types/lodash",
-    "lodash"
+    "es-toolkit"
   ],
   "registryDependencies": [
     "https://shadcn-ahooks.vercel.app/r/useUnmount.json"
@@ -65,12 +64,6 @@
       "content": "const isDev = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test';\n\nexport default isDev;\n",
       "type": "registry:file",
       "target": "src/hooks/ahooks/utils/isDev.ts"
-    },
-    {
-      "path": "packages/hooks/src/utils/lodash-polyfill.ts",
-      "content": "import debounce from 'lodash/debounce';\n\nfunction isNodeOrWeb() {\n  const freeGlobal =\n    (typeof global === 'undefined' ? 'undefined' : typeof global) == 'object' &&\n    global &&\n    global.Object === Object &&\n    global;\n  const freeSelf = typeof self == 'object' && self && self.Object === Object && self;\n  return freeGlobal || freeSelf;\n}\n\nif (!isNodeOrWeb()) {\n  global.Date = Date;\n}\n\nexport { debounce };\n",
-      "type": "registry:file",
-      "target": "src/hooks/ahooks/utils/lodash-polyfill.ts"
     },
     {
       "path": "packages/hooks/src/utils/rect.ts",

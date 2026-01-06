@@ -4,7 +4,7 @@
   "title": "useSessionStorageState",
   "description": "useSessionStorageState hook",
   "dependencies": [
-    "lodash"
+    "es-toolkit"
   ],
   "registryDependencies": [
     "https://shadcn-ahooks.vercel.app/r/createUseStorageState.json",

@@ -10,8 +10,7 @@
       "description": "utils hook",
       "dependencies": [
         "react-fast-compare",
-        "@types/lodash",
-        "lodash"
+        "es-toolkit"
       ],
       "registryDependencies": [
         "https://shadcn-ahooks.vercel.app/r/useUnmount.json"
@@ -61,11 +60,6 @@
           "path": "packages/hooks/src/utils/isDev.ts",
           "type": "registry:file",
           "target": "src/hooks/ahooks/utils/isDev.ts"
-        },
-        {
-          "path": "packages/hooks/src/utils/lodash-polyfill.ts",
-          "type": "registry:file",
-          "target": "src/hooks/ahooks/utils/lodash-polyfill.ts"
         },
         {
           "path": "packages/hooks/src/utils/rect.ts",
@@ -1063,7 +1057,7 @@
       "title": "useReactive",
       "description": "useReactive hook",
       "dependencies": [
-        "lodash"
+        "es-toolkit"
       ],
       "registryDependencies": [
         "https://shadcn-ahooks.vercel.app/r/useCreation.json",
@@ -1083,7 +1077,7 @@
       "title": "useRequest",
       "description": "useRequest hook",
       "dependencies": [
-        "lodash"
+        "es-toolkit"
       ],
       "registryDependencies": [
         "https://shadcn-ahooks.vercel.app/r/useUpdateEffect.json",
@@ -1277,7 +1271,7 @@
       "title": "useSelections",
       "description": "useSelections hook",
       "dependencies": [
-        "lodash"
+        "es-toolkit"
       ],
       "registryDependencies": [
         "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
@@ -1297,7 +1291,7 @@
       "title": "useSessionStorageState",
       "description": "useSessionStorageState hook",
       "dependencies": [
-        "lodash"
+        "es-toolkit"
       ],
       "registryDependencies": [
         "https://shadcn-ahooks.vercel.app/r/createUseStorageState.json",
@@ -1445,7 +1439,7 @@
       "title": "useThrottleFn",
       "description": "useThrottleFn hook",
       "dependencies": [
-        "lodash"
+        "es-toolkit"
       ],
       "registryDependencies": [
         "https://shadcn-ahooks.vercel.app/r/useLatest.json",

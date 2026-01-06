@@ -1,7 +1,24 @@
-import type { DebouncedFunc, DebounceSettings } from 'lodash';
-import debounce from 'lodash/debounce';
+import { debounce, type DebouncedFunc } from 'es-toolkit/compat';
 import { useEffect, useMemo, useRef } from 'react';
 import type { Plugin } from '../types';
+
+interface DebounceSettings {
+    /**
+     * If `true`, the function will be invoked on the leading edge of the timeout.
+     * @default false
+     */
+    leading?: boolean | undefined;
+    /**
+     * The maximum time `func` is allowed to be delayed before it's invoked.
+     * @default Infinity
+     */
+    maxWait?: number | undefined;
+    /**
+     * If `true`, the function will be invoked on the trailing edge of the timeout.
+     * @default true
+     */
+    trailing?: boolean | undefined;
+}
 
 const useDebouncePlugin: Plugin<any, any[]> = (
   fetchInstance,

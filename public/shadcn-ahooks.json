@@ -92,7 +92,8 @@
     "https://shadcn-ahooks.vercel.app/r/useUrlState.json",
     "https://shadcn-ahooks.vercel.app/r/external-hooks-utils.json",
     "https://shadcn-ahooks.vercel.app/r/useCallbackEvent.json",
-    "https://shadcn-ahooks.vercel.app/r/useScrollLocker.json"
+    "https://shadcn-ahooks.vercel.app/r/useScrollLocker.json",
+    "https://shadcn-ahooks.vercel.app/r/useSSE.json"
   ],
   "files": [],
   "type": "registry:hook"

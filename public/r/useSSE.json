@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useSSE",
+  "title": "useSSE",
+  "description": "useSSE external hook",
+  "dependencies": [
+    "@microsoft/fetch-event-source"
+  ],
+  "files": [
+    {
+      "path": "packages/external-hooks/src/useSSE/index.ts",
+      "content": "import { useState, useEffect, useRef } from \"react\";\nimport { fetchEventSource, type EventSourceMessage } from \"@microsoft/fetch-event-source\";\n\nexport interface UseSSEOptions {\n  url: string;\n  headers?: Record<string, string>;\n  method?: string;\n  body?: string | FormData;\n  onMessage?: (message: EventSourceMessage) => void;\n  onOpen?: (response: Response) => void;\n  onError?: (error: unknown) => void;\n  fetch?: typeof window.fetch;\n  openWhenHidden?: boolean;\n}\n\nexport interface UseSSEResult {\n  readyState: number;\n  close: () => void;\n  reconnect: () => void;\n}\n\nexport function useSSE(options: UseSSEOptions): UseSSEResult {\n  const { url, headers, method, body, onMessage, onOpen, onError, fetch: customFetch, openWhenHidden } = options;\n  const [readyState, setReadyState] = useState(0);\n  const controllerRef = useRef<AbortController | null>(null);\n\n  const connect = () => {\n    if (controllerRef.current) {\n      controllerRef.current.abort();\n    }\n\n    const controller = new AbortController();\n    controllerRef.current = controller;\n\n    setReadyState(0);\n\n    fetchEventSource(url, {\n      method: method || 'GET',\n      headers: headers,\n      body: body,\n      signal: controller.signal,\n      fetch: customFetch,\n      openWhenHidden: openWhenHidden ?? true,\n\n      async onopen(response) {\n        setReadyState(1);\n        onOpen?.(response);\n      },\n\n      onmessage(message) {\n        onMessage?.(message);\n      },\n\n      onerror(err) {\n        setReadyState(2);\n        onError?.(err);\n      },\n    });\n  };\n\n  const close = () => {\n    if (controllerRef.current) {\n      controllerRef.current.abort();\n      setReadyState(2);\n    }\n  };\n\n  const reconnect = () => {\n    connect();\n  };\n\n  useEffect(() => {\n    connect();\n    return () => {\n      close();\n    };\n  }, [url, headers, method, body, onMessage, onOpen, onError]);\n\n  return {\n    readyState,\n    close,\n    reconnect,\n  };\n}\n",
+      "type": "registry:file",
+      "target": "src/hooks/external-hooks/useSSE/index.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

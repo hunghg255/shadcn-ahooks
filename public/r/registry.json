@@ -1713,6 +1713,22 @@
           "target": "src/hooks/external-hooks/useScrollLocker/index.ts"
         }
       ]
+    },
+    {
+      "name": "useSSE",
+      "type": "registry:hook",
+      "title": "useSSE",
+      "description": "useSSE external hook",
+      "dependencies": [
+        "@microsoft/fetch-event-source"
+      ],
+      "files": [
+        {
+          "path": "packages/external-hooks/src/useSSE/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/external-hooks/useSSE/index.ts"
+        }
+      ]
     }
   ]
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { fetchEventSource, type EventSourceMessage } from "@microsoft/fetch-event-source";
 
 export interface UseSSEOptions {
@@ -13,26 +13,26 @@ export interface UseSSEOptions {
   openWhenHidden?: boolean;
 }
 
+type TReadyState = 'CONNECTING' | 'OPEN' | 'CLOSED'; // 0: connecting, 1: open, 2: closed
+
 export interface UseSSEResult {
-  readyState: number;
+  readyState: TReadyState;
   close: () => void;
   reconnect: () => void;
 }
 
 function useSSE(options: UseSSEOptions): UseSSEResult {
   const { url, headers, method, body, onMessage, onOpen, onError, fetch: customFetch, openWhenHidden } = options;
-  const [readyState, setReadyState] = useState(0);
+  const [readyState, setReadyState] = useState<TReadyState>('CONNECTING');
   const controllerRef = useRef<AbortController | null>(null);
 
-  const connect = () => {
+  const connect = useCallback(() => {
     if (controllerRef.current) {
       controllerRef.current.abort();
     }
 
     const controller = new AbortController();
     controllerRef.current = controller;
-
-    setReadyState(0);
 
     fetchEventSource(url, {
       method: method || 'GET',
@@ -43,7 +43,7 @@ function useSSE(options: UseSSEOptions): UseSSEResult {
       openWhenHidden: openWhenHidden ?? true,
 
       async onopen(response) {
-        setReadyState(1);
+        setReadyState('OPEN');
         onOpen?.(response);
       },
 
@@ -52,34 +52,30 @@ function useSSE(options: UseSSEOptions): UseSSEResult {
       },
 
       onerror(err) {
-        setReadyState(2);
+        setReadyState('CLOSED');
         onError?.(err);
       },
     });
-  };
+  }, [url, headers, method, body, openWhenHidden]);
 
-  const close = () => {
+  const close = useCallback(() => {
     if (controllerRef.current) {
       controllerRef.current.abort();
-      setReadyState(2);
+      setReadyState('CLOSED');
     }
-  };
-
-  const reconnect = () => {
-    connect();
-  };
+  }, []);
 
   useEffect(() => {
     connect();
     return () => {
       close();
     };
-  }, [url, headers, method, body, onMessage, onOpen, onError]);
+  }, []);
 
   return {
     readyState,
     close,
-    reconnect,
+    reconnect: connect,
   };
 }
 

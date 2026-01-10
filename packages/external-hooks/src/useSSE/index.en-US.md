@@ -41,7 +41,7 @@ function LiveFeed() {
 
   return (
     <div>
-      Status: {readyState === 1 ? 'Connected' : 'Disconnected'}
+      Status: {readyState === 'OPEN' ? 'Connected' : 'Disconnected'}
       <button onClick={close}>Disconnect</button>
       <button onClick={reconnect}>Reconnect</button>
     </div>
@@ -73,7 +73,7 @@ export default () => {
     },
   });
 
-  const statusText = readyState === 0 ? 'Connecting...' : readyState === 1 ? '🟢 Connected' : '🔴 Disconnected';
+  const statusText = readyState === 'CONNECTING' ? 'Connecting...' : readyState === 'OPEN' ? '🟢 Connected' : '🔴 Disconnected';
 
   return (
     <div>
@@ -131,7 +131,7 @@ export default () => {
 
   return (
     <div>
-      <div>Connection: {readyState === 1 ? '🟢 Online' : '🔴 Offline'}</div>
+      <div>Connection: {readyState === 'OPEN' ? '🟢 Online' : '🔴 Offline'}</div>
 
       <div style={{ height: '300px', overflowY: 'auto', border: '1px solid #ccc', padding: '10px' }}>
         {messages.map((msg) => (
@@ -196,7 +196,7 @@ export default () => {
         <span>{progress}%</span>
       </div>
       {message && <div>Message: {message}</div>}
-      {readyState === 2 && (
+      {readyState === 'CLOSED' && (
         <button onClick={reconnect}>Retry</button>
       )}
     </div>
@@ -245,8 +245,8 @@ export default () => {
       </div>
 
       <div style={{ marginTop: '20px' }}>
-        <button onClick={close} disabled={readyState !== 1}>Stop</button>
-        <button onClick={reconnect} disabled={readyState === 1}>Start</button>
+        <button onClick={close} disabled={readyState !== 'OPEN'}>Stop</button>
+        <button onClick={reconnect} disabled={readyState === 'OPEN'}>Start</button>
       </div>
     </div>
   );
@@ -277,7 +277,7 @@ const { readyState, close, reconnect } = useSSE(options);
 
 | Property | Description | Type |
 | --- | --- | --- |
-| readyState | Connection state: `0` (connecting), `1` (open), `2` (closed) | `number` |
+| readyState | Connection state: `'CONNECTING'`, `'OPEN'`, or `'CLOSED'` | `'CONNECTING' \| 'OPEN' \| 'CLOSED'` |
 | close | Function to close the connection | `() => void` |
 | reconnect | Function to reconnect | `() => void` |
 
@@ -303,9 +303,9 @@ interface EventSourceMessage {
 
 ### ReadyState Values
 
-- `0`: Connecting - Initial connection attempt in progress
-- `1`: Open - Connection established and ready
-- `2`: Closed - Connection closed (error or manual close)
+- `'CONNECTING'`: Initial connection attempt in progress
+- `'OPEN'`: Connection established and ready
+- `'CLOSED'`: Connection closed (error or manual close)
 
 ## Notes
 
@@ -334,7 +334,7 @@ interface UseSSEOptions {
 }
 
 interface UseSSEResult {
-  readyState: number;
+  readyState: 'CONNECTING' | 'OPEN' | 'CLOSED';
   close: () => void;
   reconnect: () => void;
 }

@@ -13,7 +13,7 @@ function isBodyOverflowing() {
   );
 }
 
-export function useScrollLocker(lock?: boolean) {
+function useScrollLocker(lock?: boolean) {
   const mergedLock = !!lock;
   const [id] = React.useState(() => {
     uuid += 1;
@@ -42,3 +42,5 @@ html body {
     };
   }, [mergedLock, id]);
 }
+
+export default useScrollLocker;

@@ -19,7 +19,7 @@ export interface UseSSEResult {
   reconnect: () => void;
 }
 
-export function useSSE(options: UseSSEOptions): UseSSEResult {
+function useSSE(options: UseSSEOptions): UseSSEResult {
   const { url, headers, method, body, onMessage, onOpen, onError, fetch: customFetch, openWhenHidden } = options;
   const [readyState, setReadyState] = useState(0);
   const controllerRef = useRef<AbortController | null>(null);
@@ -82,3 +82,5 @@ export function useSSE(options: UseSSEOptions): UseSSEResult {
     reconnect,
   };
 }
+
+export default useSSE;

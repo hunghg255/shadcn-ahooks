@@ -1729,6 +1729,39 @@
           "target": "src/hooks/external-hooks/useSSE/index.ts"
         }
       ]
+    },
+    {
+      "name": "useIndexedDB",
+      "type": "registry:hook",
+      "title": "useIndexedDB",
+      "description": "useIndexedDB external hook",
+      "files": [
+        {
+          "path": "packages/external-hooks/src/useIndexedDB/constants.ts",
+          "type": "registry:file",
+          "target": "src/hooks/external-hooks/useIndexedDB/constants.ts"
+        },
+        {
+          "path": "packages/external-hooks/src/useIndexedDB/db.ts",
+          "type": "registry:file",
+          "target": "src/hooks/external-hooks/useIndexedDB/db.ts"
+        },
+        {
+          "path": "packages/external-hooks/src/useIndexedDB/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/external-hooks/useIndexedDB/index.ts"
+        },
+        {
+          "path": "packages/external-hooks/src/useIndexedDB/interfaces.ts",
+          "type": "registry:file",
+          "target": "src/hooks/external-hooks/useIndexedDB/interfaces.ts"
+        },
+        {
+          "path": "packages/external-hooks/src/useIndexedDB/utils.ts",
+          "type": "registry:file",
+          "target": "src/hooks/external-hooks/useIndexedDB/utils.ts"
+        }
+      ]
     }
   ]
 }

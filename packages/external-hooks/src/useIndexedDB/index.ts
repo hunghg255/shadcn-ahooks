@@ -1,0 +1,29 @@
+import { useMemo } from "react";
+
+import { IDB_KEY } from "./constants";
+import { getActions, getConnection } from "./db";
+import type { IndexedDBConfig } from "./interfaces";
+
+async function setupIndexedDB(config: IndexedDBConfig) {
+  return new Promise<void>(async (resolve, reject) => {
+    try {
+      await getConnection(config);
+      console.log("inside Init", config);
+      window[IDB_KEY] = { init: 1, config };
+      resolve();
+    } catch (e) {
+      console.error(e);
+      reject(e);
+    }
+  });
+}
+
+function useIndexedDB<T>(storeName: string) {
+  const _actions = useMemo(() => getActions<T>(storeName), [storeName]);
+  return _actions;
+}
+
+export default useIndexedDB;
+export {
+  setupIndexedDB
+}

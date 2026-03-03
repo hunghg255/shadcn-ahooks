@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "useWebHaptics",
+  "title": "useWebHaptics",
+  "description": "useWebHaptics external hook",
+  "files": [
+    {
+      "path": "packages/external-hooks/src/useWebHaptics/index.ts",
+      "content": "import { useRef, useEffect, useCallback } from \"react\";\nimport { WebHaptics } from \"./web-haptics\";\nimport type { HapticInput, TriggerOptions, WebHapticsOptions } from \"./types\";\n\nfunction useWebHaptics(options?: WebHapticsOptions) {\n  const instanceRef = useRef<WebHaptics | null>(null);\n\n  useEffect(() => {\n    instanceRef.current = new WebHaptics(options);\n    return () => {\n      instanceRef.current?.destroy();\n      instanceRef.current = null;\n    };\n  }, []);\n\n  useEffect(() => {\n    instanceRef.current?.setDebug(options?.debug ?? false);\n  }, [options?.debug]);\n\n  useEffect(() => {\n    instanceRef.current?.setShowSwitch(options?.showSwitch ?? false);\n  }, [options?.showSwitch]);\n\n  const trigger = useCallback(\n    (input?: HapticInput, options?: TriggerOptions) =>\n      instanceRef.current?.trigger(input, options),\n    []\n  );\n\n  const cancel = useCallback(() => instanceRef.current?.cancel(), []);\n\n  const isSupported = WebHaptics.isSupported;\n\n  return { trigger, cancel, isSupported };\n}\n\nexport default useWebHaptics;\n",
+      "type": "registry:file",
+      "target": "src/hooks/external-hooks/useWebHaptics/index.ts"
+    },
+    {
+      "path": "packages/external-hooks/src/useWebHaptics/patterns.ts",
+      "content": "import type { HapticPreset } from \"./types\";\n\nexport const defaultPatterns = {\n  // --- Notification (UINotificationFeedbackGenerator) ---\n  success: {\n    // ascending double-tap indicating success.\n    pattern: [\n      { duration: 30, intensity: 0.5 },\n      { delay: 60, duration: 40, intensity: 1 },\n    ],\n  },\n  warning: {\n    // two taps with hesitation indicating a warning.\n    pattern: [\n      { duration: 40, intensity: 0.8 },\n      { delay: 100, duration: 40, intensity: 0.6 },\n    ],\n  },\n  error: {\n    // three rapid harsh taps indicating an error.\n    pattern: [\n      { duration: 40, intensity: 0.9 },\n      { delay: 40, duration: 40, intensity: 0.9 },\n      { delay: 40, duration: 40, intensity: 0.9 },\n    ],\n  },\n\n  // --- Impact (UIImpactFeedbackGenerator) ---\n  light: {\n    // single light tap indicating a minor impact.\n    pattern: [{ duration: 15, intensity: 0.4 }],\n  },\n  medium: {\n    // moderate tap for standard interactions.\n    pattern: [{ duration: 25, intensity: 0.7 }],\n  },\n  heavy: {\n    // strong tap for significant interactions.\n    pattern: [{ duration: 35, intensity: 1 }],\n  },\n  soft: {\n    // soft, cushioned tap with a rounded feel.\n    pattern: [{ duration: 40, intensity: 0.5 }],\n  },\n  rigid: {\n    // hard, crisp tap with a precise feel.\n    pattern: [{ duration: 10, intensity: 1 }],\n  },\n\n  // --- Selection (UISelectionFeedbackGenerator) ---\n  selection: {\n    // subtle tap for selection changes.\n    pattern: [{ duration: 8, intensity: 0.3 }],\n  },\n\n  // --- Custom ---\n  nudge: {\n    // two quick taps with a pause, indicating a nudge or reminder.\n    pattern: [\n      { duration: 80, intensity: 0.8 },\n      { delay: 80, duration: 50, intensity: 0.3 },\n    ],\n  },\n  buzz: {\n    // rapid, low-intensity taps creating a buzzing effect.\n    pattern: [{ duration: 1000, intensity: 1 }],\n  },\n} as const satisfies Record<string, HapticPreset>;\n",
+      "type": "registry:file",
+      "target": "src/hooks/external-hooks/useWebHaptics/patterns.ts"
+    },
+    {
+      "path": "packages/external-hooks/src/useWebHaptics/types.ts",
+      "content": "export interface Vibration {\n  duration: number;\n  intensity?: number;\n  delay?: number;\n}\n\nexport type HapticPattern = number[] | Vibration[];\n\nexport interface HapticPreset {\n  pattern: Vibration[];\n}\n\nexport type HapticInput = number | string | HapticPattern | HapticPreset;\n\nexport interface TriggerOptions {\n  intensity?: number;\n}\n\nexport interface WebHapticsOptions {\n  debug?: boolean;\n  showSwitch?: boolean;\n}\n",
+      "type": "registry:file",
+      "target": "src/hooks/external-hooks/useWebHaptics/types.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

@@ -8,10 +8,7 @@
       "type": "registry:hook",
       "title": "utils",
       "description": "utils hook",
-      "dependencies": [
-        "react-fast-compare",
-        "es-toolkit"
-      ],
+      "dependencies": ["react-fast-compare", "es-toolkit"],
       "registryDependencies": [
         "https://shadcn-ahooks.vercel.app/r/useUnmount.json"
       ],
@@ -93,9 +90,7 @@
       "type": "registry:hook",
       "title": "createDeepCompareEffect",
       "description": "createDeepCompareEffect hook",
-      "registryDependencies": [
-        "https://shadcn-ahooks.vercel.app/r/utils.json"
-      ],
+      "registryDependencies": ["https://shadcn-ahooks.vercel.app/r/utils.json"],
       "files": [
         {
           "path": "packages/hooks/src/createDeepCompareEffect/index.ts",
@@ -164,9 +159,7 @@
       "type": "registry:hook",
       "title": "useAsyncEffect",
       "description": "useAsyncEffect hook",
-      "registryDependencies": [
-        "https://shadcn-ahooks.vercel.app/r/utils.json"
-      ],
+      "registryDependencies": ["https://shadcn-ahooks.vercel.app/r/utils.json"],
       "files": [
         {
           "path": "packages/hooks/src/useAsyncEffect/index.ts",
@@ -196,9 +189,7 @@
       "type": "registry:hook",
       "title": "useClickAway",
       "description": "useClickAway hook",
-      "registryDependencies": [
-        "https://shadcn-ahooks.vercel.app/r/utils.json"
-      ],
+      "registryDependencies": ["https://shadcn-ahooks.vercel.app/r/utils.json"],
       "files": [
         {
           "path": "packages/hooks/src/useClickAway/index.ts",
@@ -230,9 +221,7 @@
       "type": "registry:hook",
       "title": "useCookieState",
       "description": "useCookieState hook",
-      "dependencies": [
-        "js-cookie"
-      ],
+      "dependencies": ["js-cookie"],
       "registryDependencies": [
         "https://shadcn-ahooks.vercel.app/r/utils.json",
         "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json"
@@ -250,9 +239,7 @@
       "type": "registry:hook",
       "title": "useCountDown",
       "description": "useCountDown hook",
-      "dependencies": [
-        "dayjs"
-      ],
+      "dependencies": ["dayjs"],
       "registryDependencies": [
         "https://shadcn-ahooks.vercel.app/r/utils.json",
         "https://shadcn-ahooks.vercel.app/r/useLatest.json"
@@ -482,9 +469,7 @@
       "type": "registry:hook",
       "title": "useDynamicList",
       "description": "useDynamicList hook",
-      "registryDependencies": [
-        "https://shadcn-ahooks.vercel.app/r/utils.json"
-      ],
+      "registryDependencies": ["https://shadcn-ahooks.vercel.app/r/utils.json"],
       "files": [
         {
           "path": "packages/hooks/src/useDynamicList/index.ts",
@@ -588,9 +573,7 @@
       "type": "registry:hook",
       "title": "useFullscreen",
       "description": "useFullscreen hook",
-      "dependencies": [
-        "screenfull"
-      ],
+      "dependencies": ["screenfull"],
       "registryDependencies": [
         "https://shadcn-ahooks.vercel.app/r/useLatest.json",
         "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
@@ -745,12 +728,8 @@
       "type": "registry:hook",
       "title": "useInViewport",
       "description": "useInViewport hook",
-      "dependencies": [
-        "intersection-observer"
-      ],
-      "registryDependencies": [
-        "https://shadcn-ahooks.vercel.app/r/utils.json"
-      ],
+      "dependencies": ["intersection-observer"],
+      "registryDependencies": ["https://shadcn-ahooks.vercel.app/r/utils.json"],
       "files": [
         {
           "path": "packages/hooks/src/useInViewport/index.ts",
@@ -764,12 +743,8 @@
       "type": "registry:hook",
       "title": "useIsomorphicLayoutEffect",
       "description": "useIsomorphicLayoutEffect hook",
-      "dependencies": [
-        "intersection-observer"
-      ],
-      "registryDependencies": [
-        "https://shadcn-ahooks.vercel.app/r/utils.json"
-      ],
+      "dependencies": ["intersection-observer"],
+      "registryDependencies": ["https://shadcn-ahooks.vercel.app/r/utils.json"],
       "files": [
         {
           "path": "packages/hooks/src/useIsomorphicLayoutEffect/index.ts",
@@ -889,9 +864,7 @@
       "type": "registry:hook",
       "title": "useMemoizedFn",
       "description": "useMemoizedFn hook",
-      "registryDependencies": [
-        "https://shadcn-ahooks.vercel.app/r/utils.json"
-      ],
+      "registryDependencies": ["https://shadcn-ahooks.vercel.app/r/utils.json"],
       "files": [
         {
           "path": "packages/hooks/src/useMemoizedFn/index.ts",
@@ -905,9 +878,7 @@
       "type": "registry:hook",
       "title": "useMount",
       "description": "useMount hook",
-      "registryDependencies": [
-        "https://shadcn-ahooks.vercel.app/r/utils.json"
-      ],
+      "registryDependencies": ["https://shadcn-ahooks.vercel.app/r/utils.json"],
       "files": [
         {
           "path": "packages/hooks/src/useMount/index.ts",
@@ -956,9 +927,7 @@
       "type": "registry:hook",
       "title": "useNetwork",
       "description": "useNetwork hook",
-      "registryDependencies": [
-        "https://shadcn-ahooks.vercel.app/r/utils.json"
-      ],
+      "registryDependencies": ["https://shadcn-ahooks.vercel.app/r/utils.json"],
       "files": [
         {
           "path": "packages/hooks/src/useNetwork/index.ts",
@@ -1056,9 +1025,7 @@
       "type": "registry:hook",
       "title": "useReactive",
       "description": "useReactive hook",
-      "dependencies": [
-        "es-toolkit"
-      ],
+      "dependencies": ["es-toolkit"],
       "registryDependencies": [
         "https://shadcn-ahooks.vercel.app/r/useCreation.json",
         "https://shadcn-ahooks.vercel.app/r/useUpdate.json"
@@ -1076,9 +1043,7 @@
       "type": "registry:hook",
       "title": "useRequest",
       "description": "useRequest hook",
-      "dependencies": [
-        "es-toolkit"
-      ],
+      "dependencies": ["es-toolkit"],
       "registryDependencies": [
         "https://shadcn-ahooks.vercel.app/r/useUpdateEffect.json",
         "https://shadcn-ahooks.vercel.app/r/useUpdate.json",
@@ -1220,9 +1185,7 @@
       "type": "registry:hook",
       "title": "useResponsive",
       "description": "useResponsive hook",
-      "registryDependencies": [
-        "https://shadcn-ahooks.vercel.app/r/utils.json"
-      ],
+      "registryDependencies": ["https://shadcn-ahooks.vercel.app/r/utils.json"],
       "files": [
         {
           "path": "packages/hooks/src/useResponsive/index.ts",
@@ -1270,9 +1233,7 @@
       "type": "registry:hook",
       "title": "useSelections",
       "description": "useSelections hook",
-      "dependencies": [
-        "es-toolkit"
-      ],
+      "dependencies": ["es-toolkit"],
       "registryDependencies": [
         "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
         "https://shadcn-ahooks.vercel.app/r/utils.json"
@@ -1290,9 +1251,7 @@
       "type": "registry:hook",
       "title": "useSessionStorageState",
       "description": "useSessionStorageState hook",
-      "dependencies": [
-        "es-toolkit"
-      ],
+      "dependencies": ["es-toolkit"],
       "registryDependencies": [
         "https://shadcn-ahooks.vercel.app/r/createUseStorageState.json",
         "https://shadcn-ahooks.vercel.app/r/utils.json"
@@ -1343,9 +1302,7 @@
       "type": "registry:hook",
       "title": "useSize",
       "description": "useSize hook",
-      "dependencies": [
-        "resize-observer-polyfill"
-      ],
+      "dependencies": ["resize-observer-polyfill"],
       "registryDependencies": [
         "https://shadcn-ahooks.vercel.app/r/useRafState.json",
         "https://shadcn-ahooks.vercel.app/r/utils.json"
@@ -1363,12 +1320,8 @@
       "type": "registry:hook",
       "title": "useTextSelection",
       "description": "useTextSelection hook",
-      "dependencies": [
-        "resize-observer-polyfill"
-      ],
-      "registryDependencies": [
-        "https://shadcn-ahooks.vercel.app/r/utils.json"
-      ],
+      "dependencies": ["resize-observer-polyfill"],
+      "registryDependencies": ["https://shadcn-ahooks.vercel.app/r/utils.json"],
       "files": [
         {
           "path": "packages/hooks/src/useTextSelection/index.ts",
@@ -1438,9 +1391,7 @@
       "type": "registry:hook",
       "title": "useThrottleFn",
       "description": "useThrottleFn hook",
-      "dependencies": [
-        "es-toolkit"
-      ],
+      "dependencies": ["es-toolkit"],
       "registryDependencies": [
         "https://shadcn-ahooks.vercel.app/r/useLatest.json",
         "https://shadcn-ahooks.vercel.app/r/useThrottle.json",
@@ -1651,10 +1602,7 @@
       "type": "registry:hook",
       "title": "useUrlState",
       "description": "useUrlState hook",
-      "dependencies": [
-        "query-string",
-        "react-router"
-      ],
+      "dependencies": ["query-string", "react-router"],
       "registryDependencies": [
         "https://shadcn-ahooks.vercel.app/r/useMemoizedFn.json",
         "https://shadcn-ahooks.vercel.app/r/useUpdate.json"
@@ -1719,9 +1667,7 @@
       "type": "registry:hook",
       "title": "useSSE",
       "description": "useSSE external hook",
-      "dependencies": [
-        "@microsoft/fetch-event-source"
-      ],
+      "dependencies": ["@microsoft/fetch-event-source"],
       "files": [
         {
           "path": "packages/external-hooks/src/useSSE/index.ts",
@@ -1760,6 +1706,29 @@
           "path": "packages/external-hooks/src/useIndexedDB/utils.ts",
           "type": "registry:file",
           "target": "src/hooks/external-hooks/useIndexedDB/utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "useWebHaptics",
+      "type": "registry:hook",
+      "title": "useWebHaptics",
+      "description": "useWebHaptics external hook",
+      "files": [
+        {
+          "path": "packages/external-hooks/src/useWebHaptics/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/external-hooks/useWebHaptics/index.ts"
+        },
+        {
+          "path": "packages/external-hooks/src/useWebHaptics/patterns.ts",
+          "type": "registry:file",
+          "target": "src/hooks/external-hooks/useWebHaptics/patterns.ts"
+        },
+        {
+          "path": "packages/external-hooks/src/useWebHaptics/types.ts",
+          "type": "registry:file",
+          "target": "src/hooks/external-hooks/useWebHaptics/types.ts"
         }
       ]
     }

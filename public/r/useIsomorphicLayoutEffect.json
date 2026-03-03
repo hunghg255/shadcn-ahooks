@@ -12,7 +12,7 @@
   "files": [
     {
       "path": "packages/hooks/src/useIsomorphicLayoutEffect/index.ts",
-      "content": "import { useEffect, useLayoutEffect } from 'react';\nimport isBrowser from '../utils/isBrowser';\n\nconst useIsomorphicLayoutEffect = isBrowser ? useLayoutEffect : useEffect;\n\nexport default useIsomorphicLayoutEffect;\n",
+      "content": "import { useLayoutEffect } from 'react';\nimport isBrowser from '../utils/isBrowser';\nimport noop from '../utils/noop';\n\nconst useIsomorphicLayoutEffect = isBrowser ? useLayoutEffect : noop;\n\nexport default useIsomorphicLayoutEffect;\n",
       "type": "registry:file",
       "target": "src/hooks/ahooks/useIsomorphicLayoutEffect/index.ts"
     }

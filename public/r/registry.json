@@ -1731,6 +1731,19 @@
           "target": "src/hooks/external-hooks/useWebHaptics/types.ts"
         }
       ]
+    },
+    {
+      "name": "useImageDecode",
+      "type": "registry:hook",
+      "title": "useImageDecode",
+      "description": "useImageDecode external hook",
+      "files": [
+        {
+          "path": "packages/external-hooks/src/useImageDecode/index.ts",
+          "type": "registry:file",
+          "target": "src/hooks/external-hooks/useImageDecode/index.ts"
+        }
+      ]
     }
   ]
 }
